@@ -13,11 +13,11 @@ import com.chinasoft.service.impl.CommentMapperServiceImpl;
 
 @Controller
 //@RequestMapping("/comment")
-public class MyCommentController { 
+public class MyCommentController {
 	
 	@Autowired
 	CommentMapperServiceImpl service;
- 
+
 	@RequestMapping("/comment/test")
 	@ResponseBody
 	// 测试用方法
@@ -52,9 +52,10 @@ public class MyCommentController {
 		List<Comment> comments = service.selectCommentByUser("zhangsan");
 
 		model.addAttribute("mycomments", comments);
+		model.addAttribute("totalComment", comments.size());
 
-		Comment com = comments.get(0);
-		System.out.println(com.getC_createtime());
+//		Comment com = comments.get(0);
+//		System.out.println(com.getC_createtime());
 
 		return "/WEB-INF/myComment.jsp";
 	}

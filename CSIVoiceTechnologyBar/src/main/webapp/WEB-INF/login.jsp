@@ -60,7 +60,7 @@
 	
 
 	<body style="width: 100%;height: 100%;margin: 0;padding: 0; ">
-	11
+	
 		<div class="bg-canvas">
 			<canvas id="demo-canvas" width="100%" height="100%" style="width: 100%;height: 99%;overflow: hidden;"></canvas>
 		</div>
@@ -71,7 +71,7 @@
 				<div class="input_text" >   
 					<div id="message"style="position:absolute;color:red;margin-top:-20px;margin-left:100px;" > </div>
 				
-				  	<!--  <form  action="login.d" method="post" onsubmit="return validateLogin()"> -->
+				  	<!--<form  action="login.d" method="post" onsubmit="return validateLogin()"> -->
 					
 						<div class="content" >
 							<div class="navbar-header">
@@ -122,7 +122,7 @@
 				<div class="input_text" >   
 					<div id="message"style="position:absolute;color:red;margin-top:-20px;margin-left:100px;" > </div>
 				
-				  <!--  	<form  action="login.d" method="post" onsubmit="return validateLogin()"> -->
+				  	<!--<form  action="login.d" method="post" onsubmit="return validateLogin()"> -->
 						<div class="content" >
 							<div class="navbar-header">
 					           	<div>

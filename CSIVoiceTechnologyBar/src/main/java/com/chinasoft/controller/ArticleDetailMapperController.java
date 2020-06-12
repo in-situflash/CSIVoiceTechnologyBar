@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,14 +24,12 @@ public class ArticleDetailMapperController {
 	@Autowired
 	ArticleDetailMapperServiceImpl service;
 
-
-	@RequestMapping("/getAll") 
-	public ModelAndView getAll(HttpSession session) {
-		session.setAttribute("username", "欧玉威");
+	@RequestMapping("/getAll")
+	public ModelAndView getAll() {
 		ModelAndView mav = new ModelAndView();
 		ArticleDetail articleDetail = service.getAllById(1);
 		List<Comment> comments = service.getCommentsByArticleId(1);
-		System.out.println(comments); 
+		System.out.println(comments);
 		System.out.println(articleDetail);
 		mav.addObject("articleDetail", articleDetail);
 		mav.addObject("comments", comments);

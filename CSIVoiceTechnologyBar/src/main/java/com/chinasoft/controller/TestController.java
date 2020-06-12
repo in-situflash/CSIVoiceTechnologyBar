@@ -9,10 +9,10 @@ public class TestController {
 
 	@RequestMapping("/testMenu")
 	public String toMenu() {
-		System.out.println("Entering toMenu test..."); 
+		System.out.println("Entering toMenu test...");
 		return "/WEB-INF/menu.jsp";
 	}
-	 
+	
 	@RequestMapping("/testRouteToComment")
 	public String routeToMyComment(Model model) {
 		System.out.println("Entering routeToMyComment...");

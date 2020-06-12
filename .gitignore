@@ -1,0 +1,6 @@
+CSIVoiceTechnologyBar/target/
+*.MF
+CSIVoiceTechnologyBar/.settings/
+CSIVoiceTechnologyBar/.idea/
+CSIVoiceTechnologyBar/.project
+*.properties

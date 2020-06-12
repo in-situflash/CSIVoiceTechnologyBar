@@ -22,7 +22,7 @@
 
 <body style="height: auto;">
 
-	我是${username}
+
 	<!--  <div class="container-fluid" id="ORG_LIST_DIV_ID">-->
 	<div class="container-fluid" id="COM_LIST_DIV_ID">
 		<div class="row">
@@ -70,7 +70,7 @@
 						<span>${articleDetail.essay}</span>
 					</div>
 						<div id="postAtt">
-							|&nbsp;<a id="praisecNum" href="javascript:void(0);" class="a_likes" style="color:default;">赞：${articleDetail.a_likes}</a>
+							|&nbsp;<a id="praisecNum" href="javascript:void(0);" class="a_likes" >赞：${articleDetail.a_likes}</a>
 							<input value="${articleDetail.a_id}" hidden="true"></input>
 						</div>
 					</div>
@@ -140,7 +140,7 @@
 									<div style="float:left">
 										<div class="col-sm-12" id="commentVoice${status.count}" >
 											&nbsp;|&nbsp;
-											<a id="praisecNum" class="c_likes" style="color:default;"  href="javascript:void(0);" onclick="hotsPraiseClick('46dc37890bbc49629384024d2f17beda','c9c8ee13e83149379d56d34ea7913d69')">赞：${item.c_likes}</a>
+											<a id="praisecNum" class="c_likes"  href="javascript:void(0);" onclick="hotsPraiseClick('46dc37890bbc49629384024d2f17beda','c9c8ee13e83149379d56d34ea7913d69')">赞：${item.c_likes}</a>
 											<input value="${item.c_id}" hidden="true"></input>
 										</div>
 									</div>
@@ -273,60 +273,49 @@
 		    window.location.href = "http://localhost:8080/new_ssm/articleDetail/deleteCommentByC_id?c_id="+c_id;
 		});	
 		$(".c_likes").click(function(){
-			var that = $(this);
+			var target = $(this);
 		   	var dataSend = {
-	       		c_id:that.next().val()
+	       		c_id:target.next().val()
 	       	};
-			var color = that.css("color");  
-			var rgb = color.split(",");
-			if(rgb[1] == 86){
-				that.css({"color":"red"}); 
-				$.ajax({
-		         	type: "POST",
-		         	url: "http://localhost:8080/new_ssm/articleDetail/updateC_likesByC_id",
-		         	data: JSON.stringify(dataSend),
-		         	contentType: "application/json; charset=utf-8",
-		         	dataType: "json",
-		         	async: false,
-		         	success: function (data) {
-		            	that.html("已点赞："+data.c_likes); 
-		         	}, 
-		            error:function(){ 
-		                alert("发生错误"); 
-		            }
-		        });
-			}
- 
+	       
+		    $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/new_ssm/articleDetail/updateC_likesByC_id",
+                data: JSON.stringify(dataSend),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                	target.html("赞："+data.c_likes); 
+                }, 
+                error:function(){ 
+                	alert("发生错误"); 
+                }
+                
+            });
 		});		    	
 		$(".a_likes").click(function(){
-			var that = $(this);
+			var target = $(this);
 		   	var dataSend = {
-	       		a_id:that.next().val()
-	       	}; 
-			var color = that.css("color");  
-			var rgb = color.split(",");
-			if(rgb[1] == 86){
-				that.css({"color":"red"}); 
-				$.ajax({
-		         	type: "POST",
-		         	url: "http://localhost:8080/new_ssm/articleDetail/updateA_likesByA_id",
-		         	data: JSON.stringify(dataSend),
-		         	contentType: "application/json; charset=utf-8",
-		         	dataType: "json",
-		         	async: false,
-		         	success: function (data) {
-		            	that.html("已点赞："+data.a_likes);  
-		         	}, 
-		            error:function(){ 
-		                alert("发生错误"); 
-		            }
-		        });
-			}
-		});		    
-		function returnPostList(){
-			window.history.go(-1);
-		}
-			
+	       		a_id:target.next().val()
+	       	};
+	       
+		    $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/new_ssm/articleDetail/updateA_likesByA_id",
+                data: JSON.stringify(dataSend),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                	target.html("赞："+data.a_likes); 
+                }, 
+                error:function(){ 
+                	alert("发生错误"); 
+                }
+                
+            });
+		});		    		
 	</script>
 </body>
 </html>
