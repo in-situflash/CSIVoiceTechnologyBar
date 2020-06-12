@@ -31,4 +31,7 @@ public interface ArticleDetailMapper {
 	@Select("select a_likes from article where a_id = #{a_id}")
 	int selectA_likesByA_id(int a_id);
 
+	@Select("select c_id from comment where username = #{username} ")
+	List<Integer> selectC_idsByUsername(String username);
+
 }

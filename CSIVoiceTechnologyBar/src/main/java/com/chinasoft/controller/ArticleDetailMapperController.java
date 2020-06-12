@@ -29,12 +29,10 @@ public class ArticleDetailMapperController {
 
 	@RequestMapping("/getAll") 
 	public ModelAndView getAll(HttpSession session) {
-		session.setAttribute("username", "欧玉威");
+		session.setAttribute("username", "zhangsan");
 		ModelAndView mav = new ModelAndView();
 		ArticleDetail articleDetail = service.getAllById(1);
 		List<Comment> comments = service.getCommentsByArticleId(1);
-		System.out.println(comments); 
-		System.out.println(articleDetail);
 		mav.addObject("articleDetail", articleDetail);
 		mav.addObject("comments", comments);
 		mav.setViewName("/WEB-INF/comment.jsp");
@@ -45,7 +43,6 @@ public class ArticleDetailMapperController {
 	public ModelAndView deleteCommentByC_id(int c_id) {
 		ModelAndView mav = new ModelAndView();
 		service.deleteCommentByC_id(c_id);
-		System.out.println(c_id);
 		ArticleDetail articleDetail = service.getAllById(1);
 		List<Comment> comments = service.getCommentsByArticleId(1);
 		mav.addObject("articleDetail", articleDetail);
@@ -76,4 +73,16 @@ public class ArticleDetailMapperController {
 		return map;
 	}
 
+	@RequestMapping("/selectC_idsByUsername")
+	@ResponseBody
+	public Map<String,List<Integer>> selectC_idsByUsername(@RequestBody Comment comment) {
+		String username  = comment.getUsername();
+		System.out.println(username);
+		List<Integer> c_ids = service.selectC_idsByUsername(username); 
+		System.out.println(c_ids);
+		//int a_likes = service.selectA_likesByA_id(a_id);
+		Map<String,List<Integer>> map = new HashMap<String, List<Integer>>();
+		map.put("c_ids", c_ids);
+		return map;
+	}
 }

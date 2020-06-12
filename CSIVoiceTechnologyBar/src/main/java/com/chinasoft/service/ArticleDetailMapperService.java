@@ -20,5 +20,7 @@ public interface ArticleDetailMapperService {
 	int selectC_likesByC_id(int c_id);
 	
 	int selectA_likesByA_id(int a_id); 
+	
+	List<Integer> selectC_idsByUsername(String username);
 }
  

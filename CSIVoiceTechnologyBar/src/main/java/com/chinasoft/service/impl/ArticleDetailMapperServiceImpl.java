@@ -52,4 +52,8 @@ public class ArticleDetailMapperServiceImpl implements ArticleDetailMapperServic
 		return a_likes;
 	}
 
+	public List<Integer> selectC_idsByUsername(String username) {
+		return mapper.selectC_idsByUsername(username);
+	}
+
 }

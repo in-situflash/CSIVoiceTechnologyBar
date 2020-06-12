@@ -10,14 +10,14 @@
 <title>comment</title>
 
 <link rel="stylesheet"
-	href="/new_ssm/static/css/default/bootstrap/bootstrap.css">
+	href="/CSIVoiceTechnologyBar/static/css/default/bootstrap/bootstrap.css">
 <link rel="stylesheet"
-	href="/new_ssm/static/comp/fontawesome/css/font-awesome.min.css">
+	href="/CSIVoiceTechnologyBar/static/comp/fontawesome/css/font-awesome.min.css">
 <link rel="stylesheet"
-	href="/new_ssm/static/comp/ionicons/css/ionicons.min.css">
+	href="/CSIVoiceTechnologyBar/static/comp/ionicons/css/ionicons.min.css">
 <link rel="stylesheet"
-	href="/new_ssm/static/comp/adminlte/css/adminlte.css">
-<link rel="stylesheet" href="/new_ssm/static/css/default/mask.css" />
+	href="/CSIVoiceTechnologyBar/static/comp/adminlte/css/adminlte.css">
+<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/mask.css" />
 </head>
 
 <body style="height: auto;">
@@ -37,7 +37,7 @@
 								<div class="form-inline col-md-11" style="width: 100%">
 									<div class="form-group " style="width: 100%">
 										<div id="postPhoto">
-											<img src="/new_ssm/headPhoto/default/default.jpg"
+											<img src="/CSIVoiceTechnologyBar/headPhoto/default/default.jpg"
 												style="whith: 80px; height: 80px">
 										</div>
 										&nbsp;&nbsp;
@@ -110,7 +110,7 @@
 							<div class="row">
 								<div class="form-inline col-sm-12">
 									<div>
-										<img src="/new_ssm/headPhoto/default/default.jpg"
+										<img src="/CSIVoiceTechnologyBar/headPhoto/default/default.jpg"
 											style="whith: 80px; height: 80px">
 									</div>
 									<div>
@@ -125,10 +125,7 @@
 												<tr>
 													<td id="c_createtime${status.count}"></td>
 												</tr>
-												<tr>
-													<td>删除选中：<input name="DELETE_CHECK_NAME"
-														type="checkbox" value="c9c8ee13e83149379d56d34ea7913d69"></td>
-												</tr>
+												
 											</tbody>
 										</table>
 									</div>
@@ -144,12 +141,12 @@
 											<input value="${item.c_id}" hidden="true"></input>
 										</div>
 									</div>
-									<div style="float:right" id="comAddAndDeleteDiv">
-										<button value="${item.c_id}" class="btn  btn-danger btn-sm DELETE_COM" type="button" >删除</button>
+									<div style="float:right" id="comAddAndDeleteDiv${item.c_id}">
+										<button id="DELETE${item.c_id}" value="${item.c_id}" class="btn  btn-danger btn-sm DELETE_COM" type="button" hidden="true">删除</button>
 									</div>   
 								</div>
 							</div>
-							<hr>
+							<hr>  
 						</div>
 					</div>
 					<!-- /.card-body -->
@@ -200,22 +197,22 @@
 
 
 
-	<script src="/new_ssm/static/comp/jquery/dist/jquery.js"></script>
+	<script src="/CSIVoiceTechnologyBar/static/comp/jquery/dist/jquery.js"></script>
 	<script
-		src="/new_ssm/static/comp/jQuery-Storage-API/jquery.storageapi.js"></script>
-	<script src="/new_ssm/static/comp/jquery.form/jquery.form.min.js"></script>
+		src="/CSIVoiceTechnologyBar/static/comp/jQuery-Storage-API/jquery.storageapi.js"></script>
+	<script src="/CSIVoiceTechnologyBar/static/comp/jquery.form/jquery.form.min.js"></script>
 	<script
-		src="/new_ssm/static/comp/jquery/plugins/scrollbar/perfect-scrollbar.jquery.min.js"></script>
+		src="/CSIVoiceTechnologyBar/static/comp/jquery/plugins/scrollbar/perfect-scrollbar.jquery.min.js"></script>
 
-	<script src="/new_ssm/static/kindeditor/kindeditor-all.js"
+	<script src="/CSIVoiceTechnologyBar/static/kindeditor/kindeditor-all.js"
 		type="text/javascript"></script>
-	<script src="/new_ssm/static/kindeditor/kindeditor-all-min.js"
+	<script src="/CSIVoiceTechnologyBar/static/kindeditor/kindeditor-all-min.js"
 		type="text/javascript"></script>
-	<script src="/new_ssm/static/kindeditor/lang/zh-CN.js"
+	<script src="/CSIVoiceTechnologyBar/static/kindeditor/lang/zh-CN.js"
 		type="text/javascript"></script>
-	<script src="/new_ssm/static/js/common/mask.js"></script>
-	<script src="/new_ssm/chinasofti/comment/js/comment.js"></script>
-	<script type="text/javascript" src="/new_ssm/static/js/alert.js"></script>
+	<script src="/CSIVoiceTechnologyBar/static/js/common/mask.js"></script>
+	<script src="/CSIVoiceTechnologyBar/chinasofti/comment/js/comment.js"></script>
+	<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/alert.js"></script>
 
 	<!--  
 		<script src="/stmadc/stma/dc/include/js/jcommon.js"></script>
@@ -260,17 +257,33 @@
 			audioPlay("${item.content}",id);
 		</c:forEach> 
 
+		
+		$(function() {
+			var dataSend = {
+		       	username:"${username}"
+		    };
+			$.ajax({
+			    type: "POST",
+			    url: "http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/selectC_idsByUsername",
+			    data: JSON.stringify(dataSend),
+			    contentType: "application/json; charset=utf-8",
+			    dataType: "json",
+			    async: false,
+			    success: function (data) {
+			    	var c_ids = data.c_ids;
+			    	for(i=0; i<c_ids.length;i++){
+			    		$("#DELETE"+c_ids[i]).attr("hidden",false);
+					}
+			        
+			    }, 
+			    error:function(){ 
+			        alert("发生错误"); 
+			    }
+			});
+		});
 		$(".DELETE_COM").click(function(){
-			var chk_value =[]; 
-		    $('input[name="DELETE_CHECK_NAME"]:checked').each(function(){ 
-		        chk_value.push($(this).val()); 
-		    }); 
-		    if(chk_value.length==0){
-		    	$.MsgBox.Alert("消息","我是新的请先选择需要删除的评论！");
-		    	return;
-		    }
 		    var c_id = $(this).val();
-		    window.location.href = "http://localhost:8080/new_ssm/articleDetail/deleteCommentByC_id?c_id="+c_id;
+		    window.location.href = "http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/deleteCommentByC_id?c_id="+c_id;
 		});	
 		$(".c_likes").click(function(){
 			var that = $(this);
@@ -283,7 +296,7 @@
 				that.css({"color":"red"}); 
 				$.ajax({
 		         	type: "POST",
-		         	url: "http://localhost:8080/new_ssm/articleDetail/updateC_likesByC_id",
+		         	url: "http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/updateC_likesByC_id",
 		         	data: JSON.stringify(dataSend),
 		         	contentType: "application/json; charset=utf-8",
 		         	dataType: "json",
@@ -309,7 +322,7 @@
 				that.css({"color":"red"}); 
 				$.ajax({
 		         	type: "POST",
-		         	url: "http://localhost:8080/new_ssm/articleDetail/updateA_likesByA_id",
+		         	url: "http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/updateA_likesByA_id",
 		         	data: JSON.stringify(dataSend),
 		         	contentType: "application/json; charset=utf-8",
 		         	dataType: "json",
