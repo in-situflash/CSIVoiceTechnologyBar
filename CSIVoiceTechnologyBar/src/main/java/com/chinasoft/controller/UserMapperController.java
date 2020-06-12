@@ -1,5 +1,7 @@
 package com.chinasoft.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +14,21 @@ import com.chinasoft.service.impl.UserMapperServiceImpl;
 @Controller
 @RequestMapping("/user")
 public class UserMapperController {
-
+	
 	@Autowired
 	UserMapperServiceImpl service;
+	
+	@RequestMapping("/selectLogin")
+	public ModelAndView selectLogin(HttpSession session,String username, String password) {
+		System.out.println("haha");
+		ModelAndView mav = new ModelAndView();
+		User user = service.login(username, password);  
+		mav.addObject("user", user); 
+		mav.setViewName("/WEB-INF/menu.jsp");
+		return mav;
+	}
+ 
+	
 	
 	@RequestMapping("/test")
 	@ResponseBody

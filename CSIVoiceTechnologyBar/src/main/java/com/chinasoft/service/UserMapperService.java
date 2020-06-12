@@ -11,4 +11,7 @@ public interface UserMapperService {
 	void deleteById(int id);
 	
 	void updateByUser(User user);
+	
+	User login(String username, String password);
+	
 }

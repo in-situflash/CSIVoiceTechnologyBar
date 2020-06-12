@@ -32,6 +32,10 @@ public class UserMapperServiceImpl implements UserMapperService {
 		
 	}
 
+	public User login(String username, String password) {
+		return mapper.selectLogin(username, password);
+	} 
+
 
 
 }

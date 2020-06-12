@@ -33,5 +33,6 @@ public interface UserMapper {
 
 	@Update("update user set username=#{username}, password=#{password}, phone=#{phone}, address=#{address}, email=#{email}, c_id=#{c_id} where id =#{id};")
 	void updateByUser(User user);
-	
+
+	User selectLogin(@Param("username")String username,@Param("password")String password);
 }
