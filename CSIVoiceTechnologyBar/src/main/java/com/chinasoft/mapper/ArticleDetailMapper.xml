@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasoft.mapper.ArticleDetailMapper">
+	<resultMap type="ArticleDetail" id="getAllById">
+		<result column="a_id" property="a_id" />
+		<result column="title" property="title" />
+		<result column="essay" property="essay" />
+		<result column="username" property="username" />
+		<result column="a_createtime" property="a_createtime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<select id="getAllById" parameterType="Integer" resultMap="getAllById">
+		select * from article where a_id = #{a_id}
+	</select>
+	
+</mapper>
