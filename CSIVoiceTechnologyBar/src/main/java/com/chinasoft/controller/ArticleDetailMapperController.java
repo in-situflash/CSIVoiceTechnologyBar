@@ -28,8 +28,7 @@ public class ArticleDetailMapperController {
 
 
 	@RequestMapping("/getAll") 
-	public ModelAndView getAll(HttpSession session) {
-		session.setAttribute("username", "zhangsan");
+	public ModelAndView getAll() {
 		ModelAndView mav = new ModelAndView();
 		ArticleDetail articleDetail = service.getAllById(1);
 		List<Comment> comments = service.getCommentsByArticleId(1);

@@ -22,12 +22,13 @@ public class UserMapperController {
 	public ModelAndView selectLogin(HttpSession session,String username, String password) {
 		System.out.println("haha");
 		ModelAndView mav = new ModelAndView();
-		User user = service.login(username, password);  
+		User user = service.login(username, password); 
+		session.setAttribute("username", user.getUsername());
 		mav.addObject("user", user); 
 		mav.setViewName("/WEB-INF/menu.jsp");
 		return mav;
 	}
- 
+  
 	
 	
 	@RequestMapping("/test")
