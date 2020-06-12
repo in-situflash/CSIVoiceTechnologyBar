@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="/static/comp/ionicons/css/ionicons.min.css">
 		<link rel="stylesheet" href="/static/comp/adminlte/css/adminlte.css">
 		<link rel="stylesheet" href="/static/css/default/mask.css" />
+		<link
 	</head>
 
 	<body style="height: auto;">
@@ -44,6 +45,7 @@
 							<div id="example3_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4"><div class="card-header" style="background-color:#17a2b8"><h3 class="card-title">我的评论</h3></div>
 							
 							<c:forEach items="${mycomments}" var="comment" varStatus="com_status">
+							<%--每一条评论的顶层容器的value都是评论的id，即c_id	--%>
 							<div class="row" id="comment_${com_status.index}" value="${comment.c_id}">
 							    	<div class="form-inline col-sm-12">
 							    		<span id="comment_content">${comment.content}</span>
@@ -76,7 +78,10 @@
 							    		</div>
 							    	</div>
 							    </div>
-							    <hr><hr>
+								<div id="comment_${com_status.index}_hr">
+									<hr /><hr/>
+								</div>
+
 							</c:forEach>
 
 <!-- 								<div class="row"><div class="form-inline col-sm-12"><span>这是测试文章1评论</span></div><div class="col-sm-12"><audio src="/postbar/audio/41e1f8b1a08642f0a1033ca6c626e0f1.mp3" controls="controls" style="height:20px"></audio></div><div class="col-sm-12"><div><table><tbody><tr><td>评论时间：2019-03-18 20:48:55&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>评论文章：<a href="" onclick="post_detailed('97a67f0d660b4532aed8a461c1b2bb21'); return false;">测试文章1</a> &nbsp;&nbsp;|&nbsp;&nbsp;</td><td><a href="" onclick="EDIT_COM('41e1f8b1a08642f0a1033ca6c626e0f1'); return false;">评论编辑</a> ：&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>删除评论：<input name="DELETE_CHECK_NAME" type="checkbox" value="41e1f8b1a08642f0a1033ca6c626e0f1"></td></tr></tbody></table></div></div></div><hr><hr>
@@ -97,7 +102,20 @@
 			<div class="row">
 				<div class="col-sm-12 col-md-9 col-md-offset-3">
 					<div class="dataTables_paginate paging_simple_numbers">
-						<ul class="pagination" id="PAGE_ID"><li style="margin-left: 30px">		<button class="btn btn-primary" type="button" onclick="GOTO_POST_HOME_PAGE('0')">首页</button></li><li style="margin-left: 30px">		<button class="btn btn-primary" type="button" onclick="GOTO_POST_PREVIOUS_PAGE('0')">前一页</button></li><li style="margin-left: 30px">		<button class="btn btn-primary" type="button" onclick="GOTO_POST_NEXT_PAGE('2')">后一页</button></li><li style="margin-left: 30px">		<button class="btn btn-primary" type="button" onclick="GOTO_POST_TAIL_PAGE('2')">末页</button></li><li style="margin-left: 30px">		<input id="JUMP_INPUT_ID" type="text" style="display:inline;width:80px" size="6">		<button class="btn btn-sm btn-outline-primary" onclick="GOTO_POST_PAGE();return false;">跳转</button></li><li style="margin-left: 30px">		<div class="dataTables_info" style="margin-top: 6px;margin-left: 100px"><span>2/3 页</span> <span>共15条</span></div></li></ul>
+						<ul class="pagination" id="PAGE_ID">
+							<li style="margin-left: 30px">
+								<button class="btn btn-primary" type="button" onclick="GOTO_POST_HOME_PAGE('0')">首页</button></li><li style="margin-left: 30px">
+								<button class="btn btn-primary" type="button" onclick="GOTO_POST_PREVIOUS_PAGE('0')">前一页</button></li><li style="margin-left: 30px">
+								<button class="btn btn-primary" type="button" onclick="GOTO_POST_NEXT_PAGE('2')">后一页</button></li><li style="margin-left: 30px">
+								<button class="btn btn-primary" type="button" onclick="GOTO_POST_TAIL_PAGE('2')">末页</button></li><li style="margin-left: 30px">
+								<input id="JUMP_INPUT_ID" type="text" style="display:inline;width:80px" size="6">
+								<button class="btn btn-sm btn-outline-primary" onclick="GOTO_POST_PAGE();return false;">跳转</button></li><li style="margin-left: 30px">
+								<div class="dataTables_info" style="margin-top: 6px;margin-left: 100px">
+									<span><text id="comment_page_indicator">2</text>/<text id="comment_totalpage_indicator">3</text> 页</span>
+									<span>共${totalComment}条</span>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -134,8 +152,7 @@
 	        </div>
 	    </div>
 		
-		
-		
+		<div id="comment_data_totalComment" value="${totalComment}" hidden/>
 		
 		
 		<script src="/static/comp/jquery/dist/jquery.js"></script>

@@ -604,7 +604,7 @@ function GetQueryString(name)
 function loginOut(){
 
    
-       window.location.replace("login.html");
+       window.location.replace("login.jsp");
 
 
 

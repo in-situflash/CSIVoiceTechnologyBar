@@ -1,6 +1,7 @@
-var everyPageDataCount=10;
-var postPageIndex=0;
-var postAllPage=0;
+const commentPerPage=3; // 每一页显示的数量
+var currentPage=0; // 当前页数
+var allPageCount=3;	// 总页数
+var allCommentCount=7;	// 总评论数量
 
 function GetQueryString(name)
 {
@@ -9,8 +10,6 @@ function GetQueryString(name)
      if(r!=null)return  unescape(r[2]); return null;
 }
 $(function(){
-
-	console.log("初始化myComment.js");
   
 	KindEditor.options.cssData = 'body {font-family:微软雅黑;}',
 	editor = KindEditor.create('textarea[id="COM_ADD_DES"]', {
@@ -26,19 +25,55 @@ $(function(){
 	            'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
 	             'table', 'hr', 'emoticons', ]
 	});
-	
-	getPostList(true,"/postbar/myCommentController/selectMyCommentByUserUUID",0,everyPageDataCount);
+
+	_readInfo();
+	_initPageDisplay();
 });
 
+function _setIndexedPageVisibility(pageIndex, hidden){
 
-function getPostList(SynOrAsyn,url,pageIndex,everyPageDataCount){
+	var startPage = pageIndex*commentPerPage;
+	var endPage = Math.min(startPage+commentPerPage, allCommentCount);	// 如果当前页数的数量小于一页的总数量，则只显示到所有页数结束为止
+	// console.log("setIndexedPageVis:"+" Page="+pageIndex+" hidden="+hidden+" start="+startPage+" end="+endPage);
 
-
-	  		
-
-
+	for (let i=startPage; i < endPage; i++){
+		var id_ = "#comment_"+i;
+		var id_hr = "#comment_"+i+"_hr";
+		// console.log(id_+" display->"+hidden);
+		$(id_)[0].style.display = hidden ? "none" : "";			// 对评论栏进行可视调整
+		$(id_hr)[0].style.display = hidden ? "none" : "";		// 对水平横线进行可视调整
+	}
 }
 
+function _displayIndexedPage(pageIndex){
+	_setIndexedPageVisibility(currentPage, true);	// 关闭跳转前页数的元素显示
+	_setIndexedPageVisibility(pageIndex, false);			// 开启跳转后页数的元素显示
+}
+
+function _initPageDisplay(){
+	for (let i=0; i < allPageCount; i++){
+		if (i==currentPage){
+			_setIndexedPageVisibility(i, false);
+		}
+		else {
+			_setIndexedPageVisibility(i, true);
+		}
+	}
+	refreshPageIndicator();
+}
+
+function refreshPageIndicator(){
+	$("#comment_page_indicator").text(currentPage+1);		// 实际页数是页面下标+1
+}
+
+// 读取评论的初始化信息
+function _readInfo(){
+	allCommentCount = parseInt($("#comment_data_totalComment").attr("value"));
+	allPageCount = Math.ceil(allCommentCount / commentPerPage);
+	$("#comment_totalpage_indicator").text(allPageCount);
+	console.log("allCommentCount:"+allCommentCount);
+	console.log("allPageCount:"+allPageCount);
+}
 
 function allCommentlist(allCommentlist,postAllNum,allPage,pageIndex){
 	
@@ -96,13 +131,39 @@ function EDIT_COM(com_idx){
 	
 }
 function GOTO_POST_NEXT_PAGE(){
+	if (currentPage == allPageCount-1){
+		return;
+	}
 
-	getPostList(true,"/postbar/myCommentController/selectMyCommentByUserUUID",postPageIndex+1,everyPageDataCount);
-	
+
+	_displayIndexedPage(currentPage+1);
+	currentPage++;
+	refreshPageIndicator();									// 刷新当前页面的提示数字
+
+}
+
+function GOTO_POST_PREVIOUS_PAGE(){
+	if (currentPage == 0){
+		return;
+	}
+
+	_displayIndexedPage(currentPage-1);
+	currentPage--;
+	refreshPageIndicator();									// 刷新当前页面的提示数字
+
+}
+
+function GOTO_POST_HOME_PAGE(){
+	_displayIndexedPage(0);
+	currentPage = 0;
+	refreshPageIndicator();									// 刷新当前页面的提示数字
+
 }
 
 function GOTO_POST_TAIL_PAGE(){
-	getPostList(true,"/postbar/myCommentController/selectMyCommentByUserUUID",postAllPage-1,everyPageDataCount);
+	_displayIndexedPage(allPageCount -1);
+	currentPage = allPageCount - 1;
+	refreshPageIndicator();									// 刷新当前页面的提示数字
 
 }
 
@@ -120,22 +181,18 @@ function GOTO_POST_PAGE(){
 		$.MsgBox.Alert("消息","页码必须大于等于1");
 		return;
 	}
-	if(jumpVal>postAllPage){
+	if(jumpVal>allPageCount){
 		$.MsgBox.Alert("消息","页码超出上限");
 		return;
 	}
-	getPostList(true,"/postbar/myCommentController/selectMyCommentByUserUUID",jumpVal-1,everyPageDataCount);
+
+	_displayIndexedPage(jumpVal-1);
+	currentPage = jumpVal - 1;
+	refreshPageIndicator();									// 刷新当前页面的提示数字
+
 }
 
 
-function GOTO_POST_HOME_PAGE(){
-	getPostList(true,"/postbar/myCommentController/selectMyCommentByUserUUID",0,everyPageDataCount);
-}
-
-function GOTO_POST_PREVIOUS_PAGE(){
-	getPostList(true,"/postbar/myCommentController/selectMyCommentByUserUUID",postPageIndex-1,everyPageDataCount);
-	 
-}
 
 function editComCheck(cid){
 	var cmText=editor.html().trim();
