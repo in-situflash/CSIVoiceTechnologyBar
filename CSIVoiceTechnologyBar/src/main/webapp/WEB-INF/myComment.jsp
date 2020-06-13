@@ -10,12 +10,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>我的评论</title>
 
-		<link rel="stylesheet" href="/static/css/default/bootstrap/bootstrap.css">
-		<link rel="stylesheet" href="/static/comp/fontawesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="/static/comp/ionicons/css/ionicons.min.css">
-		<link rel="stylesheet" href="/static/comp/adminlte/css/adminlte.css">
-		<link rel="stylesheet" href="/static/css/default/mask.css" />
-		<link
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/bootstrap/bootstrap.css">
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/fontawesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/adminlte/css/adminlte.css">
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/mask.css" />
 	</head>
 
 	<body style="height: auto;">
@@ -155,24 +154,24 @@
 		<div id="comment_data_totalComment" value="${totalComment}" hidden/>
 		
 		
-		<script src="/static/comp/jquery/dist/jquery.js"></script>
-		<script src="/static/comp/jQuery-Storage-API/jquery.storageapi.js"></script>
-		<script src="/static/comp/jquery.form/jquery.form.min.js"></script>
-		<script src="/static/comp/jquery/plugins/scrollbar/perfect-scrollbar.jquery.min.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jquery/dist/jquery.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jQuery-Storage-API/jquery.storageapi.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jquery.form/jquery.form.min.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jquery/plugins/scrollbar/perfect-scrollbar.jquery.min.js"></script>
 		
-		<script src="/static/kindeditor/kindeditor-all.js" type="text/javascript"></script>
-		<script src="/static/kindeditor/kindeditor-all-min.js" type="text/javascript"></script>
-		<script src="/static/kindeditor/lang/zh-CN.js" type="text/javascript"></script>
-		<script src="/static/js/common/mask.js"></script>
-		<script src="/chinasofti/myComment/js/myComment.js"></script>
-		<script type="text/javascript" src="/static/js/alert.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/kindeditor/kindeditor-all.js" type="text/javascript"></script>
+		<script src="/CSIVoiceTechnologyBar/static/kindeditor/kindeditor-all-min.js" type="text/javascript"></script>
+		<script src="/CSIVoiceTechnologyBar/static/kindeditor/lang/zh-CN.js" type="text/javascript"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/common/mask.js"></script>
+		<script src="/CSIVoiceTechnologyBar/chinasofti/myComment/js/myComment.js"></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/alert.js"></script>
 		
 		<!--  
 		<script src="/stmadc/stma/dc/include/js/jcommon.js"></script>
 		
 		<script language="JavaScript" src="/stmadc/jquery/jquery-ui-1.8.20.min.js"></script>
-		<script src="/stmadc/static/comp/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="/stmadc/static/comp/adminlte/js/adminlte.min.js"></script>
+		<script src="/stmadc/CSIVoiceTechnologyBar/static/comp/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="/stmadc/CSIVoiceTechnologyBar/static/comp/adminlte/js/adminlte.min.js"></script>
 		<script language="JavaScript" src="/stmadc/stma/dc/include/js/jcommon.js"></script>
 	-->
 

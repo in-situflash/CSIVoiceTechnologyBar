@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.chinasoft.pojo.Comment;
 import com.chinasoft.service.impl.CommentMapperServiceImpl;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 //@RequestMapping("/comment")
 public class MyCommentController {
@@ -45,17 +47,18 @@ public class MyCommentController {
 	
 	@RequestMapping("/comment/mycomment")
 	// 我的评论页面
-	public String toMyComment(Model model) {
+	public String toMyComment(HttpSession session, Model model) {
 		System.out.println("Entering toMyComment...");
 
-		// TODO: 嵌入动态用户名
-		List<Comment> comments = service.selectCommentByUser("zhangsan");
+		// 从session中获取登录的用户名
+		String username = (String)session.getAttribute("username");
+//		System.out.println("username: "+username);
+
+		// TODO: 嵌入动态用户名(Done)
+		List<Comment> comments = service.selectCommentByUser(username);
 
 		model.addAttribute("mycomments", comments);
 		model.addAttribute("totalComment", comments.size());
-
-//		Comment com = comments.get(0);
-//		System.out.println(com.getC_createtime());
 
 		return "/WEB-INF/myComment.jsp";
 	}

@@ -1,4 +1,4 @@
-const commentPerPage=3; // 每一页显示的数量
+const commentPerPage=5; // 每一页显示的数量
 var currentPage=0; // 当前页数
 var allPageCount=3;	// 总页数
 var allCommentCount=7;	// 总评论数量
@@ -96,7 +96,7 @@ function DELETE_COM(){
 
 	// 使用-字符拼接所有要删除的id
 	const cid_concat = chk_value.join("-");
-	const url = "/comment/delete?ids="+cid_concat;
+	const url = "/CSIVoiceTechnologyBar/comment/delete?ids="+cid_concat;
 
 	window.location.replace(url);
 }
@@ -204,7 +204,7 @@ function editComCheck(cid){
 	
 
 //	    		window.location.replace("myComment.html?radm="+Math.random());
-	var url = "/comment/edit?cid="+cid+"&cont="+cmText;
+	var url = "/CSIVoiceTechnologyBar/comment/edit?cid="+cid+"&cont="+cmText;
 	// console.log("edit url: "+url);
 	$("#tishi").html("编辑成功!");
 
@@ -214,27 +214,4 @@ function editComCheck(cid){
 	
 }
 
-let monthMap = {
-	"Jan": "01",
-	"Feb": "02",
-	"Mar": "03",
-	"Apr": "04",
-	"May": "05",
-	"Jun": "06",
-	"Jul": "07",
-	"Aug": "08",
-	"Sep": "09",
-	"Oct": "10",
-	"Nov": "11",
-	"Dec": "12"
-}
-
-function formalizeDateTime(time){
-	console.log(time);
-
-	let splits = time.split(" ");
-	console.log(splits);
-
-	return time;
-}
 
