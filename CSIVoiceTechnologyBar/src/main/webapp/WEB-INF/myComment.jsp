@@ -62,7 +62,7 @@
 														</td>
 														<td>
 														<%-- TODO: 显示文章名称而非文章ID --%>
-															<text id="comment_articleId">评论文章：${comment.a_id}</text>
+															<text id="comment_articleId">评论文章：${comment.title}</text>
 															<%-- 在评论的文章详情时时，将评论div的index传给js --%>
 															<a href="" onclick="post_detailed(${com_status.index}); return false;"></a> &nbsp;&nbsp;|&nbsp;&nbsp;
 							    						</td>

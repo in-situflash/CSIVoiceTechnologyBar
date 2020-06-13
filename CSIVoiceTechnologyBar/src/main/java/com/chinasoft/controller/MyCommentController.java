@@ -2,6 +2,7 @@ package com.chinasoft.controller;
 
 import java.util.List;
 
+import com.chinasoft.pojo.TitledComment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +56,8 @@ public class MyCommentController {
 //		System.out.println("username: "+username);
 
 		// TODO: 嵌入动态用户名(Done)
-		List<Comment> comments = service.selectCommentByUser(username);
+//		List<Comment> comments = service.selectCommentByUser(username);
+		List<TitledComment> comments = service.selectTitledCommentByUser(username);
 
 		model.addAttribute("mycomments", comments);
 		model.addAttribute("totalComment", comments.size());

@@ -1,9 +1,8 @@
 package com.chinasoft.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+import com.chinasoft.pojo.TitledComment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +19,15 @@ public class CommentMapperServiceImpl implements CommentMapperService{
 	public List<Comment> selectCommentByUser(String username){
 		List<Comment> comments = mapper.selectCommentByUser(username);
 		
+		return comments;
+	}
+
+	/*
+		根据提供的用户名，获取带文章标题的评论
+	 */
+	public List<TitledComment> selectTitledCommentByUser(String username){
+		List<TitledComment> comments = mapper.selectTitledCommentByUser(username);
+
 		return comments;
 	}
 
@@ -49,5 +57,9 @@ public class CommentMapperServiceImpl implements CommentMapperService{
 		}
 
 		return mapper.deleteComments(id_list);
+	}
+
+	public List<String> selectArticleTitlesByUser(String username) {
+		return null;
 	}
 }

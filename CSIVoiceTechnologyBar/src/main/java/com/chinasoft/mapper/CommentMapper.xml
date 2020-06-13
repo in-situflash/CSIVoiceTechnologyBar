@@ -21,4 +21,8 @@
 			#{d_id}
 		</foreach>
 	</delete>
+
+	<select id="selectTitledCommentByUser" parameterType="string" resultType="TitledComment">
+		select c.*,a.title from comment as c, article as a where c.a_id=a.a_id and c.username=#{username}
+	</select>
 </mapper>
