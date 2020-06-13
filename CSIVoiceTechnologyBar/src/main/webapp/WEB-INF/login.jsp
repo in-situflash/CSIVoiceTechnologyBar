@@ -12,50 +12,50 @@
 		<meta name="generator" content="" />
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 	
-		<link rel="stylesheet" href="static/css/default/bootstrap/bootstrap.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/bootstrap/bootstrap.css" />
 		<!-- Font Awesome Icons -->
-		<link rel="stylesheet" href="chinasofti/login/css/font-awesome.css" />
-		<link rel="stylesheet" href="static/css/default/simple-line-icons/css/simple-line-icons.css"/>
-		<link rel="stylesheet" href="chinasofti/login/css/animate.min.css"/>
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/chinasofti/login/css/font-awesome.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/simple-line-icons/css/simple-line-icons.css"/>
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/chinasofti/login/css/animate.min.css"/>
 		<!-- Ionicons -->
-		<link href="chinasofti/login/css/ionicons.css" rel="stylesheet" type="text/css" />
+		<link href="/CSIVoiceTechnologyBar/chinasofti/login/css/ionicons.css" rel="stylesheet" type="text/css" />
 		<!-- Skins. Choose a skin from the css/skins
 	     folder instead of downloading all of them to reduce the load. -->
-		<link href="chinasofti/login/css/_all-skins.css" rel="stylesheet" type="text/css" />
+		<link href="/CSIVoiceTechnologyBar/chinasofti/login/css/_all-skins.css" rel="stylesheet" type="text/css" />
 		<!-- Castle 1.0 -->
-		<link href="chinasofti/login/css/castle.css" rel="stylesheet" type="text/css" />
+		<link href="/CSIVoiceTechnologyBar/chinasofti/login/css/castle.css" rel="stylesheet" type="text/css" />
 		<!-- Theme style -->
-		<link href="chinasofti/login/css/castle-main.css" rel="stylesheet" type="text/css" />
-		<link href="static/comp/layui/css/layui.css" rel="stylesheet" type="text/css" />
-		<link href="static/comp/scrollbar/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
-		<link href="chinasofti/login/css/fontsize.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="chinasofti/login/css/theme.css" />
-		<link rel="stylesheet" href="chinasofti/login/css/cover.css" />
-		<link rel="stylesheet" href="chinasofti/login/css/step.css" />
-		<link href="chinasofti/login/css/login.css" rel="stylesheet" type="text/css">
-	    <link rel="stylesheet" href="static/css/default/mask.css" />
+		<link href="/CSIVoiceTechnologyBar/chinasofti/login/css/castle-main.css" rel="stylesheet" type="text/css" />
+		<link href="/CSIVoiceTechnologyBar/static/comp/layui/css/layui.css" rel="stylesheet" type="text/css" />
+		<link href="/CSIVoiceTechnologyBar/static/comp/scrollbar/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+		<link href="/CSIVoiceTechnologyBar/chinasofti/login/css/fontsize.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/chinasofti/login/css/theme.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/chinasofti/login/css/cover.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/chinasofti/login/css/step.css" />
+		<link href="/CSIVoiceTechnologyBar/chinasofti/login/css/login.css" rel="stylesheet" type="text/css">
+	    <link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/mask.css" />
 		  
 		<script language="JavaScript">
 		var context="",__contextPath="",__extendOptions="main/options",__jsPath="",__scriptPath="";</script>
 	
 	
-		<script src="static/comp/base/jquery-2.1.4.js"></script>
-		<script src="static/comp/base/utils-base.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/base/jquery-2.1.4.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/base/utils-base.js"></script>
 	
-		<script src="static/comp/layui/layui.js"></script>
-		<script src="static/comp/layui/layui-config.js"></script>
-		<script src="static/js/common/util.js"></script>
-		<script src="static/js/common/autoheight.js"></script>
-		<script src="static/js/common/mask.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/layui/layui.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/layui/layui-config.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/common/util.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/common/autoheight.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/common/mask.js"></script>
 	
 		
-		<script type="text/javascript" src="static/js/login/lufylegend-1.10.1.simple.min.js"></script>
-		<script type="text/javascript" src="static/js/login/lufylegend.LoadingSample4-0.1.0.min.js"></script>
-		<script type="text/javascript" src="static/js/login/TweenLite.min.js"></script>
-		<script type="text/javascript" src="static/js/login/login.js"></script>
-		<script type="text/javascript" src="static/comp/jQuery-Storage-API/jquery.storageapi.js" ></script>
-		<script type="text/javascript" src="chinasofti/login/js/login.js"></script>
-		<script type="text/javascript" src="static/js/alert.js"></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/login/lufylegend-1.10.1.simple.min.js"></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/login/lufylegend.LoadingSample4-0.1.0.min.js"></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/login/TweenLite.min.js"></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/login/login.js"></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/comp/jQuery-Storage-API/jquery.storageapi.js" ></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/chinasofti/login/js/login.js"></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/alert.js"></script>
 	</head>
 	
 
@@ -70,8 +70,8 @@
 			   
 				<div class="input_text" >   
 					<div id="message"style="position:absolute;color:red;margin-top:-20px;margin-left:100px;" > </div>
-				
-				  	<!--<form  action="login.d" method="post" onsubmit="return validateLogin()"> -->
+				<!-- onsubmit="return validateLogin() -->
+				  	<form  action="/CSIVoiceTechnologyBar/selectLogin" method="post"> 
 					
 						<div class="content" >
 							<div class="navbar-header">
@@ -99,7 +99,7 @@
 					        	</span>
 					        </div>
 					        <div >
-					        	<button type="button" onclick="subLogin()" class="layui-btn  btn-login"  style="width:150px">&nbsp;&nbsp;登　录&nbsp;&nbsp;</button>
+					        	<button type="submit" onclick="subLogin()" class="layui-btn  btn-login"  style="width:150px">&nbsp;&nbsp;登　录&nbsp;&nbsp;</button>
 					       		<button type="button" onclick="gotoregister()" class="layui-btn  btn-login"  style="width:150px">&nbsp;&nbsp;注     册&nbsp;&nbsp;</button>
 						    </div> 
 						 
@@ -109,6 +109,7 @@
 					   
 					        </div> 
 						</div>
+					</form>
 				</div>
 			</div>
 		</div>

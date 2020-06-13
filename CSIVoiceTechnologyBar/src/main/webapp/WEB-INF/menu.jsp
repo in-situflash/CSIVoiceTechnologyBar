@@ -12,22 +12,22 @@
 		<meta name="description" content=""></meta>
 		<meta name="author" content=""></meta>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
-		<link rel="icon" href="static/css/default/icon.png" type="image/x-icon" />
+		<link rel="icon" href="/CSIVoiceTechnologyBar/static/css/default/icon.png" type="image/x-icon" />
 		<title>CSI语音 技术吧</title>
 		
 	
 		
 		
-		<link rel="stylesheet" href="static/comp/fontawesome/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="static/css/default/simple-line-icons/css/simple-line-icons.css" />
-		<link rel="stylesheet" href="static/comp/animate.css/animate.min.css" />
-		<link rel="stylesheet" href="static/css/default/toastr/toastr.min.css" />
-		<link rel="stylesheet" href="static/css/default/bootstrap/bootstrap.css" />
-		<link rel="stylesheet" href="static/css/default/app.css" />
-		<link rel="stylesheet" href="static/css/default/theme.css" data-type="theme" />
-		<link rel="stylesheet" href="static/css/default/cover.css" />
-		<link rel="stylesheet" href="static/css/default/step.css" />
-		<link rel="stylesheet" href="static/comp/tabs/tabs.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/fontawesome/css/font-awesome.min.css" /> 
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/simple-line-icons/css/simple-line-icons.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/animate.css/animate.min.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/toastr/toastr.min.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/bootstrap/bootstrap.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/app.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/theme.css" data-type="theme" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/cover.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/step.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/tabs/tabs.css" />
 	</head>
 
 	<body class="layout-fixed">
@@ -44,7 +44,7 @@
 				
 					   
 		        		<div class="brand-text" style="padding-top: 3px;">
-		        		    <img alt="" src="static/images/main/head/logo/LOGO.jpg">
+		        		    <img alt="" src="/CSIVoiceTechnologyBar/static/images/main/head/logo/LOGO.jpg">
 							<span style="font-family:'Britannic Bold', 'Britannic';color:#3BC5BB;">CSI语音</span>
 							<span style="font-family:'Segoe UI Emoji Bold', 'Segoe UI Emoji Normal', 'Segoe UI Emoji';color:#1D4474;"> </span>
 							<span style="font-family:'Segoe UI Emoji Bold', 'Segoe UI Emoji Normal', 'Segoe UI Emoji';color:#FF9A4C;">技术吧</span>
@@ -101,22 +101,22 @@
 			
 		</div>
 		
-		<script src="static/comp/sidebar/sidebar.js"></script>
-		<script src="static/comp/jquery/dist/jquery.js"></script>
-		<script src="static/comp/jquery.form/jquery.form.min.js"></script>
-		<script src="static/comp/jquery/plugins/scrollbar/perfect-scrollbar.jquery.min.js"></script>
-		<script src="static/comp/layui/layui.js"></script>
-		<script src="static/comp/layui/layui-config.js"></script>
-		<script src="static/comp/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="static/comp/modernizr/modernizr.custom.js"></script>
-		<script src="static/comp/jQuery-Storage-API/jquery.storageapi.js"></script>
-		<script src="static/comp/parsleyjs/dist/parsley.min.js"></script>
-		<script src="static/comp/toastr/toastr.min.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/sidebar/sidebar.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jquery/dist/jquery.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jquery.form/jquery.form.min.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jquery/plugins/scrollbar/perfect-scrollbar.jquery.min.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/layui/layui.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/layui/layui-config.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/modernizr/modernizr.custom.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jQuery-Storage-API/jquery.storageapi.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/parsleyjs/dist/parsley.min.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/toastr/toastr.min.js"></script>
 		
-		<script src="static/js/common/util.js"></script>
-		<script src="static/js/app/app.js"></script>
-		<script src="static/js/app/menu.js"></script>
-		<script src="static/js/common/autoheight.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/common/util.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/app/app.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/app/menu.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/common/autoheight.js"></script>
 
 	</body>
 

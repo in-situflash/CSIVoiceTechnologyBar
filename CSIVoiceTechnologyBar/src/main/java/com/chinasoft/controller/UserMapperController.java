@@ -12,7 +12,7 @@ import com.chinasoft.pojo.User;
 import com.chinasoft.service.impl.UserMapperServiceImpl;
 
 @Controller
-@RequestMapping("/user")
+
 public class UserMapperController {
 	
 	@Autowired
@@ -21,11 +21,18 @@ public class UserMapperController {
 	@RequestMapping("/selectLogin")
 	public ModelAndView selectLogin(HttpSession session,String username, String password) {
 		System.out.println("haha");
+		System.out.println(username);
+		System.out.println(password);
 		ModelAndView mav = new ModelAndView();
 		User user = service.login(username, password); 
-		session.setAttribute("username", user.getUsername());
-		mav.addObject("user", user); 
-		mav.setViewName("/WEB-INF/menu.jsp");
+		if(user != null) {
+			System.out.println(user.getUsername());
+			session.setAttribute("username", user.getUsername());
+			mav.addObject("user", user); 
+			mav.setViewName("/WEB-INF/menu.jsp");
+		}else {
+			mav.setViewName("/index.jsp");
+		}
 		return mav;
 	}
   
