@@ -28,12 +28,13 @@
 		<div class="row">
 			<div class="col-md-12" style="">
 				<div class="card card-info">
-					<div class="card-header">
-						<h3 class="card-title">文章 </h3>
-					</div>
+					
 					<div class="card-body">
+						<div class="card-header">
+							<h3 class="card-title">文章 </h3>
+						</div>
 						<div class="row">
-							<div class="col-md-11">
+							<div class="col-md-11" style="padding:0;">
 								<div class="form-inline col-md-11" style="width: 100%">
 									<div class="form-group " style="width: 100%">
 										<div id="postPhoto">
@@ -64,15 +65,14 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					
-					<div id="postText">
-						<span>${articleDetail.essay}</span>
-					</div>
+						<div id="postText">
+							<span>${articleDetail.essay}</span>
+						</div>
 						<div id="postAtt">
 							|&nbsp;<a id="praisecNum" href="javascript:void(0);" class="a_likes" style="color:default;">赞：${articleDetail.a_likes}</a>
 							<input value="${articleDetail.a_id}" hidden="true"></input>
 						</div>
+					</div>
 					</div>
 
 			</div>
@@ -196,7 +196,6 @@
 
 
 
-
 	<script src="/CSIVoiceTechnologyBar/static/comp/jquery/dist/jquery.js"></script>
 	<script
 		src="/CSIVoiceTechnologyBar/static/comp/jQuery-Storage-API/jquery.storageapi.js"></script>
@@ -211,6 +210,7 @@
 	<script src="/CSIVoiceTechnologyBar/static/kindeditor/lang/zh-CN.js"
 		type="text/javascript"></script>
 	<script src="/CSIVoiceTechnologyBar/static/js/common/mask.js"></script>
+	<script src="/CSIVoiceTechnologyBar/static/js/common/baidu_tts_cors.js"></script>
 	<script src="/CSIVoiceTechnologyBar/chinasofti/comment/js/comment.js"></script>
 	<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/alert.js"></script>
 
@@ -239,12 +239,47 @@
 				$(text).html("评论时间：" + GMTToStr("${item.c_createtime}"));
 			</c:forEach> 
 		});
+		function tts(text, id) {
 
-		function audioPlay(text,id) {
+	        // 调用语音合成接口
+	        // 参数含义请参考 https://ai.baidu.com/docs#/TTS-API/41ac79a6
+	        audio = btts({
+	            tex: text,
+	            tok: '25.d134c5f4a951a8bed186317f3b36e1a6.315360000.1907381403.282335-20381539',
+	            spd: 5,
+	            pit: 5,
+	            vol: 15,
+	            per: 4
+	        }, {
+	            volume: 0.3,
+	            autoDestory: true,
+	            timeout: 10000,
+	            hidden: false,
+	            onInit: function (htmlAudioElement) {
+
+	            },
+	            onSuccess: function(htmlAudioElement) {
+	                audio = htmlAudioElement;
+	                $(id).prepend(audio);
+	            },
+	            onError: function(text) {
+	                alert(text)
+	            },
+	            onTimeout: function () {
+	                alert('timeout')
+	            }
+	        });
+	    }
+	    tts("${articleDetail.essay}","#postAtt");
+	    <c:forEach var="item" items="${comments}" varStatus="status"> 
+			var id = "#commentVoice"+${status.count};
+			tts("${item.content}",id);
+		</c:forEach> 
+		/* function audioPlay(text,id) {
 			var zhText = text;
 			zhText = encodeURI(zhText);
 			var audio = "<audio style=\"height:20px\" controls=\"controls\">"
-					+ "<source src=\"http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=4&text="
+					+ "<source src=\"http://tts.baidu.com/text2audio?per=111&lan=zh&ie=UTF-8&spd=5&text=" 
 					+ zhText
 					+ "\" type=\"audio/mpeg\">"
 					+ "<embed height=\"100\" width=\"100\" src=\"http://tts.baidu.com/text2audio?text="
@@ -255,7 +290,7 @@
 		<c:forEach var="item" items="${comments}" varStatus="status"> 
 			var id = "#commentVoice"+${status.count};
 			audioPlay("${item.content}",id);
-		</c:forEach> 
+		</c:forEach>  */
 
 		
 		$(function() {
