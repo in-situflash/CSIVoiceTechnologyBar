@@ -120,7 +120,7 @@ function EDIT_COM(com_idx){
 	editor.html(content);
 	var html="";
 
-	// TODO: 嵌入评论ID
+	// TODO: 嵌入评论ID(Done)
 	html+='<button type="button" class="btn btn-info" onclick="editComCheck(\''+c_id+'\')">编辑</button>';
 	html+='<button type="button" class="btn btn-default" onclick="returnComList()">返回</button>';
 	$("#editButtion").html(html);
@@ -132,6 +132,7 @@ function EDIT_COM(com_idx){
 }
 function GOTO_POST_NEXT_PAGE(){
 	if (currentPage == allPageCount-1){
+		$.MsgBox.Alert("消息","已经是最后一页了!");
 		return;
 	}
 
@@ -144,6 +145,7 @@ function GOTO_POST_NEXT_PAGE(){
 
 function GOTO_POST_PREVIOUS_PAGE(){
 	if (currentPage == 0){
+		$.MsgBox.Alert("消息","已经是第一页了!");
 		return;
 	}
 

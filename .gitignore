@@ -4,3 +4,5 @@ CSIVoiceTechnologyBar/.settings/
 CSIVoiceTechnologyBar/.idea/
 CSIVoiceTechnologyBar/.project
 *.properties
+CSIVoiceTechnologyBar/target/classes/
+*.class

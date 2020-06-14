@@ -50,7 +50,8 @@
 							    		<span id="comment_content">${comment.content}</span>
 							    	</div>
 							    	<div class="col-sm-12">
-							    		<audio src="/postbar/audio/41e1f8b1a08642f0a1033ca6c626e0f1.mp3" controls="controls" style="height:20px"></audio>
+							    		<audio id="comment_audio_${com_status.index}" src="" controls="controls" style="height:20px"></audio>
+										<button type="button" id="comment_audiobtn_${com_status.index}" onclick="tts('${comment.content}','${com_status.index}')">播放</button>
 							    	</div>
 							    	<div class="col-sm-12">
 							    		<div>
@@ -61,8 +62,8 @@
 															评论时间：<fmt:formatDate value="${comment.c_createtime}" pattern="yyyy-MM-dd HH:mm:ss"/> &nbsp;|&nbsp;&nbsp;&nbsp;
 														</td>
 														<td>
-														<%-- TODO: 显示文章名称而非文章ID --%>
-															<text id="comment_articleId">评论文章：${comment.title}</text>
+														<%-- TODO: 显示文章名称而非文章ID (Done)--%>
+															评论文章：<a href="" id="comment_articleId">${comment.title}</a>
 															<%-- 在评论的文章详情时时，将评论div的index传给js --%>
 															<a href="" onclick="post_detailed(${com_status.index}); return false;"></a> &nbsp;&nbsp;|&nbsp;&nbsp;
 							    						</td>
@@ -82,14 +83,6 @@
 								</div>
 
 							</c:forEach>
-
-<!-- 								<div class="row"><div class="form-inline col-sm-12"><span>这是测试文章1评论</span></div><div class="col-sm-12"><audio src="/postbar/audio/41e1f8b1a08642f0a1033ca6c626e0f1.mp3" controls="controls" style="height:20px"></audio></div><div class="col-sm-12"><div><table><tbody><tr><td>评论时间：2019-03-18 20:48:55&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>评论文章：<a href="" onclick="post_detailed('97a67f0d660b4532aed8a461c1b2bb21'); return false;">测试文章1</a> &nbsp;&nbsp;|&nbsp;&nbsp;</td><td><a href="" onclick="EDIT_COM('41e1f8b1a08642f0a1033ca6c626e0f1'); return false;">评论编辑</a> ：&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>删除评论：<input name="DELETE_CHECK_NAME" type="checkbox" value="41e1f8b1a08642f0a1033ca6c626e0f1"></td></tr></tbody></table></div></div></div><hr><hr>
-								<div class="row"><div class="form-inline col-sm-12"><span>这是测试文章15评论</span></div><div class="col-sm-12"><audio src="/postbar/audio/23ad65686e3048d4b6a7b75986c52a46.mp3" controls="controls" style="height:20px"></audio></div><div class="col-sm-12"><div><table><tbody><tr><td>评论时间：2019-03-18 20:48:37&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>评论文章：<a href="" onclick="post_detailed('9b242fc9734b4208861f0124ec01ba04'); return false;">测试文章15</a> &nbsp;&nbsp;|&nbsp;&nbsp;</td><td><a href="" onclick="EDIT_COM('23ad65686e3048d4b6a7b75986c52a46'); return false;">评论编辑</a> ：&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>删除评论：<input name="DELETE_CHECK_NAME" type="checkbox" value="23ad65686e3048d4b6a7b75986c52a46"></td></tr></tbody></table></div></div></div><hr><hr>
-								<div class="row"><div class="form-inline col-sm-12"><span>这是测试文章4评论</span></div><div class="col-sm-12"><audio src="/postbar/audio/e6cd80ed6b054f349fe9511a37f4d1bf.mp3" controls="controls" style="height:20px"></audio></div><div class="col-sm-12"><div><table><tbody><tr><td>评论时间：2019-03-18 20:48:16&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>评论文章：<a href="" onclick="post_detailed('b3412d237ee34ab78dd811e138ca3a01'); return false;">测试文章4</a> &nbsp;&nbsp;|&nbsp;&nbsp;</td><td><a href="" onclick="EDIT_COM('e6cd80ed6b054f349fe9511a37f4d1bf'); return false;">评论编辑</a> ：&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>删除评论：<input name="DELETE_CHECK_NAME" type="checkbox" value="e6cd80ed6b054f349fe9511a37f4d1bf"></td></tr></tbody></table></div></div></div><hr><hr>
-								<div class="row"><div class="form-inline col-sm-12"><span>这是测试文章14评论</span></div><div class="col-sm-12"><audio src="/postbar/audio/8b27fc8d11da4731bb8d689f780841f2.mp3" controls="controls" style="height:20px"></audio></div><div class="col-sm-12"><div><table><tbody><tr><td>评论时间：2019-03-18 20:48:01&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>评论文章：<a href="" onclick="post_detailed('0ac14146af4e4d37ac50b2ed0835211a'); return false;">测试文章14</a> &nbsp;&nbsp;|&nbsp;&nbsp;</td><td><a href="" onclick="EDIT_COM('8b27fc8d11da4731bb8d689f780841f2'); return false;">评论编辑</a> ：&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>删除评论：<input name="DELETE_CHECK_NAME" type="checkbox" value="8b27fc8d11da4731bb8d689f780841f2"></td></tr></tbody></table></div></div></div><hr><hr>
-								<div class="row"><div class="form-inline col-sm-12"><span>这是测试文章2评论</span></div><div class="col-sm-12"><audio src="/postbar/audio/e20958d526a0488f99e655046ab2e364.mp3" controls="controls" style="height:20px"></audio></div><div class="col-sm-12"><div><table><tbody><tr><td>评论时间：2019-03-18 20:47:40&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>评论文章：<a href="" onclick="post_detailed('0c5bad26938041459423277878dbafbe'); return false;">测试文章2</a> &nbsp;&nbsp;|&nbsp;&nbsp;</td><td><a href="" onclick="EDIT_COM('e20958d526a0488f99e655046ab2e364'); return false;">评论编辑</a> ：&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>删除评论：<input name="DELETE_CHECK_NAME" type="checkbox" value="e20958d526a0488f99e655046ab2e364"></td></tr></tbody></table></div></div></div><hr><hr>
-								<div class="row"><div class="form-inline col-sm-12"><span>这是测试文章8评论</span></div><div class="col-sm-12"><audio src="/postbar/audio/491165531b814e84ad78d07ad9490b99.mp3" controls="controls" style="height:20px"></audio></div><div class="col-sm-12"><div><table><tbody><tr><td>评论时间：2019-03-18 20:47:23&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>评论文章：<a href="" onclick="post_detailed('45910a56e4604e30a711e77dec887221'); return false;">测试文章8</a> &nbsp;&nbsp;|&nbsp;&nbsp;</td><td><a href="" onclick="EDIT_COM('491165531b814e84ad78d07ad9490b99'); return false;">评论编辑</a> ：&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>删除评论：<input name="DELETE_CHECK_NAME" type="checkbox" value="491165531b814e84ad78d07ad9490b99"></td></tr></tbody></table></div></div></div><hr><hr>
-								<div class="row"><div class="form-inline col-sm-12"><span>这是测试文章6评论</span></div><div class="col-sm-12"><audio src="/postbar/audio/ba037d798434421a8f7bfca295b0240c.mp3" controls="controls" style="height:20px"></audio></div><div class="col-sm-12"><div><table><tbody><tr><td>评论时间：2019-03-18 20:46:58&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>评论文章：<a href="" onclick="post_detailed('f33223429d80439e80f35c5cd1c5a01e'); return false;">测试文章6</a> &nbsp;&nbsp;|&nbsp;&nbsp;</td><td><a href="" onclick="EDIT_COM('ba037d798434421a8f7bfca295b0240c'); return false;">评论编辑</a> ：&nbsp;&nbsp;|&nbsp;&nbsp;</td><td>删除评论：<input name="DELETE_CHECK_NAME" type="checkbox" value="ba037d798434421a8f7bfca295b0240c"></td></tr></tbody></table></div></div></div><hr><hr>
  -->							</div>
 						</div>
 						<!-- /.card-body -->
@@ -109,6 +102,7 @@
 								<button class="btn btn-primary" type="button" onclick="GOTO_POST_TAIL_PAGE('2')">末页</button></li><li style="margin-left: 30px">
 								<input id="JUMP_INPUT_ID" type="text" style="display:inline;width:80px" size="6">
 								<button class="btn btn-sm btn-outline-primary" onclick="GOTO_POST_PAGE();return false;">跳转</button></li><li style="margin-left: 30px">
+								<div class="dataTables_info" style="margin-top: 6px;margin-left: 100px">
 								<div class="dataTables_info" style="margin-top: 6px;margin-left: 100px">
 									<span><text id="comment_page_indicator">2</text>/<text id="comment_totalpage_indicator">3</text> 页</span>
 									<span>共${totalComment}条</span>
@@ -142,7 +136,7 @@
 	             <div id="editButtion" class="card-footer col-md-3 col-md-offset-4" style="width:100%"align="center">
 	               
 	             </div>
-	             <div class="card-footer col-md-3 col-md-offset-4" id="tishi" style="text-align: center;color: red;font-size: 15px">
+	             <div class="card-footer col-md-3 col-md-offset-4" id="tishi" style="text-align: center;color: #ff0000;font-size: 15px">
 									     
 						</div>
 	             <!-- /.card-footer -->
@@ -165,6 +159,47 @@
 		<script src="/CSIVoiceTechnologyBar/static/js/common/mask.js"></script>
 		<script src="/CSIVoiceTechnologyBar/chinasofti/myComment/js/myComment.js"></script>
 		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/alert.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/common/baidu_tts_cors.js"></script>
+
+		<script type="text/javascript">
+			function tts(text, idx) {
+
+                var audio_comp = $("#comment_audio_"+idx)[0];
+                var audio_btn_comp = $("#comment_audiobtn_"+idx)[0];
+
+				// 调用语音合成接口
+				// 参数含义请参考 https://ai.baidu.com/docs#/TTS-API/41ac79a6
+				audio = myCommentBtts({
+					tex: text,
+					tok: '25.d134c5f4a951a8bed186317f3b36e1a6.315360000.1907381403.282335-20381539',
+					spd: 5,
+					pit: 5,
+					vol: 15,
+					per: 4
+				}, {
+					volume: 0.3,
+					autoDestory: true,
+					timeout: 10000,
+					hidden: false,
+					onInit: function (htmlAudioElement) {
+
+					},
+					onSuccess: function(htmlAudioElement) {
+                        // 成功调用api后自动播放
+						audio_comp.play();
+						// 隐藏播放按钮
+						audio_btn_comp.style.display = "none";
+					},
+					onError: function(text) {
+						alert(text)
+					},
+					onTimeout: function () {
+						alert('timeout')
+					}
+				},
+                audio_comp);
+			}
+		</script>
 		
 		<!--  
 		<script src="/stmadc/stma/dc/include/js/jcommon.js"></script>
