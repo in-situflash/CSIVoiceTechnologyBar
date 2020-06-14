@@ -58,7 +58,7 @@ function addPostCheck(lastid,username){
 	}
 
 	var url;
-	url = "http://localhost:8080/new_ssm/mypostController/addmypost?lastid=" + lastid + "&title=" + title + "&essay=" + text + "&username=" + username;
+	url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/addmypost?lastid=" + lastid + "&title=" + title + "&essay=" + text + "&username=" + username;
 	window.location.replace(url);
 }
 
@@ -72,18 +72,18 @@ function GOTO_POST_NEXT_PAGE(page,maxpage,SELECT_TYPE,title,username){
 		var temp = page+1;
 		var url;
 		if(page==maxpage)
-			url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" + page + "&username=" + username;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/tomypost?page=" + page + "&username=" + username;
 		else if(maxpage-page>0)
-			url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" + temp + "&username=" + username;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/tomypost?page=" + temp + "&username=" + username;
 		window.location.replace(url);
 	}
 	else if(SELECT_TYPE == 1){
 		var temp = page+1;
 		var url;
 		if(page==maxpage)
-			url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + page + "&username=" + username;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/selectmypost?title=" + title + "&selectpage=" + page + "&username=" + username;
 		else if(maxpage-page>0)
-			url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + temp + "&username=" + username;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/selectmypost?title=" + title + "&selectpage=" + temp + "&username=" + username;
 		window.location.replace(url);
 	}
 }
@@ -91,12 +91,12 @@ function GOTO_POST_NEXT_PAGE(page,maxpage,SELECT_TYPE,title,username){
 function GOTO_POST_TAIL_PAGE(maxpage,SELECT_TYPE,title,username){
 	if(SELECT_TYPE == 0){
 		var url;
-		url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" + maxpage + "&username=" + username;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/tomypost?page=" + maxpage + "&username=" + username;
 		window.location.replace(url);
 	}
 	else if(SELECT_TYPE == 1){
 		var url;
-		url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + maxpage + "&username=" + username;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/selectmypost?title=" + title + "&selectpage=" + maxpage + "&username=" + username;
 		window.location.replace(url);
 	}
 }
@@ -121,7 +121,7 @@ function GOTO_POST_PAGE(maxpage,SELECT_TYPE,title,username){
 			return;
 		}
 	
-		var url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" + jumpVal + "&username=" + username;
+		var url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/tomypost?page=" + jumpVal + "&username=" + username;
 		window.location.replace(url);
 	}
 	
@@ -144,7 +144,7 @@ function GOTO_POST_PAGE(maxpage,SELECT_TYPE,title,username){
 			return;
 		}
 	
-		var url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + jumpVal + "&username=" + username;
+		var url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/selectmypost?title=" + title + "&selectpage=" + jumpVal + "&username=" + username;
 		window.location.replace(url);
 	}
 }
@@ -153,12 +153,12 @@ function GOTO_POST_PAGE(maxpage,SELECT_TYPE,title,username){
 function GOTO_POST_HOME_PAGE(SELECT_TYPE,title,username){
 	if(SELECT_TYPE == 0){
 		var url;
-		url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=1" + "&username=" + username;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/tomypost?page=1" + "&username=" + username;
 		window.location.replace(url);
 	}
 	else if(SELECT_TYPE == 1){
 		var url;
-		url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + 1 + "&username=" + username;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/selectmypost?title=" + title + "&selectpage=" + 1 + "&username=" + username;
 		window.location.replace(url);
 	}
 }
@@ -169,12 +169,12 @@ function GOTO_POST_PREVIOUS_PAGE(page,SELECT_TYPE,title,username){
 		var temp = page-1;
 		if(temp==0)
 		{
-			url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=1" + "&username=" + username;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/tomypost?page=1" + "&username=" + username;
 			window.location.replace(url);
 		}
 		else if(temp>0)
 		{
-			url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" +temp + "&username=" + username;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/tomypost?page=" +temp + "&username=" + username;
 			window.location.replace(url);
 		}
 	}
@@ -183,12 +183,12 @@ function GOTO_POST_PREVIOUS_PAGE(page,SELECT_TYPE,title,username){
 		var temp = page-1;
 		if(temp==0)
 		{
-			url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + 1 + "&username=" + username;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/selectmypost?title=" + title + "&selectpage=" + 1 + "&username=" + username;
 			window.location.replace(url);
 		}
 		else if(temp>0)
 		{
-			url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + temp + "&username=" + username;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/selectmypost?title=" + title + "&selectpage=" + temp + "&username=" + username;
 			window.location.replace(url);
 		}
 	}
@@ -198,9 +198,9 @@ function searchByPostName(username){
 	var searchNameVal=$("#SEARCH_POST_NAME").val().trim();
 	var url;
 	if(searchNameVal != "")
-		url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + searchNameVal + "&selectpage=" +1 + "&username=" + username;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/selectmypost?title=" + searchNameVal + "&selectpage=" +1 + "&username=" + username;
 	else if(searchNameVal == "")
-		url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=1" + "&username=" + username;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/tomypost?page=1" + "&username=" + username;
 	window.location.replace(url);
 }
 
@@ -221,7 +221,7 @@ function DELETE_POST(username){
     }
     
     var url;
-    url = "http://localhost:8080/new_ssm/mypostController/deletemypost?a_id=" + chk_value + "&username=" + username;
+    url = "http://localhost:8080/CSIVoiceTechnologyBar/mypostController/deletemypost?a_id=" + chk_value + "&username=" + username;
     
     window.location.replace(url);
 }

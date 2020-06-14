@@ -60,7 +60,7 @@ function addPostCheck(lastid){
 	}
 
 	var url;
-	url = "http://localhost:8080/new_ssm/postController/addpost?lastid=" + lastid + "&title=" + title + "&essay=" + text;
+	url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/addpost?lastid=" + lastid + "&title=" + title + "&essay=" + text;
 	window.location.replace(url);
 }
 
@@ -74,18 +74,18 @@ function GOTO_POST_NEXT_PAGE(page,maxpage,SELECT_TYPE,title){
 		var temp = page + 1;
 		var url;
 		if(page==maxpage)
-			url = "http://localhost:8080/new_ssm/postController/topost?page=" + page;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/topost?page=" + page;
 		else if(maxpage-page>0)
-			url = "http://localhost:8080/new_ssm/postController/topost?page=" + temp;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/topost?page=" + temp;
 		window.location.replace(url);
 	}
 	else if(SELECT_TYPE == 1){
 		var temp = page + 1;
 		var url;
 		if(page==maxpage)
-			url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + page;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/selectpost?title=" + title + "&selectpage=" + page;
 		else if(maxpage-page>0)
-			url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + temp;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/selectpost?title=" + title + "&selectpage=" + temp;
 		window.location.replace(url);
 	}
 }
@@ -93,12 +93,12 @@ function GOTO_POST_NEXT_PAGE(page,maxpage,SELECT_TYPE,title){
 function GOTO_POST_TAIL_PAGE(maxpage,SELECT_TYPE,title){
 	if(SELECT_TYPE == 0){
 		var url;
-		url = "http://localhost:8080/new_ssm/postController/topost?page=" + maxpage;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/topost?page=" + maxpage;
 		window.location.replace(url);
 	}
 	else if(SELECT_TYPE == 1){
 		var url;
-		url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + maxpage;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/selectpost?title=" + title + "&selectpage=" + maxpage;
 		window.location.replace(url);
 	}
 }
@@ -123,7 +123,7 @@ function GOTO_POST_PAGE(maxpage,SELECT_TYPE,title){
 			return;
 		}
 	
-		var url = "http://localhost:8080/new_ssm/postController/topost?page=" + jumpVal;
+		var url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/topost?page=" + jumpVal;
 		window.location.replace(url);
 	}
 	
@@ -146,7 +146,7 @@ function GOTO_POST_PAGE(maxpage,SELECT_TYPE,title){
 			return;
 		}
 	
-		var url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + jumpVal;
+		var url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/selectpost?title=" + title + "&selectpage=" + jumpVal;
 		window.location.replace(url);
 	}
 }
@@ -154,11 +154,11 @@ function GOTO_POST_PAGE(maxpage,SELECT_TYPE,title){
 
 function GOTO_POST_HOME_PAGE(SELECT_TYPE,title){
 	if(SELECT_TYPE == 0){
-		window.location.replace("http://localhost:8080/new_ssm/postController/topost?page=1");
+		window.location.replace("http://localhost:8080/CSIVoiceTechnologyBar/postController/topost?page=1");
 	}
 	else if(SELECT_TYPE == 1){
 		var url;
-		url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + 1;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/selectpost?title=" + title + "&selectpage=" + 1;
 		window.location.replace(url);
 	}
 }
@@ -168,10 +168,10 @@ function GOTO_POST_PREVIOUS_PAGE(page,SELECT_TYPE,title){
 		var url;
 		var temp = page-1;
 		if(temp==0)
-			window.location.replace("http://localhost:8080/new_ssm/postController/topost?page=1");
+			window.location.replace("http://localhost:8080/CSIVoiceTechnologyBar/postController/topost?page=1");
 		else if(temp>0)
 		{
-			url = "http://localhost:8080/new_ssm/postController/topost?page=" +temp;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/topost?page=" +temp;
 			window.location.replace(url);
 		}
 	}
@@ -180,12 +180,12 @@ function GOTO_POST_PREVIOUS_PAGE(page,SELECT_TYPE,title){
 		var temp = page-1;
 		if(temp==0)
 		{
-			url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + 1;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/selectpost?title=" + title + "&selectpage=" + 1;
 			window.location.replace(url);
 		}
 		else if(temp>0)
 		{
-			url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + temp;
+			url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/selectpost?title=" + title + "&selectpage=" + temp;
 			window.location.replace(url);
 		}
 	}
@@ -194,9 +194,9 @@ function searchByPostName(){
 	var searchNameVal=$("#SEARCH_POST_NAME").val().trim();
 	var url;
 	if(searchNameVal != "")
-		url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + searchNameVal + "&selectpage=" +1;
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/selectpost?title=" + searchNameVal + "&selectpage=" +1;
 	else if(searchNameVal == "")
-		url = "http://localhost:8080/new_ssm/postController/topost?page=1";
+		url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/topost?page=1";
 	window.location.replace(url);
 }
 
@@ -217,7 +217,7 @@ function DELETE_POST(){
     }
     
     var url;
-    url = "http://localhost:8080/new_ssm/postController/deletepost?a_id=" + chk_value;
+    url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/deletepost?a_id=" + chk_value;
     
     window.location.replace(url);
 }
