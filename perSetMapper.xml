@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasoft.mapper.perSetMapper">
+
+	<insert id="addPerSetByPar"
+		parameterType="com.chinasoft.pojo.perSet">
+		insert into user
+		(username,email,password,create_time,age,gender,privilege,userid)
+		values(#{username},#{email},#{password},#{create_time},#{age},#{gender},#{priviledge},#{userid})
+	</insert>
+
+</mapper>
