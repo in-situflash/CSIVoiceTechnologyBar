@@ -56,4 +56,9 @@ public class ArticleDetailMapperServiceImpl implements ArticleDetailMapperServic
 		return mapper.selectC_idsByUsername(username);
 	}
 
+	public String selectImageByUsername(String username) {
+		String image = mapper.selectImageByUsername(username);
+		return image;
+	}
+
 }

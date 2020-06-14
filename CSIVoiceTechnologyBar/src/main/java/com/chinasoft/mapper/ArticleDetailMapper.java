@@ -34,4 +34,7 @@ public interface ArticleDetailMapper {
 	@Select("select c_id from comment where username = #{username} ")
 	List<Integer> selectC_idsByUsername(String username);
 
+	@Select("select image_url from address where username = #{username}")
+	String selectImageByUsername(String username);
+
 }

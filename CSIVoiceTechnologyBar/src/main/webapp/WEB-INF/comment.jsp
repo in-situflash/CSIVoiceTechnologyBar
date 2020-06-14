@@ -21,8 +21,6 @@
 </head>
 
 <body style="height: auto;">
-
-	我是${username}
 	<!--  <div class="container-fluid" id="ORG_LIST_DIV_ID">-->
 	<div class="container-fluid" id="COM_LIST_DIV_ID">
 		<div class="row">
@@ -38,8 +36,8 @@
 								<div class="form-inline col-md-11" style="width: 100%">
 									<div class="form-group " style="width: 100%">
 										<div id="postPhoto">
-											<img src="/CSIVoiceTechnologyBar/headPhoto/default/default.jpg"
-												style="whith: 80px; height: 80px">
+											<img src="http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/downloadImage?filename=${AImageUrl}"
+												style="whith: 80px; height: 80px"> 
 										</div>
 										&nbsp;&nbsp;
 										<div id="postInfo">
@@ -110,7 +108,8 @@
 							<div class="row">
 								<div class="form-inline col-sm-12">
 									<div>
-										<img src="/CSIVoiceTechnologyBar/headPhoto/default/default.jpg"
+									 
+										<img src="http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/downloadImage?filename=${CImageUrls[status.index]}"
 											style="whith: 80px; height: 80px">
 									</div>
 									<div>

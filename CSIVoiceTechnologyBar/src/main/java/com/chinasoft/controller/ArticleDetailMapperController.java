@@ -1,15 +1,25 @@
 package com.chinasoft.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,14 +38,27 @@ public class ArticleDetailMapperController {
 
 
 	@RequestMapping("/getAll") 
-	public ModelAndView getAll() {
+	public ModelAndView getAll(HttpSession session, int a_id) {
 		ModelAndView mav = new ModelAndView();
-		ArticleDetail articleDetail = service.getAllById(1);
-		List<Comment> comments = service.getCommentsByArticleId(1);
+		
+		ArticleDetail articleDetail = service.getAllById(a_id);
+		String Ausername = articleDetail.getUsername();
+		String AImageUrl = service.selectImageByUsername(Ausername);
+		List<Comment> comments = service.getCommentsByArticleId(a_id);
+		List<String> CImageUrls = new ArrayList<String>();
+		String CUsername;
+		String CImageUrl;
+		for (int i = 0; i < comments.size(); i++) {
+			CUsername = comments.get(i).getUsername();
+			CImageUrl = service.selectImageByUsername(CUsername);
+			CImageUrls.add(CImageUrl);
+		}
+		mav.addObject("AImageUrl", AImageUrl);
+		mav.addObject("CImageUrls", CImageUrls);
 		mav.addObject("articleDetail", articleDetail);
 		mav.addObject("comments", comments);
 		mav.setViewName("/WEB-INF/comment.jsp");
-		return mav;
+		return mav; 
 	}
 	
 	@RequestMapping("/deleteCommentByC_id")
@@ -76,12 +99,22 @@ public class ArticleDetailMapperController {
 	@ResponseBody
 	public Map<String,List<Integer>> selectC_idsByUsername(@RequestBody Comment comment) {
 		String username  = comment.getUsername();
-		System.out.println(username);
-		List<Integer> c_ids = service.selectC_idsByUsername(username); 
-		System.out.println(c_ids);
+		List<Integer> c_ids = service.selectC_idsByUsername(username); 	
 		//int a_likes = service.selectA_likesByA_id(a_id);
 		Map<String,List<Integer>> map = new HashMap<String, List<Integer>>();
 		map.put("c_ids", c_ids);
 		return map;
 	}
+	
+	@RequestMapping(value="downloadImage",method=RequestMethod.GET)
+	public ResponseEntity<byte[]> downloadImage(HttpServletRequest request, @RequestParam("filename")String filename)throws IOException{
+		String downloadFilePath="D:\\java";
+		File file = new File(downloadFilePath + File.separator+filename);
+		HttpHeaders headers = new HttpHeaders();
+		String downloadFileName = new String(filename.getBytes("UTF-8"),"iso-8859-1");
+		headers.setContentDispositionFormData("attachment", downloadFileName);
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers,HttpStatus.CREATED);
+	}
+	
 }
