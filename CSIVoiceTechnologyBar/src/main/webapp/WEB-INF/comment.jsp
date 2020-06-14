@@ -135,8 +135,10 @@
 								<div style="width:86%;"> 
 									<div style="float:left">
 										<div class="col-sm-12" id="commentVoice${status.count}" >
-											&nbsp;|&nbsp;
-											<a id="praisecNum" class="c_likes" style="color:default;"  href="javascript:void(0);" onclick="hotsPraiseClick('46dc37890bbc49629384024d2f17beda','c9c8ee13e83149379d56d34ea7913d69')">赞：${item.c_likes}</a>
+											&nbsp;&nbsp;
+											<audio  controls="controls"  style="height:20px"></audio>
+											<button type="button" class="audioPlay" value="${status.index}">下载音频</button>
+											|<a id="praisecNum" class="c_likes" style="color:default;"  href="javascript:void(0);" onclick="hotsPraiseClick('46dc37890bbc49629384024d2f17beda','c9c8ee13e83149379d56d34ea7913d69')">赞：${item.c_likes}</a>
 											<input value="${item.c_id}" hidden="true"></input>
 										</div>
 									</div>
@@ -212,7 +214,8 @@
 	<script src="/CSIVoiceTechnologyBar/static/js/common/baidu_tts_cors.js"></script>
 	<script src="/CSIVoiceTechnologyBar/chinasofti/comment/js/comment.js"></script>
 	<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/alert.js"></script>
-
+	<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/layer/layer.js"></script>
+	
 	<!--  
 		<script src="/stmadc/stma/dc/include/js/jcommon.js"></script>
 		
@@ -238,17 +241,17 @@
 				$(text).html("评论时间：" + GMTToStr("${item.c_createtime}"));
 			</c:forEach> 
 		});
-		function tts(text, id) {
+		function tts(text, id, speed, tone, volume, type) {
 
 	        // 调用语音合成接口
 	        // 参数含义请参考 https://ai.baidu.com/docs#/TTS-API/41ac79a6
 	        audio = btts({
 	            tex: text,
 	            tok: '25.d134c5f4a951a8bed186317f3b36e1a6.315360000.1907381403.282335-20381539',
-	            spd: 5,
-	            pit: 5,
-	            vol: 15,
-	            per: 4
+	            spd: speed,
+	            pit: tone,
+	            vol: volume,
+	            per: type
 	        }, {
 	            volume: 0.3,
 	            autoDestory: true,
@@ -260,6 +263,7 @@
 	            onSuccess: function(htmlAudioElement) {
 	                audio = htmlAudioElement;
 	                $(id).prepend(audio);
+	                $("audio").css("height","20px");
 	            },
 	            onError: function(text) {
 	                alert(text)
@@ -269,11 +273,42 @@
 	            }
 	        });
 	    }
-	    tts("${articleDetail.essay}","#postAtt");
-	    <c:forEach var="item" items="${comments}" varStatus="status"> 
+	    var voicetype;
+		switch("${audioSet.voicetype}") {
+	     case "普通女声":
+	        voicetype = 0;
+	        break;
+	     case "普通男声":
+	        voicetype = 1;
+	        break;
+	     case "度逍遥（武侠）":
+	    	voicetype = 3;
+		    break;
+	     case "度丫丫（软萌）":
+		    voicetype = 4;
+			break;
+	     default:
+	    	voicetype = 4;
+		} 
+		$(".audioPlay").click(function(){
+			var id = "#" + $(this).parent().attr('id'); 
+			var index = $(this).val();
+			$(this).prev().remove();
+			<c:forEach var="item" items="${comments}" varStatus="status"> 
+				if(${status.index}==index){
+					console.log("${item.content}");
+					tts("${item.content}",id, ${audioSet.speed}, ${audioSet.tone}, ${audioSet.volume},voicetype);
+				}
+			</c:forEach> 
+			
+			
+			
+		})
+	    tts("${articleDetail.essay}","#postAtt", ${audioSet.speed}, ${audioSet.tone}, ${audioSet.volume},voicetype); 
+	    /* <c:forEach var="item" items="${comments}" varStatus="status"> 
 			var id = "#commentVoice"+${status.count};
-			tts("${item.content}",id);
-		</c:forEach> 
+			tts("${item.content}",id, ${audioSet.speed}, ${audioSet.tone}, ${audioSet.volume},voicetype);
+		</c:forEach>  */
 		/* function audioPlay(text,id) {
 			var zhText = text;
 			zhText = encodeURI(zhText);
@@ -317,7 +352,17 @@
 		});
 		$(".DELETE_COM").click(function(){
 		    var c_id = $(this).val();
-		    window.location.href = "http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/deleteCommentByC_id?c_id="+c_id;
+		    layer.confirm('确定删除这条评论吗？', {
+		    	  btn: ['确定','取消'] //按钮
+		    	}, function(){
+		    	  layer.msg('成功删除', {icon: 1},{
+		    		time: 2000,//2s后自动关闭
+			      });
+		    	  window.location.href = "http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/deleteCommentByC_id?c_id="+c_id+"&a_id="+${a_id};
+		    	}, function(){
+		    	  
+		    	}); 
+		    //window.location.href = "http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/deleteCommentByC_id?c_id="+c_id;
 		});	
 		$(".c_likes").click(function(){
 			var that = $(this);

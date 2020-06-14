@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.chinasoft.pojo.ArticleDetail;
 import com.chinasoft.pojo.Comment;
+import com.chinasoft.pojo.audioSet;
 
 public interface ArticleDetailMapper {
 	
@@ -36,5 +37,8 @@ public interface ArticleDetailMapper {
 
 	@Select("select image_url from address where username = #{username}")
 	String selectImageByUsername(String username);
+
+	@Select("select * from voice where username = #{username}")
+	audioSet selectAudioSetByUsername(String username);
 
 }

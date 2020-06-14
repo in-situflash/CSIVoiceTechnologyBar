@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.chinasoft.pojo.ArticleDetail;
 import com.chinasoft.pojo.Comment;
+import com.chinasoft.pojo.audioSet;
 
 public interface ArticleDetailMapperService {
 	
@@ -24,5 +25,7 @@ public interface ArticleDetailMapperService {
 	List<Integer> selectC_idsByUsername(String username);
 	
 	String selectImageByUsername(String username);
+	
+	audioSet selectAudioSetByUsername(String username);
 }
  

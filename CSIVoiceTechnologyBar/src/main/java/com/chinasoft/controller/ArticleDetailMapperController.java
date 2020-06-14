@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.chinasoft.pojo.ArticleDetail;
 import com.chinasoft.pojo.Comment;
+import com.chinasoft.pojo.audioSet;
 import com.chinasoft.service.impl.ArticleDetailMapperServiceImpl;
 
 
@@ -40,7 +41,8 @@ public class ArticleDetailMapperController {
 	@RequestMapping("/getAll") 
 	public ModelAndView getAll(HttpSession session, int a_id) {
 		ModelAndView mav = new ModelAndView();
-		
+		String username = session.getAttribute("username").toString();
+		audioSet audioSet = service.selectAudioSetByUsername(username);
 		ArticleDetail articleDetail = service.getAllById(a_id);
 		String Ausername = articleDetail.getUsername();
 		String AImageUrl = service.selectImageByUsername(Ausername);
@@ -57,18 +59,33 @@ public class ArticleDetailMapperController {
 		mav.addObject("CImageUrls", CImageUrls);
 		mav.addObject("articleDetail", articleDetail);
 		mav.addObject("comments", comments);
+		mav.addObject("a_id", a_id);
+		mav.addObject("audioSet", audioSet);
 		mav.setViewName("/WEB-INF/comment.jsp");
 		return mav; 
 	}
 	
 	@RequestMapping("/deleteCommentByC_id")
-	public ModelAndView deleteCommentByC_id(int c_id) {
+	public ModelAndView deleteCommentByC_id(int c_id,int a_id) {
 		ModelAndView mav = new ModelAndView();
 		service.deleteCommentByC_id(c_id);
-		ArticleDetail articleDetail = service.getAllById(1);
-		List<Comment> comments = service.getCommentsByArticleId(1);
+		ArticleDetail articleDetail = service.getAllById(a_id);
+		String Ausername = articleDetail.getUsername();
+		String AImageUrl = service.selectImageByUsername(Ausername);
+		List<Comment> comments = service.getCommentsByArticleId(a_id);
+		List<String> CImageUrls = new ArrayList<String>();
+		String CUsername;
+		String CImageUrl;
+		for (int i = 0; i < comments.size(); i++) {
+			CUsername = comments.get(i).getUsername();
+			CImageUrl = service.selectImageByUsername(CUsername);
+			CImageUrls.add(CImageUrl);
+		}
+		mav.addObject("AImageUrl", AImageUrl);
+		mav.addObject("CImageUrls", CImageUrls);
 		mav.addObject("articleDetail", articleDetail);
 		mav.addObject("comments", comments);
+		mav.addObject("a_id", a_id);
 		mav.setViewName("/WEB-INF/comment.jsp");
 		return mav;
 	}

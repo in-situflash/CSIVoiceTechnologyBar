@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.chinasoft.pojo.audioSet;
 import com.chinasoft.mapper.ArticleDetailMapper;
 import com.chinasoft.pojo.ArticleDetail;
 import com.chinasoft.pojo.Comment;
@@ -59,6 +60,11 @@ public class ArticleDetailMapperServiceImpl implements ArticleDetailMapperServic
 	public String selectImageByUsername(String username) {
 		String image = mapper.selectImageByUsername(username);
 		return image;
+	}
+
+	public audioSet selectAudioSetByUsername(String username) {
+		
+		return mapper.selectAudioSetByUsername(username);
 	}
 
 }
