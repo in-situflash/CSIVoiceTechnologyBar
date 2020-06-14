@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/mask.css" />
 	</head>
 
-	<body style="height: auto;">
+	<body style="height: auto;" onload="_checkLogin()">
 		
 <%--		<br/><h1>Welcome, ${username}</h1>--%>
 		
@@ -162,6 +162,17 @@
 		<script src="/CSIVoiceTechnologyBar/static/js/common/baidu_tts_cors.js"></script>
 
 		<script type="text/javascript">
+            function _checkLogin(){
+                const islogin = "${islogin}";
+                console.log("login state:"+islogin);
+                if (islogin == "false"){
+                    $.MsgBox.AlertWithCb("消息", "请先登录!",
+                        ()=>{
+                            window.location.replace("/CSIVoiceTechnologyBar/");
+                        });
+                }
+            }
+
 			function tts(text, idx) {
 
                 var audio_comp = $("#comment_audio_"+idx)[0];

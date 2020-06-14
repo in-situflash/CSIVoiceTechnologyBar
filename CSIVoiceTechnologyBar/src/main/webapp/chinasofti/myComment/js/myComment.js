@@ -26,6 +26,7 @@ $(function(){
 	             'table', 'hr', 'emoticons', ]
 	});
 
+	_checkLogin();
 	_readInfo();
 	_initPageDisplay();
 });
@@ -98,7 +99,10 @@ function DELETE_COM(){
 	const cid_concat = chk_value.join("-");
 	const url = "/CSIVoiceTechnologyBar/comment/delete?ids="+cid_concat;
 
-	window.location.replace(url);
+	$.MsgBox.Confirm("消息", "确定删除吗？",
+		()=>{
+		window.location.replace(url);
+	});
 }
 function returnComList(){
 	editor.html("");

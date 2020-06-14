@@ -55,12 +55,19 @@ public class MyCommentController {
 		String username = (String)session.getAttribute("username");
 //		System.out.println("username: "+username);
 
-		// TODO: 嵌入动态用户名(Done)
-//		List<Comment> comments = service.selectCommentByUser(username);
-		List<TitledComment> comments = service.selectTitledCommentByUser(username);
+		boolean isLogin = !(username == null || username == "");
+		model.addAttribute("islogin", isLogin);
+		System.out.println("username: "+username);
 
-		model.addAttribute("mycomments", comments);
-		model.addAttribute("totalComment", comments.size());
+		// 只有在获得到有效用户名时才会进行数据检索
+		if (isLogin) {
+
+			// TODO: 嵌入动态用户名(Done)
+			List<TitledComment> comments = service.selectTitledCommentByUser(username);
+
+			model.addAttribute("mycomments", comments);
+			model.addAttribute("totalComment", comments.size());
+		}
 
 		return "/WEB-INF/myComment.jsp";
 	}

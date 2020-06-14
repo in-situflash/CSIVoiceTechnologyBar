@@ -9,6 +9,11 @@
             GenerateHtml("confirm", title, msg);
             btnOk(callback);
             btnNo();
+        },
+        AlertWithCb: function(title, msg, cb){
+            GenerateHtml("alert", title, msg);
+            btnOk(cb);
+            btnNo();
         }
     }
     //生成Html
