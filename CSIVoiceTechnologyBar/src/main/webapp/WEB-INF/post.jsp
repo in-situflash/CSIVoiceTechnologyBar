@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8" isELIgnored="false" import="java.util.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
+
 <!DOCTYPE html>
 <html style="height: auto;">
 	<head>
@@ -52,7 +59,8 @@
 					<div class="card">
 						<div class="card-header" style="width:100%">
 							<h3  class="card-title col-md-3" >当前：<span id="LABLE_FATHER_ORG_NAME">所有文章</span></h3>
-							<div class="col-md-2 col-md-offset-7" id="postAddAndDeleteDiv"><button class="btn  btn-success btn-sm" type="button" onclick="ADD_POST()">新增</button>&nbsp;&nbsp;<button class="btn  btn-danger btn-sm" type="button" onclick="DELETE_POST()">删除</button></div>
+							<div class="col-md-2 col-md-offset-7" id="postAddAndDeleteDiv"><button class="btn  btn-success btn-sm" type="button" onclick="ADD_POST()">新增</button>&nbsp;&nbsp;
+							<button class="btn  btn-danger btn-sm" type="button" onclick="DELETE_POST()">删除</button></div>
 						</div>
 						<div class="card-body">
 							<div id="example2_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -75,7 +83,19 @@
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">最后评论</th>
 												</tr>
 											</thead>
-											<tbody id="POST_LIST_TBODY_ID"><tr bgcolor="#FFFFFF">		<td align="center" width="20">			<input name="DELETE_CHECK_NAME" type="checkbox" value="0c5bad26938041459423277878dbafbe">		</td>		<td valign="center" align="center" width="30">2		</td>		<td valign="center" align="center" width="30">1		</td>		<td valign="center" align="center" width="110">			<a href="" onclick="post_detailed('0c5bad26938041459423277878dbafbe'); return false;">测试文章2</a> 		</td>		<td valign="center" align="center" width="110">sjm		</td>		<td valign="center" align="center" width="100">2019-03-18 20:43:23		</td>		<td valign="center" align="center" width="100">2019-03-18 20:47:40		</td></tr><tr bgcolor="#FFFFFF">		<td align="center" width="20">			<input name="DELETE_CHECK_NAME" type="checkbox" value="45910a56e4604e30a711e77dec887221">		</td>		<td valign="center" align="center" width="30">2		</td>		<td valign="center" align="center" width="30">1		</td>		<td valign="center" align="center" width="110">			<a href="" onclick="post_detailed('45910a56e4604e30a711e77dec887221'); return false;">测试文章8</a> 		</td>		<td valign="center" align="center" width="110">sjm		</td>		<td valign="center" align="center" width="100">2019-03-18 20:44:52		</td>		<td valign="center" align="center" width="100">2019-03-18 20:47:23		</td></tr><tr bgcolor="#FFFFFF">		<td align="center" width="20">			<input name="DELETE_CHECK_NAME" type="checkbox" value="f33223429d80439e80f35c5cd1c5a01e">		</td>		<td valign="center" align="center" width="30">3		</td>		<td valign="center" align="center" width="30">1		</td>		<td valign="center" align="center" width="110">			<a href="" onclick="post_detailed('f33223429d80439e80f35c5cd1c5a01e'); return false;">测试文章6</a> 		</td>		<td valign="center" align="center" width="110">sjm		</td>		<td valign="center" align="center" width="100">2019-03-18 20:44:18		</td>		<td valign="center" align="center" width="100">2019-03-18 20:46:58		</td></tr><tr bgcolor="#FFFFFF">		<td align="center" width="20">			<input name="DELETE_CHECK_NAME" type="checkbox" value="c4376e58c4f54c39b1d382b47e3d7020">		</td>		<td valign="center" align="center" width="30">0		</td>		<td valign="center" align="center" width="30">0		</td>		<td valign="center" align="center" width="110">			<a href="" onclick="post_detailed('c4376e58c4f54c39b1d382b47e3d7020'); return false;">测试文章13</a> 		</td>		<td valign="center" align="center" width="110">sjm		</td>		<td valign="center" align="center" width="100">2019-03-18 20:45:59		</td>		<td valign="center" align="center" width="100">		</td></tr><tr bgcolor="#FFFFFF">		<td align="center" width="20">			<input name="DELETE_CHECK_NAME" type="checkbox" value="54bece54ed664f95b1acd22582249725">		</td>		<td valign="center" align="center" width="30">0		</td>		<td valign="center" align="center" width="30">0		</td>		<td valign="center" align="center" width="110">			<a href="" onclick="post_detailed('54bece54ed664f95b1acd22582249725'); return false;">测试文章10</a> 		</td>		<td valign="center" align="center" width="110">sjm		</td>		<td valign="center" align="center" width="100">2019-03-18 20:45:25		</td>		<td valign="center" align="center" width="100">		</td></tr><tr bgcolor="#FFFFFF">		<td align="center" width="20">			<input name="DELETE_CHECK_NAME" type="checkbox" value="d6f2a5452e5b478b8a865a932be69833">		</td>		<td valign="center" align="center" width="30">0		</td>		<td valign="center" align="center" width="30">0		</td>		<td valign="center" align="center" width="110">			<a href="" onclick="post_detailed('d6f2a5452e5b478b8a865a932be69833'); return false;">测试文章12</a> 		</td>		<td valign="center" align="center" width="110">sjm		</td>		<td valign="center" align="center" width="100">2019-03-18 20:45:47		</td>		<td valign="center" align="center" width="100">		</td></tr><tr bgcolor="#FFFFFF">		<td align="center" width="20">			<input name="DELETE_CHECK_NAME" type="checkbox" value="e69fcef459104d8f8a50cdc2f0165e46">		</td>		<td valign="center" align="center" width="30">0		</td>		<td valign="center" align="center" width="30">0		</td>		<td valign="center" align="center" width="110">			<a href="" onclick="post_detailed('e69fcef459104d8f8a50cdc2f0165e46'); return false;">测试文章9</a> 		</td>		<td valign="center" align="center" width="110">sjm		</td>		<td valign="center" align="center" width="100">2019-03-18 20:45:12		</td>		<td valign="center" align="center" width="100">		</td></tr></tbody>
+											<tbody id="POST_LIST_TBODY_ID">
+											<tr bgcolor="#FFFFFF">
+											<c:forEach var="article" items="${allarticle}">
+											<td align="center" width="%6"><input name="DELETE_CHECK_NAME" type="checkbox" value="${article.a_id}"></td>
+											<td valign="center" align="center" width="%7">${article.a_likes}</td>
+											<td valign="center" align="center" width="%7">${article.a_comments}</td>
+											<td valign="center" align="center" width="%20"><a href="" onclick="post_detailed('0c5bad26938041459423277878dbafbe'); return false;">${article.title}</a></td>
+											<td valign="center" align="center" width="%20">${article.username}</td>
+											<td valign="center" align="center" width="%20">${article.a_createtime}</td>
+											<td valign="center" align="center" width="%20">${article.a_lastcomment}</td>
+											</tr>
+											</c:forEach>
+											</tbody>
 											<tfoot></tfoot>
 										</table>
 									
@@ -85,7 +105,30 @@
 								<div class="row">
 									<div class="col-sm-12 col-md-9 col-md-offset-3">
 										<div class="dataTables_paginate paging_simple_numbers">
-											<ul class="pagination" id="PAGE_ID"><li style="margin-left: 30px">		<button class="btn btn-primary" type="button" onclick="GOTO_POST_HOME_PAGE('0')">首页</button></li><li style="margin-left: 30px">		<button class="btn btn-primary" type="button" onclick="GOTO_POST_PREVIOUS_PAGE('0')">前一页</button></li><li style="margin-left: 30px">		<button class="btn btn-primary" type="button" onclick="GOTO_POST_NEXT_PAGE('2')">后一页</button></li><li style="margin-left: 30px">		<button class="btn btn-primary" type="button" onclick="GOTO_POST_TAIL_PAGE('2')">末页</button></li><li style="margin-left: 30px">		<input id="JUMP_INPUT_ID" type="text" style="display:inline;width:80px" size="6">		<button class="btn btn-sm btn-outline-primary" onclick="GOTO_POST_PAGE();return false;">跳转</button></li><li style="margin-left: 30px">		<div class="dataTables_info" style="margin-top: 6px;margin-left: 100px"><span>2/3 页</span> <span>共15条</span></div></li></ul>
+											<ul class="pagination" id="PAGE_ID">
+											<li style="margin-left: 30px">		
+											<button class="btn btn-primary" type="button" onclick="GOTO_POST_HOME_PAGE(${SELECT_TYPE},'${title}')">首页</button>
+											</li>
+											<li style="margin-left: 30px">		
+											<button class="btn btn-primary" type="button" onclick="GOTO_POST_PREVIOUS_PAGE(${page},${SELECT_TYPE},'${title}')">前一页</button>
+											</li>
+											<li style="margin-left: 30px">		
+											<button class="btn btn-primary" type="button" onclick="GOTO_POST_NEXT_PAGE(${page},${maxpage},${SELECT_TYPE},'${title}')">后一页</button>
+											</li>
+											<li style="margin-left: 30px">		
+											<button class="btn btn-primary" type="button" onclick="GOTO_POST_TAIL_PAGE(${maxpage},${SELECT_TYPE},'${title}')">末页</button>
+											</li>
+											<li style="margin-left: 30px">		
+											<input id="JUMP_INPUT_ID" type="text" style="display:inline;width:80px" size="6">		
+											<button class="btn btn-sm btn-outline-primary" onclick="GOTO_POST_PAGE(${maxpage},${SELECT_TYPE},'${title}');return false;">跳转</button>
+											</li>
+											<li style="margin-left: 30px">		
+											<div class="dataTables_info" style="margin-top: 6px;margin-left: 100px">
+											<span>${page}/${maxpage}页</span> 
+											<span>共${alldata}条</span>
+											</div>
+											</li>
+											</ul>
 										</div>
 									</div>
 								</div>
@@ -128,7 +171,7 @@
 			            </div>
 			             <!-- /.card-body -->
 			             <div class="card-footer col-md-3 col-md-offset-4" style="width:100%"align="center">
-			               <button type="button" class="btn btn-info" onclick="addPostCheck()">提交</button>
+			               <button type="button" class="btn btn-info" onclick="addPostCheck(${lastid})">提交</button>
 			               <button type="button" class="btn btn-default" onclick="returnPostList()">返回</button>
 			             </div>
 			             <!-- /.card-footer -->

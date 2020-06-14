@@ -41,10 +41,9 @@ function ADD_POST(){
 
 
 
-function addPostCheck(){
+function addPostCheck(lastid,username){
 	var title=$("#POST_ADD_TITLE").val().trim();
 	var text=editor.html().trim();
-	
 	if(title==""){
 		$("#tishi").html("文章标题不能为空");
 		return;
@@ -58,63 +57,151 @@ function addPostCheck(){
 		return;
 	}
 
-
-	   returnPostList();
-	    		
-
+	var url;
+	url = "http://localhost:8080/new_ssm/mypostController/addmypost?lastid=" + lastid + "&title=" + title + "&essay=" + text + "&username=" + username;
+	window.location.replace(url);
 }
 
 function showPostlist(postList,postAllNum,allPage,pageIndex){
 	
 }
 
-function GOTO_POST_NEXT_PAGE(){
+function GOTO_POST_NEXT_PAGE(page,maxpage,SELECT_TYPE,title,username){
 
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,postPageIndex+1,everyPageDataCount,true,"/postbar/myPostController/getMyPostList");
-}
-
-function GOTO_POST_TAIL_PAGE(){
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,postAllPage-1,everyPageDataCount,true,"/postbar/myPostController/getMyPostList");
-}
-
-function GOTO_POST_PAGE(){
-	var jumpVal=$("#JUMP_INPUT_ID").val().trim();
-	if(jumpVal==""){
-		$.MsgBox.Alert("消息","跳转页不能为空");
-		return;
+	if(SELECT_TYPE == 0){
+		var temp = page+1;
+		var url;
+		if(page==maxpage)
+			url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" + page + "&username=" + username;
+		else if(maxpage-page>0)
+			url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" + temp + "&username=" + username;
+		window.location.replace(url);
 	}
-	if(!(/^[0-9]+$/.test(jumpVal))){
-		$.MsgBox.Alert("消息","页码必须为数字");
-		return;
+	else if(SELECT_TYPE == 1){
+		var temp = page+1;
+		var url;
+		if(page==maxpage)
+			url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + page + "&username=" + username;
+		else if(maxpage-page>0)
+			url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + temp + "&username=" + username;
+		window.location.replace(url);
 	}
-	if(jumpVal<=0){
-		$.MsgBox.Alert("消息","页码必须大于等于1");
-		return;
+}
+
+function GOTO_POST_TAIL_PAGE(maxpage,SELECT_TYPE,title,username){
+	if(SELECT_TYPE == 0){
+		var url;
+		url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" + maxpage + "&username=" + username;
+		window.location.replace(url);
 	}
-	if(jumpVal>postAllPage){
-		$.MsgBox.Alert("消息","页码超出上限");
-		return;
+	else if(SELECT_TYPE == 1){
+		var url;
+		url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + maxpage + "&username=" + username;
+		window.location.replace(url);
 	}
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,jumpVal-1,everyPageDataCount,true,"/postbar/myPostController/getMyPostList");
+}
+
+function GOTO_POST_PAGE(maxpage,SELECT_TYPE,title,username){
+	if(SELECT_TYPE == 0){
+		var jumpVal=$("#JUMP_INPUT_ID").val().trim();
+		if(jumpVal==""){
+			$.MsgBox.Alert("消息","跳转页不能为空");
+			return;
+		}
+		if(!(/^[0-9]+$/.test(jumpVal))){
+			$.MsgBox.Alert("消息","页码必须为数字");
+			return;
+		}
+		if(jumpVal<=0){
+			$.MsgBox.Alert("消息","页码必须大于等于1");
+			return;
+		}
+		if(jumpVal>maxpage){
+			$.MsgBox.Alert("消息","页码超出上限");
+			return;
+		}
+	
+		var url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" + jumpVal + "&username=" + username;
+		window.location.replace(url);
+	}
+	
+	else if(SELECT_TYPE == 1){
+		var jumpVal=$("#JUMP_INPUT_ID").val().trim();
+		if(jumpVal==""){
+			$.MsgBox.Alert("消息","跳转页不能为空");
+			return;
+		}
+		if(!(/^[0-9]+$/.test(jumpVal))){
+			$.MsgBox.Alert("消息","页码必须为数字");
+			return;
+		}
+		if(jumpVal<=0){
+			$.MsgBox.Alert("消息","页码必须大于等于1");
+			return;
+		}
+		if(jumpVal>maxpage){
+			$.MsgBox.Alert("消息","页码超出上限");
+			return;
+		}
+	
+		var url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + jumpVal + "&username=" + username;
+		window.location.replace(url);
+	}
 }
 
 
-function GOTO_POST_HOME_PAGE(){
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,0,everyPageDataCount,true,"/postbar/myPostController/getMyPostList");
+function GOTO_POST_HOME_PAGE(SELECT_TYPE,title,username){
+	if(SELECT_TYPE == 0){
+		var url;
+		url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=1" + "&username=" + username;
+		window.location.replace(url);
+	}
+	else if(SELECT_TYPE == 1){
+		var url;
+		url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + 1 + "&username=" + username;
+		window.location.replace(url);
+	}
 }
 
-function GOTO_POST_PREVIOUS_PAGE(){
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,postPageIndex-1,everyPageDataCount,true,"/postbar/myPostController/getMyPostList");
-	 
+function GOTO_POST_PREVIOUS_PAGE(page,SELECT_TYPE,title,username){
+	if(SELECT_TYPE == 0){
+		var url;
+		var temp = page-1;
+		if(temp==0)
+		{
+			url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=1" + "&username=" + username;
+			window.location.replace(url);
+		}
+		else if(temp>0)
+		{
+			url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=" +temp + "&username=" + username;
+			window.location.replace(url);
+		}
+	}
+	else if(SELECT_TYPE == 1){
+		var url;
+		var temp = page-1;
+		if(temp==0)
+		{
+			url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + 1 + "&username=" + username;
+			window.location.replace(url);
+		}
+		else if(temp>0)
+		{
+			url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + title + "&selectpage=" + temp + "&username=" + username;
+			window.location.replace(url);
+		}
+	}
 }
-function searchByPostName(){
+
+function searchByPostName(username){
 	var searchNameVal=$("#SEARCH_POST_NAME").val().trim();
-	getPostList(searchNameVal,0,everyPageDataCount,true,"/postbar/myPostController/getMyPostList");
+	var url;
+	if(searchNameVal != "")
+		url = "http://localhost:8080/new_ssm/mypostController/selectmypost?title=" + searchNameVal + "&selectpage=" +1 + "&username=" + username;
+	else if(searchNameVal == "")
+		url = "http://localhost:8080/new_ssm/mypostController/tomypost?page=1" + "&username=" + username;
+	window.location.replace(url);
 }
 
 function post_detailed(postUUID){
@@ -123,7 +210,7 @@ function post_detailed(postUUID){
 
 }
 
-function DELETE_POST(){
+function DELETE_POST(username){
 	var chk_value =[]; 
     $('input[name="DELETE_CHECK_NAME"]:checked').each(function(){ 
         chk_value.push($(this).val()); 
@@ -133,6 +220,10 @@ function DELETE_POST(){
     	return;
     }
     
+    var url;
+    url = "http://localhost:8080/new_ssm/mypostController/deletemypost?a_id=" + chk_value + "&username=" + username;
+    
+    window.location.replace(url);
 }
 
 

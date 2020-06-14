@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasoft.mapper.ArticleMapper_mypost">
+
+	<select id="selectAllmyArticleByLimit" resultType="com.chinasoft.pojo.Article" parameterType="Map">
+		select * from article where username = #{username}
+		limit #{start}, #{end}
+	</select>
+	
+	<select id="selectAllmyArticle" resultType="com.chinasoft.pojo.Article" parameterType="String">
+		select * from article where username = #{username};
+	</select>
+	
+	<select id="selectmyArticleByPar" resultType="com.chinasoft.pojo.Article" parameterType="Map">
+		select * from article where username = #{username} and title like '%${title}%' 
+	</select>
+	
+	<select id="selectmyArticleByParByLimit" resultType="com.chinasoft.pojo.Article" parameterType="Map">
+		select * from article where username = #{username} and title like '%${title}%' 
+		limit #{start}, #{end}
+	</select>
+	
+	<insert id="insertmyArticle" parameterType="com.chinasoft.pojo.Article">
+		insert into article(a_id,essay,username,a_createtime,title) values(#{a_id},#{essay},#{username},#{a_createtime},#{title})
+	</insert>
+	
+	<delete id="deletemyArticle" parameterType="com.chinasoft.pojo.Article">
+		delete from article where a_id = #{a_id}
+	</delete>
+	
+	<select id="selectLastmyArticle" resultType="int">
+		select a_id from article order by a_id desc limit 1
+	</select>
+</mapper>

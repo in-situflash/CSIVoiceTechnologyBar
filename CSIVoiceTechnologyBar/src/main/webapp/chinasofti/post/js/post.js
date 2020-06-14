@@ -43,10 +43,9 @@ function ADD_POST(){
 
 
 
-function addPostCheck(){
+function addPostCheck(lastid){
 	var title=$("#POST_ADD_TITLE").val().trim();
 	var text=editor.html().trim();
-	
 	if(title==""){
 		$("#tishi").html("文章标题不能为空");
 		return;
@@ -60,68 +59,145 @@ function addPostCheck(){
 		return;
 	}
 
-	    
-
-	    		returnPostList();
-	    		var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	    		getPostList(searchNameVal,postPageIndex,everyPageDataCount,true,"/postbar/postController/getPostList");
-
-	    	
-
-
+	var url;
+	url = "http://localhost:8080/new_ssm/postController/addpost?lastid=" + lastid + "&title=" + title + "&essay=" + text;
+	window.location.replace(url);
 }
 
 function showPostlist(admin,postList,postAllNum,allPage,pageIndex){
 	
 }
 
-function GOTO_POST_NEXT_PAGE(){
+function GOTO_POST_NEXT_PAGE(page,maxpage,SELECT_TYPE,title){
 
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,postPageIndex+1,everyPageDataCount,true,"/postbar/postController/getPostList");
+	if(SELECT_TYPE == 0){
+		var temp = page + 1;
+		var url;
+		if(page==maxpage)
+			url = "http://localhost:8080/new_ssm/postController/topost?page=" + page;
+		else if(maxpage-page>0)
+			url = "http://localhost:8080/new_ssm/postController/topost?page=" + temp;
+		window.location.replace(url);
+	}
+	else if(SELECT_TYPE == 1){
+		var temp = page + 1;
+		var url;
+		if(page==maxpage)
+			url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + page;
+		else if(maxpage-page>0)
+			url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + temp;
+		window.location.replace(url);
+	}
 }
 
-function GOTO_POST_TAIL_PAGE(){
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,postAllPage-1,everyPageDataCount,true,"/postbar/postController/getPostList");
+function GOTO_POST_TAIL_PAGE(maxpage,SELECT_TYPE,title){
+	if(SELECT_TYPE == 0){
+		var url;
+		url = "http://localhost:8080/new_ssm/postController/topost?page=" + maxpage;
+		window.location.replace(url);
+	}
+	else if(SELECT_TYPE == 1){
+		var url;
+		url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + maxpage;
+		window.location.replace(url);
+	}
 }
 
-function GOTO_POST_PAGE(){
-	var jumpVal=$("#JUMP_INPUT_ID").val().trim();
-	if(jumpVal==""){
-		$.MsgBox.Alert("消息","跳转页不能为空");
-		return;
+function GOTO_POST_PAGE(maxpage,SELECT_TYPE,title){
+	if(SELECT_TYPE == 0){
+		var jumpVal=$("#JUMP_INPUT_ID").val().trim();
+		if(jumpVal==""){
+			$.MsgBox.Alert("消息","跳转页不能为空");
+			return;
+		}
+		if(!(/^[0-9]+$/.test(jumpVal))){
+			$.MsgBox.Alert("消息","页码必须为数字");
+			return;
+		}
+		if(jumpVal<=0){
+			$.MsgBox.Alert("消息","页码必须大于等于1");
+			return;
+		}
+		if(jumpVal>maxpage){
+			$.MsgBox.Alert("消息","页码超出上限");
+			return;
+		}
+	
+		var url = "http://localhost:8080/new_ssm/postController/topost?page=" + jumpVal;
+		window.location.replace(url);
 	}
-	if(!(/^[0-9]+$/.test(jumpVal))){
-		$.MsgBox.Alert("消息","页码必须为数字");
-		return;
+	
+	else if(SELECT_TYPE == 1){
+		var jumpVal=$("#JUMP_INPUT_ID").val().trim();
+		if(jumpVal==""){
+			$.MsgBox.Alert("消息","跳转页不能为空");
+			return;
+		}
+		if(!(/^[0-9]+$/.test(jumpVal))){
+			$.MsgBox.Alert("消息","页码必须为数字");
+			return;
+		}
+		if(jumpVal<=0){
+			$.MsgBox.Alert("消息","页码必须大于等于1");
+			return;
+		}
+		if(jumpVal>maxpage){
+			$.MsgBox.Alert("消息","页码超出上限");
+			return;
+		}
+	
+		var url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + jumpVal;
+		window.location.replace(url);
 	}
-	if(jumpVal<=0){
-		$.MsgBox.Alert("消息","页码必须大于等于1");
-		return;
-	}
-	if(jumpVal>postAllPage){
-		$.MsgBox.Alert("消息","页码超出上限");
-		return;
-	}
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,jumpVal-1,everyPageDataCount,true,"/postbar/postController/getPostList");
 }
 
 
-function GOTO_POST_HOME_PAGE(){
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,0,everyPageDataCount,true,"/postbar/postController/getPostList");
+function GOTO_POST_HOME_PAGE(SELECT_TYPE,title){
+	if(SELECT_TYPE == 0){
+		window.location.replace("http://localhost:8080/new_ssm/postController/topost?page=1");
+	}
+	else if(SELECT_TYPE == 1){
+		var url;
+		url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + 1;
+		window.location.replace(url);
+	}
 }
 
-function GOTO_POST_PREVIOUS_PAGE(){
-	var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	getPostList(searchNameVal,postPageIndex-1,everyPageDataCount,true,"/postbar/postController/getPostList");
-	 
+function GOTO_POST_PREVIOUS_PAGE(page,SELECT_TYPE,title){
+	if(SELECT_TYPE == 0){
+		var url;
+		var temp = page-1;
+		if(temp==0)
+			window.location.replace("http://localhost:8080/new_ssm/postController/topost?page=1");
+		else if(temp>0)
+		{
+			url = "http://localhost:8080/new_ssm/postController/topost?page=" +temp;
+			window.location.replace(url);
+		}
+	}
+	else if(SELECT_TYPE == 1){
+		var url;
+		var temp = page-1;
+		if(temp==0)
+		{
+			url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + 1;
+			window.location.replace(url);
+		}
+		else if(temp>0)
+		{
+			url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + title + "&selectpage=" + temp;
+			window.location.replace(url);
+		}
+	}
 }
 function searchByPostName(){
 	var searchNameVal=$("#SEARCH_POST_NAME").val().trim();
-	getPostList(searchNameVal,0,everyPageDataCount,true,"/postbar/postController/getPostList");
+	var url;
+	if(searchNameVal != "")
+		url = "http://localhost:8080/new_ssm/postController/selectpost?title=" + searchNameVal + "&selectpage=" +1;
+	else if(searchNameVal == "")
+		url = "http://localhost:8080/new_ssm/postController/topost?page=1";
+	window.location.replace(url);
 }
 
 function post_detailed(postUUID){
@@ -140,12 +216,10 @@ function DELETE_POST(){
     	return;
     }
     
-
-
-	    		var searchNameVal=$("#SEARCH_POST_NAME_HIDDEN").val().trim();
-	    		getPostList(searchNameVal,0,everyPageDataCount,true,"/postbar/postController/getPostList");
-	   
-
+    var url;
+    url = "http://localhost:8080/new_ssm/postController/deletepost?a_id=" + chk_value;
+    
+    window.location.replace(url);
 }
 
 
