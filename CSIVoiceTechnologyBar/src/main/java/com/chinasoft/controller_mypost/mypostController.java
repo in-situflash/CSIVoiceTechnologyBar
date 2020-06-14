@@ -128,13 +128,5 @@ public class mypostController {
 		mav.setViewName(url);
 		return mav;
 	}
-	
-	@RequestMapping("/selectLogin")
-	public ModelAndView selectLogin(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		session.setAttribute("username", "zhangsan");
-		mav.setViewName("/WEB-INF/menu.jsp");
-		return mav;
-	}
-	
+		
 }
