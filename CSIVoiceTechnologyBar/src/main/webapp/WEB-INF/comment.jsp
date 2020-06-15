@@ -133,12 +133,11 @@
 									<span>${item.content }</span>
 								</div>
 								<div style="width:86%;"> 
-									<div style="float:left">
+									<div style="float:left;">
 										<div class="col-sm-12" id="commentVoice${status.count}" >
-											&nbsp;&nbsp;
 											<audio  controls="controls"  style="height:20px"></audio>
-											<button type="button" class="audioPlay" value="${status.index}">下载音频</button>
-											|<a id="praisecNum" class="c_likes" style="color:default;"  href="javascript:void(0);" onclick="hotsPraiseClick('46dc37890bbc49629384024d2f17beda','c9c8ee13e83149379d56d34ea7913d69')">赞：${item.c_likes}</a>
+											<button type="button" class="audioPlay btn  btn-success btn-sm" value="${status.index}" style="margin-top:-10px;">下载</button>
+											&nbsp;|<a id="praisecNum" class="c_likes" style="color:default;"  href="javascript:void(0);" onclick="hotsPraiseClick('46dc37890bbc49629384024d2f17beda','c9c8ee13e83149379d56d34ea7913d69')">赞：${item.c_likes}</a>
 											<input value="${item.c_id}" hidden="true"></input>
 										</div>
 									</div>
@@ -296,7 +295,6 @@
 			$(this).prev().remove();
 			<c:forEach var="item" items="${comments}" varStatus="status"> 
 				if(${status.index}==index){
-					console.log("${item.content}");
 					tts("${item.content}",id, ${audioSet.speed}, ${audioSet.tone}, ${audioSet.volume},voicetype);
 				}
 			</c:forEach> 
@@ -381,7 +379,7 @@
 		         	dataType: "json",
 		         	async: false,
 		         	success: function (data) {
-		            	that.html("已点赞："+data.c_likes); 
+		         		that.html("已点赞："+data.c_likes);	            	
 		         	}, 
 		            error:function(){ 
 		                alert("发生错误"); 

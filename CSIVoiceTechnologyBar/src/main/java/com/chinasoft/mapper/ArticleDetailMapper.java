@@ -41,4 +41,7 @@ public interface ArticleDetailMapper {
 	@Select("select * from voice where username = #{username}")
 	audioSet selectAudioSetByUsername(String username);
 
+	@Select("select username from comment where c_id = #{c_id}")
+	String selectUsernameByC_id(int c_id);
+
 }

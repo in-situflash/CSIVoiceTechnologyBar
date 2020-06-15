@@ -27,5 +27,7 @@ public interface ArticleDetailMapperService {
 	String selectImageByUsername(String username);
 	
 	audioSet selectAudioSetByUsername(String username);
+	
+	String selectUsernameByC_id(int c_id);
 }
  

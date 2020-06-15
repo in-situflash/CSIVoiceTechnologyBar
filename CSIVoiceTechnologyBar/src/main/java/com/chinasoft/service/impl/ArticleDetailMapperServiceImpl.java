@@ -67,4 +67,9 @@ public class ArticleDetailMapperServiceImpl implements ArticleDetailMapperServic
 		return mapper.selectAudioSetByUsername(username);
 	}
 
+	public String selectUsernameByC_id(int c_id) {
+		
+		return mapper.selectUsernameByC_id(c_id);
+	}
+
 }
