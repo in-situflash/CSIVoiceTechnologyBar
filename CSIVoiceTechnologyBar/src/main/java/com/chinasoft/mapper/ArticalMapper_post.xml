@@ -33,4 +33,8 @@
 	<select id="selectLastArticle" resultType="int">
 		select a_id from article order by a_id desc limit 1
 	</select>
+	
+	<select id="selectPrivilege" resultType="String" parameterType="String">
+		select privilege from user where username = #{username}
+	</select>
 </mapper>

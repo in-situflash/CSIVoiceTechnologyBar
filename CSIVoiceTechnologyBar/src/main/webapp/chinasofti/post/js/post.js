@@ -206,20 +206,31 @@ function post_detailed(postUUID){
 
 }
 
-function DELETE_POST(){
+function DELETE_POST(title,privilege){
 	var chk_value =[]; 
     $('input[name="DELETE_CHECK_NAME"]:checked').each(function(){ 
         chk_value.push($(this).val()); 
     }); 
-    if(chk_value.length==0){
-    	$.MsgBox.Alert("消息","请先选择需要删除的文章");
+    
+    if(privilege != "管理员"){
+    	$.MsgBox.Alert("消息","您不是管理员，无法删除文章");
     	return;
     }
     
-    var url;
-    url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/deletepost?a_id=" + chk_value;
-    
-    window.location.replace(url);
+    else{
+    	if(chk_value.length==0){
+    		$.MsgBox.Alert("消息","请先选择需要删除的文章");
+    		return;
+    	}
+    	
+    	var url;
+    	url = "http://localhost:8080/CSIVoiceTechnologyBar/postController/deletepost?a_id=" + chk_value;   
+    	$.MsgBox.Confirm("消息", "确定删除吗？",
+    			()=>{
+    			window.location.replace(url);
+    		});
+
+    }
 }
 
 

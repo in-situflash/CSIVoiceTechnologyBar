@@ -14,5 +14,6 @@ public interface ArticleMapper_post {
 	void deleteArticle(int a_id);
 	List<Article> selectAllArticle();
 	int selectLastArticle();
+	String selectPrivilege(String username);
 }
 

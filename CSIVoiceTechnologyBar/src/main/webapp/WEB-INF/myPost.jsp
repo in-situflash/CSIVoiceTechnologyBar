@@ -46,7 +46,7 @@
 									</div>
 								</div>
 								<div class="col-md-1">
-									<button class="btn btn-block btn-info" onclick="searchByPostName('${username}')">查询</button>
+									<button class="btn btn-block btn-info" onclick="searchByPostName()">查询</button>
 								</div>
 							</div>
 						</div>
@@ -60,7 +60,7 @@
 						<div class="card-header" style="width:100%">
 							<h3  class="card-title col-md-3" >当前：<span id="LABLE_FATHER_ORG_NAME">我的文章</span></h3>
 							<div class="col-md-2 col-md-offset-7" id="postAddAndDeleteDiv"><button class="btn  btn-success btn-sm" type="button" onclick="ADD_POST()">新增</button>&nbsp;&nbsp;
-							<button class="btn  btn-danger btn-sm" type="button" onclick="DELETE_POST('${username}')">删除</button></div>
+							<button class="btn  btn-danger btn-sm" type="button" onclick="DELETE_POST()">删除</button></div>
 						</div>
 						<div class="card-body">
 							<div id="example2_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -106,20 +106,20 @@
 										<div class="dataTables_paginate paging_simple_numbers">
 											<ul class="pagination" id="PAGE_ID">
 											<li style="margin-left: 30px">
-											<button class="btn btn-primary" type="button" onclick="GOTO_POST_HOME_PAGE('${SELECT_TYPE}','${title}','${username}')">首页</button>
+											<button class="btn btn-primary" type="button" onclick="GOTO_POST_HOME_PAGE('${SELECT_TYPE}','${title}')">首页</button>
 											</li>
 											<li style="margin-left: 30px">		
-											<button class="btn btn-primary" type="button" onclick="GOTO_POST_PREVIOUS_PAGE(${page},${SELECT_TYPE},'${title}','${username}')">前一页</button>
+											<button class="btn btn-primary" type="button" onclick="GOTO_POST_PREVIOUS_PAGE(${page},${SELECT_TYPE},'${title}')">前一页</button>
 											</li>
 											<li style="margin-left: 30px">		
-											<button class="btn btn-primary" type="button" onclick="GOTO_POST_NEXT_PAGE(${page},${maxpage},${SELECT_TYPE},'${title}','${username}')">后一页</button>
+											<button class="btn btn-primary" type="button" onclick="GOTO_POST_NEXT_PAGE(${page},${maxpage},${SELECT_TYPE},'${title}')">后一页</button>
 											</li>
 											<li style="margin-left: 30px">		
-											<button class="btn btn-primary" type="button" onclick="GOTO_POST_TAIL_PAGE(${maxpage},${SELECT_TYPE},'${title}','${username}')">末页</button>
+											<button class="btn btn-primary" type="button" onclick="GOTO_POST_TAIL_PAGE(${maxpage},${SELECT_TYPE},'${title}')">末页</button>
 											</li>
 											<li style="margin-left: 30px">
 											<input id="JUMP_INPUT_ID" type="text" style="display:inline;width:80px" size="6">		
-											<button class="btn btn-sm btn-outline-primary" onclick="GOTO_POST_PAGE(${maxpage},${SELECT_TYPE},'${title}','${username}');return false;">跳转</button>
+											<button class="btn btn-sm btn-outline-primary" onclick="GOTO_POST_PAGE(${maxpage},${SELECT_TYPE},'${title}');return false;">跳转</button>
 											</li>
 											<li style="margin-left: 30px">
 											<div class="dataTables_info" style="margin-top: 6px;margin-left: 100px">
@@ -167,7 +167,7 @@
 			            </div>
 			             <!-- /.card-body -->
 			             <div class="card-footer col-md-3 col-md-offset-4" style="width:100%"align="center">
-			               <button type="button" class="btn btn-info" onclick="addPostCheck(${lastid},'${username}')">提交</button>
+			               <button type="button" class="btn btn-info" onclick="addPostCheck(${lastid})">提交</button>
 			               <button type="button" class="btn btn-default" onclick="returnPostList()">返回</button>
 			             </div>
 			             <!-- /.card-footer -->

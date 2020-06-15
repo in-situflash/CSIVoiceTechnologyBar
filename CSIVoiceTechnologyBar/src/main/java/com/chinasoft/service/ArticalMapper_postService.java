@@ -14,4 +14,5 @@ public interface ArticalMapper_postService {
 	void deleteArticle(int a_id);
 	List<Article> FindAll();
 	int selectLastArticle();
+	String findPrivilege(String username);
 }

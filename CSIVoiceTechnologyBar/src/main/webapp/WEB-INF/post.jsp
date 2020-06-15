@@ -60,7 +60,7 @@
 						<div class="card-header" style="width:100%">
 							<h3  class="card-title col-md-3" >当前：<span id="LABLE_FATHER_ORG_NAME">所有文章</span></h3>
 							<div class="col-md-2 col-md-offset-7" id="postAddAndDeleteDiv"><button class="btn  btn-success btn-sm" type="button" onclick="ADD_POST()">新增</button>&nbsp;&nbsp;
-							<button class="btn  btn-danger btn-sm" type="button" onclick="DELETE_POST()">删除</button></div>
+							<button class="btn  btn-danger btn-sm" type="button" onclick="DELETE_POST('${title}','${privilege}')">删除</button></div>
 						</div>
 						<div class="card-body">
 							<div id="example2_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">

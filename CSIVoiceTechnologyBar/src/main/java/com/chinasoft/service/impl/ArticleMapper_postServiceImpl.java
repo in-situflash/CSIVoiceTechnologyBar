@@ -57,6 +57,13 @@ public class ArticleMapper_postServiceImpl implements ArticalMapper_postService{
 		int a_id = mapper.selectLastArticle();
 		return a_id;
 	}
+
+
+	@Override
+	public String findPrivilege(String username) {
+		String privilege = mapper.selectPrivilege(username);
+		return privilege;
+	}
 	
 	
 
