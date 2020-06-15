@@ -1,40 +1,26 @@
 package com.chinasoft.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class User  implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private int id;
 	private String username;
-	private String password;
-	private String phone;
-	private String address;
 	private String email;
-	private int c_id;
-
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	private String password;
+	@JsonFormat(pattern = "yyyy:MM:dd hh:mm:ss",timezone = "GMT+8")
+	private Date create_time;
+	private int age;
+	private String gender;
+	private String privilege;
+	private int userid;
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 	public String getEmail() {
 		return email;
@@ -42,41 +28,78 @@ public class User  implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getC_id() {
-		return c_id;
+	public String getPassword() {
+		return password;
 	}
-	public void setC_id(int c_id) {
-		this.c_id = c_id;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
+	
+	
+	public Date getCreate_time() {
+		return create_time;
+	}
+	
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getPrivilege() {
+		return privilege;
+	}
+	public void setPrivilege(String privilege) {
+		this.privilege = privilege;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public User(int id, String username, String password, String phone, String address, String email, int c_id) {
+	public User(String username, String email, String password, Date create_time, int age, String gender,
+			String privilege, int userid) {
 		super();
-		this.id = id;
 		this.username = username;
-		this.password = password;
-		this.phone = phone;
-		this.address = address;
 		this.email = email;
-		this.c_id = c_id;
+		this.password = password;
+		this.create_time = create_time;
+		this.age = age;
+		this.gender = gender;
+		this.privilege = privilege;
+		this.userid = userid;
+	}
+	
+	public User(String username, String email, String password, int age, String gender, String privilege, int userid) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.age = age;
+		this.gender = gender;
+		this.privilege = privilege;
+		this.userid = userid;
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", phone=" + phone
-				+ ", address=" + address + ", email=" + email + ", c_id=" + c_id + "]";
+		return "User [username=" + username + ", email=" + email + ", password=" + password + ", create_time="
+				+ create_time + ", age=" + age + ", gender=" + gender + ", privilege=" + privilege + ", userid="
+				+ userid + "]";
 	}
-	
-	
 	
 	
 	

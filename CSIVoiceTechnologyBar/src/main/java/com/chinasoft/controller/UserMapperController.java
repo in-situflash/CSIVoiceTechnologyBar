@@ -1,5 +1,7 @@
 package com.chinasoft.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +61,7 @@ public class UserMapperController {
 	@RequestMapping("/insertByUser")
 	public ModelAndView InsertByUser() {
 		ModelAndView mav = new ModelAndView();
-		User user = new User(500, "username", "password", "phone", "address", "email", 1);
+		User user = new User("username","email", "password",new Date(), 2, "男", "普通用户", 4);
 		service.InsertByUser(user);
 		mav.addObject("info", "娣诲姞鎴愬姛");
 		mav.setViewName("/index.jsp");
@@ -78,7 +80,7 @@ public class UserMapperController {
 	@RequestMapping("/updateByUser")
 	public ModelAndView updateByUser() {
 		ModelAndView mav = new ModelAndView();
-		User user = new User(500, "name", "pwd", "phone", "address", "email", 1);
+		User user =  new User("username","email", "password",new Date(), 2, "男", "普通用户", 2);
 		service.updateByUser(user);
 		mav.addObject("info", "鏇存敼鎴愬姛");
 		mav.setViewName("/index.jsp");
