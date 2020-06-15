@@ -31,7 +31,7 @@
 			             <div class="form-group" >
 			                 <label for="JI_JOB_NAME" class="col-sm-2 control-label">用户名：</label>
 			              	 <div class="col-sm-10" >
-			                 	<input value="" type="text" name="username" id="username" class="form-control" style="width:900px"  maxlength="16" placeholder="请输入用户名">
+			                 	<input value="" type="text" name="username" id="username" class="form-control" style="width:900px" minlength="6" maxlength="16" placeholder="请输入用户名" required="required">
 			                 </div>
 			             </div>
 			            
@@ -40,7 +40,7 @@
 						 <div class="form-group">
 				        	<label for="JI_JOB_NAME" class="col-sm-2 control-label">密码：</label>
 				        	<div class="col-sm-10" >
-				        		<input id="password" name="password" value="" class="form-control" style="width:900px"  type="password" minlength="6" placeholder="请输入密码"  >
+				        		<input id="password" name="password" value="" class="form-control" style="width:900px"  type="password" minlength="6" placeholder="请输入密码"  required="required">
 				        	</div>
 				         </div>
 
@@ -78,7 +78,7 @@
 					         <div class="form-group">
 					        	<label for="JI_JOB_NAME" class="col-sm-2 control-label">邮箱：</label>
 					        	<div class="col-sm-10" >
-					        		<input id="email" name="email" value="" class="form-control" style="width:900px" type="text" placeholder="请输入邮箱地址"  >
+					        		<input id="email" name="email" value="" class="form-control" style="width:900px" type="text" placeholder="请输入邮箱地址"  required="required">
 					        	</div>
 					        </div>
 					        
@@ -94,11 +94,11 @@
 					        <div class="form-group" >
 			                 <label for="JI_JOB_NAME" class="col-sm-2 control-label">用户ID：</label>
 			              	 <div class="col-sm-10" >
-			                 	<input value="" type="number" name="userid" id="userid" class="form-control" style="width:900px"  maxlength="16" placeholder="请输入用户ID">
+			                 	<input value="" type="number" name="userid" id="userid" class="form-control" style="width:900px"  maxlength="16" placeholder="请输入用户ID" required="required">
 			                 </div>
 			             </div>
 					        <div class="form-group ">
-					        	<input  type="submit" class="btn btn-info  col-md-1 col-md-offset-4" value="添加" onclick="alert('添加成功')">
+					        	<input  type="submit" class="btn btn-info  col-md-1 col-md-offset-4" value="添加" >
 					        	<input  type="reset" class="btn btn-default  col-md-1 col-md-offset-1" value="重置">
 					        </div>
 					    </form>

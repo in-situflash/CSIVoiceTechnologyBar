@@ -103,7 +103,7 @@
 			                 </div>
 			             </div>
 					        <div class="form-group ">
-					        	<input  type="submit" class="btn btn-info  col-md-1 col-md-offset-4" value="修改" onclick="alert('修改成功')">
+					        	<input  type="submit" class="btn btn-info  col-md-1 col-md-offset-4" value="修改" >
 					        	<input  type="reset" class="btn btn-default  col-md-1 col-md-offset-1" value="重置">
 					        </div>
 					    </form>
