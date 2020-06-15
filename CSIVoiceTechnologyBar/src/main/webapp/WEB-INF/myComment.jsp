@@ -14,7 +14,8 @@
 		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/fontawesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/ionicons/css/ionicons.min.css">
 		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/adminlte/css/adminlte.css">
-		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/mask.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/mask.css" >
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/chinasofti/myComment/css/mycomment.css" />
 	</head>
 
 	<body style="height: auto;" onload="_checkLogin()">
@@ -47,11 +48,11 @@
 							<%--每一条评论的顶层容器的value都是评论的id，即c_id	--%>
 							<div class="row" id="comment_${com_status.index}" value="${comment.c_id}">
 							    	<div class="form-inline col-sm-12">
-							    		<span id="comment_content">${comment.content}</span>
+							    		<span class="comment_content" id="comment_content_${com_status.index}">${comment.content}</span>
 							    	</div>
 							    	<div class="col-sm-12">
 							    		<audio id="comment_audio_${com_status.index}" src="" controls="controls" style="height:20px"></audio>
-										<button type="button" id="comment_audiobtn_${com_status.index}" onclick="tts('${comment.content}','${com_status.index}')">播放</button>
+										<button type="button" id="comment_audiobtn_${com_status.index}" onclick="tts('${com_status.index}')">播放</button>
 							    	</div>
 							    	<div class="col-sm-12">
 							    		<div>
@@ -63,7 +64,8 @@
 														</td>
 														<td>
 														<%-- TODO: 显示文章名称而非文章ID (Done)--%>
-															评论文章：<a href="" id="comment_articleId">${comment.title}</a>
+														<%-- TODO： 跳转到文章页面 (Done) --%>
+															评论文章：<a href="/CSIVoiceTechnologyBar/articleDetail/getAll?a_id=${comment.a_id}" id="comment_articleId">${comment.title}</a>
 															<%-- 在评论的文章详情时时，将评论div的index传给js --%>
 															<a href="" onclick="post_detailed(${com_status.index}); return false;"></a> &nbsp;&nbsp;|&nbsp;&nbsp;
 							    						</td>
@@ -173,10 +175,12 @@
                 }
             }
 
-			function tts(text, idx) {
+			function tts(idx) {
 
                 var audio_comp = $("#comment_audio_"+idx)[0];
                 var audio_btn_comp = $("#comment_audiobtn_"+idx)[0];
+                var text = $("#comment_content_"+idx).text();
+                // console.log(text);
 
 				// 调用语音合成接口
 				// 参数含义请参考 https://ai.baidu.com/docs#/TTS-API/41ac79a6
@@ -189,7 +193,7 @@
 					per: 4
 				}, {
 					volume: 0.3,
-					autoDestory: true,
+					autoDestory: false,
 					timeout: 10000,
 					hidden: false,
 					onInit: function (htmlAudioElement) {
