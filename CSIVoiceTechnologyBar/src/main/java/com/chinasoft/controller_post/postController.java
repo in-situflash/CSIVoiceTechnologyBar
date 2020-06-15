@@ -23,6 +23,7 @@ public class postController {
 	@RequestMapping("/tomenu")
 	public ModelAndView tomenu() {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("ADMIN", "张三");
 		mav.setViewName("/WEB-INF/menu.jsp");
 		return mav;
 	}
@@ -38,6 +39,7 @@ public class postController {
 		List<Article> article = service.FindAllByLimit(map);
 		List<Article> temparticle = service.FindAll();
 		map.clear();
+		int lastid = service.selectLastArticle();
 		//String article = service.FindOne();
 		int maxpage = 0;
 		double temp1 = (double)(temparticle.size())/10;
@@ -54,6 +56,7 @@ public class postController {
 		mav.addObject("allarticle", article);
 		mav.addObject("alldata", temparticle.size());
 		mav.addObject("SELECT_TYPE", SELECT_TYPE);
+		mav.addObject("lastid", lastid);
 		mav.setViewName("/WEB-INF/post.jsp");
 		return mav;
 	}
@@ -85,16 +88,18 @@ public class postController {
 		mav.addObject("alldata", temparticle.size());
 		mav.addObject("SELECT_TYPE", SELECT_TYPE);
 		mav.addObject("title", title);
+		mav.addObject("lastid", service.selectLastArticle());
 		mav.setViewName("/WEB-INF/post.jsp");
 		return mav;
 	}
 	
 	@RequestMapping("/addpost")
-	public ModelAndView addpost(String title,String essay) {
+	public ModelAndView addpost(int lastid, String title,String essay) {
 		Article addarticle = new Article();
-		addarticle.setUsername("王五");
+		addarticle.setUsername("zhangsan");
 		addarticle.setEssay(essay);
 		addarticle.setTitle(title);
+		addarticle.setA_id(lastid+1);
 		LocalDateTime d = LocalDateTime.now();
 		addarticle.setA_createtime(d); 
 		service.addArticle(addarticle);
@@ -114,10 +119,4 @@ public class postController {
 		return mav;
 	}
 	
-	@RequestMapping("/tomypost")
-	public ModelAndView tomypost() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/WEB-INF/myPost.jsp");
-		return mav;
-	}
 }

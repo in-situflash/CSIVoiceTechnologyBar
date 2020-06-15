@@ -13,4 +13,5 @@ public interface ArticalMapper_postService {
 	List<Article> FindByParByLimit(Map map);
 	void deleteArticle(int a_id);
 	List<Article> FindAll();
+	int selectLastArticle();
 }

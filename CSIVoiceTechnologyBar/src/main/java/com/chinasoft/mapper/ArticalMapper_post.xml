@@ -29,4 +29,8 @@
 	<delete id="deleteArticle" parameterType="com.chinasoft.pojo.Article">
 		delete from article where a_id = #{a_id}
 	</delete>
+	
+	<select id="selectLastArticle" resultType="int">
+		select a_id from article order by a_id desc limit 1
+	</select>
 </mapper>
