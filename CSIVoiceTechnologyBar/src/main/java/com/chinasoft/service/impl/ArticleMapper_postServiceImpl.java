@@ -50,6 +50,13 @@ public class ArticleMapper_postServiceImpl implements ArticalMapper_postService{
 		List<Article> article = mapper.selectArticleByParByLimit(map);
 		return article;
 	}
+
+
+	@Override
+	public int selectLastArticle() {
+		int a_id = mapper.selectLastArticle();
+		return a_id;
+	}
 	
 	
 

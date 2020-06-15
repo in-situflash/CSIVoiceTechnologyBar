@@ -13,5 +13,6 @@ public interface ArticleMapper_post {
 	void insertArticle(Article article);
 	void deleteArticle(int a_id);
 	List<Article> selectAllArticle();
+	int selectLastArticle();
 }
 
