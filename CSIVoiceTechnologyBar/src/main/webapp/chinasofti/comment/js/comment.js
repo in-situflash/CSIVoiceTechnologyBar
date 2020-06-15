@@ -51,7 +51,7 @@ function hotsPraiseClick(postUUID,cmUUID){
 	
 	
 }
-function addComCheck(){
+function addComCheck(username,a_id){
 var cmText=editor.html().trim();
 
 	if(cmText==""){
@@ -60,7 +60,7 @@ var cmText=editor.html().trim();
 	}
 
 
-	   window.location.replace("comment.html?page="+returnpage+"&postid="+postUUID);
+	   window.location.replace("http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/insertComment?username="+username+"&content="+cmText+"&a_id="+a_id);
 
 	
 }

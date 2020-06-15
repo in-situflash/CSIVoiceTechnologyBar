@@ -188,4 +188,61 @@ public class ArticleDetailMapperController {
 		return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers,HttpStatus.CREATED);
 	}
 	
+	@RequestMapping("/insertComment") 
+	public ModelAndView insertComment(HttpSession session, Comment comment) {
+		ModelAndView mav = new ModelAndView();
+		String username = comment.getUsername();
+		String content = comment.getContent();
+		int a_id = comment.getA_id();
+		System.out.println(username);
+		System.out.println(content);
+		System.out.println(a_id);
+		service.insertComment(comment);
+		
+		
+		
+		
+		/* 获取登录用户名obj */
+		Object usernameobj = session.getAttribute("username");
+		/* 如果未登录（非法访问） */
+		if(usernameobj == null) {
+			mav.setViewName("/WEB-INF/login.jsp");
+			return mav;
+		}else {
+			/* 查询用户的语音设置 */
+			audioSet audioSet = service.selectAudioSetByUsername(username);
+			/* 查询文章详细内容 */
+			ArticleDetail articleDetail = service.getAllById(a_id);
+			/* 获取发表文章用户的用户名 */
+			String Ausername = articleDetail.getUsername();
+			/* 获取发表文章用户的头像 */
+			String AImageUrl = service.selectImageByUsername(Ausername);
+			/* 通过文章id查询这篇文章对应的评论 */
+			List<Comment> comments = service.getCommentsByArticleId(a_id);
+			/* 发表评论的用户的头像url列表 */
+			List<String> CImageUrls = new ArrayList<String>();
+			/* 发表评论用户的用户名 */
+			String CUsername;
+			/* 发表评论用户的头像url*/
+			String CImageUrl;
+			for (int i = 0; i < comments.size(); i++) {
+				/* 查询评论的用户名 */
+				CUsername = comments.get(i).getUsername();
+				/* 查询评论的头像url */
+				CImageUrl = service.selectImageByUsername(CUsername);
+				CImageUrls.add(CImageUrl);
+			}
+			mav.addObject("AImageUrl", AImageUrl);
+			mav.addObject("CImageUrls", CImageUrls);
+			mav.addObject("articleDetail", articleDetail);
+			mav.addObject("comments", comments);
+			mav.addObject("a_id", a_id);
+			mav.addObject("audioSet", audioSet);
+			mav.setViewName("/WEB-INF/comment.jsp");
+			return mav;
+		}
+		
+		 
+	}
+	
 }

@@ -3,6 +3,7 @@ package com.chinasoft.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -43,5 +44,8 @@ public interface ArticleDetailMapper {
 
 	@Select("select username from comment where c_id = #{c_id}")
 	String selectUsernameByC_id(int c_id);
+
+	@Insert("insert into comment(username,content,a_id) values(#{username},#{content},#{a_id})")
+	void insertComment(Comment comment);
 
 }

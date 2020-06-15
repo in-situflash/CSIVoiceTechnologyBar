@@ -181,7 +181,7 @@
 				<!-- /.card-body -->
 				<div class="card-footer col-md-3 col-md-offset-4"
 					style="width: 100%" align="center">
-					<button type="button" class="btn btn-info" onclick="addComCheck()">提交</button>
+					<button type="button" class="btn btn-info commentSubmit" >提交</button>
 					<button type="button" class="btn btn-default"
 						onclick="returnComList()">返回</button>
 				</div>
@@ -225,6 +225,10 @@
 	-->
 
 	<script type="text/javascript">
+		$(".commentSubmit").click(function(){
+			var a_id =  "${articleDetail.a_id}";
+			addComCheck("${username}", a_id);
+		});
 		function GMTToStr(time) {
 			let date = new Date(time);
 			let Str = date.getFullYear() + '-' + (date.getMonth() + 1) + '-'

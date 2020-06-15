@@ -29,5 +29,7 @@ public interface ArticleDetailMapperService {
 	audioSet selectAudioSetByUsername(String username);
 	
 	String selectUsernameByC_id(int c_id);
+	
+	void insertComment(Comment comment);
 }
  

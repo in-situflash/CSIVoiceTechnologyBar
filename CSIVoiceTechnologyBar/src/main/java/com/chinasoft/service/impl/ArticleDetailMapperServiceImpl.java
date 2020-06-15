@@ -72,4 +72,9 @@ public class ArticleDetailMapperServiceImpl implements ArticleDetailMapperServic
 		return mapper.selectUsernameByC_id(c_id);
 	}
 
+	public void insertComment(Comment comment) {
+		mapper.insertComment(comment);
+		
+	}
+
 }
