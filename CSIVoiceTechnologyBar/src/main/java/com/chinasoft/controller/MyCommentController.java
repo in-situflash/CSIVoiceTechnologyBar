@@ -21,7 +21,7 @@ public class MyCommentController {
 	@Autowired
 	CommentMapperServiceImpl service;
 
-	@RequestMapping("/comment/test")
+	@RequestMapping("/mycomment/test")
 	@ResponseBody
 	// 测试用方法
 	public Comment enterTest() {
@@ -36,17 +36,19 @@ public class MyCommentController {
 	}
 	
 	
-	@RequestMapping("/comment/route")
+	@RequestMapping("/mycomment/route")
 	// 测试是否能再mapping之间使用Model传递参数
 	public String commentRouter(Model model) {
 		System.out.println("Entering commentRouter...");
+
+//		model.addAttribute("username", "Asichurter");
+		model.addAttribute("type", "test");
+		model.addAttribute("msg", "test whether we can pass params across controllers");
 		
-		model.addAttribute("username", "Asichurter");
-		
-		return "mycomment";
+		return "msg";
 	}
 	
-	@RequestMapping("/comment/mycomment")
+	@RequestMapping("/mycomment/show")
 	// 我的评论页面
 	public String toMyComment(HttpSession session, Model model) {
 		System.out.println("Entering toMyComment...");
@@ -73,13 +75,27 @@ public class MyCommentController {
 	}
 
 
-	@RequestMapping("/comment/delete")
+	@RequestMapping("/mycomment/delete")
 	// 非访问方法，仅用于前台向后台传递操作和参数
 	// 使用路径参数，整体为一个id字符串，id之间使用"-"隔开
-	public String deleteComments(String ids){
+	public String deleteComments(Model model, HttpSession session, String ids){
 		System.out.println("Entering deleteComments...");
 
-		int deleted = service.deleteComments(ids);
+		String curUsername = (String)session.getAttribute("username");
+		boolean authorized = service.checkOperationAuthorization(ids, curUsername);
+		int deleted;
+
+		// 先判断当前请求删除操作的用户是否是评论者本人
+		if (!authorized){
+			model.addAttribute("title", "Ilegal Operation");
+			model.addAttribute("type", "Error");
+			model.addAttribute("msg", "Unmatched operator of deleted comments");
+			model.addAttribute("desc", "Ilegally try to delete comments through url without authorization");
+			return "/WEB-INF/msg.jsp";
+		}
+		else{
+			deleted = service.deleteComments(ids);
+		}
 
 		// 删除失败
 		// TODO: 删除失败后的提示
@@ -88,16 +104,31 @@ public class MyCommentController {
 		}
 
 		// 删除完成后返回到“我的评论”页面
-		return "/comment/mycomment";
+		return "/mycomment/show";
 	}
 
-	@RequestMapping("/comment/edit")
+	@RequestMapping("/mycomment/edit")
 	// 非访问方法，仅用于前台向后台传递操作和参数
 	// 使用路径参数传递
-	public String editComment(int cid, String cont){
+	public String editComment(HttpSession session, Model model,
+							  int cid, String cont){
 		System.out.println("Entering editComment...");
 
-		int edited = service.editComment(cid, cont);
+		String curUsername = (String)session.getAttribute("username");
+		boolean authorized = service.checkOperationAuthorization(cid+"", curUsername);
+		int edited;
+
+		// 先判断当前请求编辑操作的用户是否是评论者本人
+		if (!authorized){
+			model.addAttribute("title", "Ilegal Operation");
+			model.addAttribute("type", "Error");
+			model.addAttribute("msg", "Unmatched operator of edited comments");
+			model.addAttribute("desc", "Ilegally try to edit comment through url without authorization");
+			return "/WEB-INF/msg.jsp";
+		}
+		else{
+			edited = service.editComment(cid, cont);
+		}
 
 		// 编辑失败
 		// TODO: 编辑失败的后续操作
@@ -106,6 +137,6 @@ public class MyCommentController {
 		}
 
 		// 编辑完成后返回到“我的评论”页面
-		return "/comment/mycomment";
+		return "/mycomment/show";
 	}
 }

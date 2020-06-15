@@ -97,7 +97,7 @@ function DELETE_COM(){
 
 	// 使用-字符拼接所有要删除的id
 	const cid_concat = chk_value.join("-");
-	const url = "/CSIVoiceTechnologyBar/comment/delete?ids="+cid_concat;
+	const url = "/CSIVoiceTechnologyBar/mycomment/delete?ids="+cid_concat;
 
 	$.MsgBox.Confirm("消息", "确定删除吗？",
 		()=>{
@@ -210,7 +210,7 @@ function editComCheck(cid){
 	
 
 //	    		window.location.replace("myComment.html?radm="+Math.random());
-	var url = "/CSIVoiceTechnologyBar/comment/edit?cid="+cid+"&cont="+cmText;
+	var url = "/CSIVoiceTechnologyBar/mycomment/edit?cid="+cid+"&cont="+cmText;
 	// console.log("edit url: "+url);
 	$("#tishi").html("编辑成功!");
 

@@ -190,7 +190,7 @@
 					spd: 5,
 					pit: 5,
 					vol: 15,
-					per: 4
+					per: 4			// 朗读的音色
 				}, {
 					volume: 0.3,
 					autoDestory: false,

@@ -57,6 +57,7 @@ function btts(param, options) {
     data.ctp = 1;
     data.lan = data.lan || 'zh';
     data.aue = data.aue || 3;
+    data.per = data.per || 0;
 
     // 序列化参数列表
     var fd = [];

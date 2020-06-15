@@ -11,4 +11,5 @@ public interface CommentMapper {
 	int deleteComments(List<Integer> d_ids);
 	// 根据提供的用户名，获取带文章标题的评论
 	List<TitledComment> selectTitledCommentByUser(String username);
+	List<String> selectUsersOfComments(List<Integer> c_ids);
 }

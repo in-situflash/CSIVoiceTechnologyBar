@@ -11,4 +11,5 @@ public interface CommentMapperService {
 	List<TitledComment> selectTitledCommentByUser(String username);
 	int editComment(int c_id, String newContent);
 	int deleteComments(String id_str);
+	boolean checkOperationAuthorization(String id_str, String username);
 }

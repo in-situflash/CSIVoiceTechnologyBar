@@ -25,4 +25,11 @@
 	<select id="selectTitledCommentByUser" parameterType="string" resultType="TitledComment">
 		select c.*,a.title from comment as c, article as a where c.a_id=a.a_id and c.username=#{username}
 	</select>
+
+	<select id="selectUsersOfComments" parameterType="int" resultType="String">
+		select username from comment where c_id in
+		<foreach collection="list" item="c_id" open="(" separator="," close=")">
+			#{c_id}
+		</foreach>
+	</select>
 </mapper>
