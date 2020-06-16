@@ -34,12 +34,12 @@ public class audioController{
 	
 	//语音设置表单数据的提交
 	@RequestMapping(value = "/audioSetPost",method = RequestMethod.POST)
-	public ModelAndView audioSetPost (HttpServletRequest request, String auSetVoiPer,String auSetSpd,String auSetPit,String auSetVol, Model model) throws Exception {
+	public ModelAndView audioSetPost (HttpSession session,HttpServletRequest request, String auSetVoiPer,String auSetSpd,String auSetPit,String auSetVol, Model model) throws Exception {
 		//ModelAndView
 		
 		//httpsession得到登陆用户名
-		HttpSession session=request.getSession();
-		String username= (String) session.getAttribute("username");
+		Object usernameobj = session.getAttribute("username");
+		String username = usernameobj.toString();
 		
 		System.out.println("语音设置文件提交的内容进来了");
 		//return "jsp";
@@ -52,12 +52,14 @@ public class audioController{
 		 * if(auSetVoiPer==(""+'0')) auSetVoiPer="普通男声"; else if(auSetVoiPer==(""+'1'))
 		 * auSetVoiPer=""
 		 */
+		
+		//对应option，转化为string，以便插入数据库
 		switch (auSetVoiPer) {
 		case ""+'0':
-			auSetVoiPer = "普通男声";
+			auSetVoiPer = "普通女声";
 			break;
 		case ""+'1':
-			auSetVoiPer = "普通女声";
+			auSetVoiPer = "普通男声";
 			break;
 		case ""+'2':
 			auSetVoiPer = "度逍遥（武侠）";
@@ -84,30 +86,11 @@ public class audioController{
 		int tone = Integer.parseInt(auSetPit);
 		int volume = Integer.parseInt(auSetVol);
 		
-		//System.out.println(file.getOriginalFilename()+"\n");
-		//System.out.println("userAge: "+userage+"\n");
-		//model.addAttribute("Filename", "lenna");
-		//return "down";
-		
-		//把表单提交的参数传进数据库
-		//ModelAndView mav = new ModelAndView();
-		/*
-		 * Date date=new Date(); perSet per = new
-		 * perSet(username,userEmail,"1",date,userage,regSex,"普通权限",4);
-		 * service.InsertByPerSet(per); //mav.addObject("info", "信息");
-		 * //mav.setViewName("/WEB-INF/menu.jsp"); return "/WEB-INF/menu.jsp";
-		 */
-		/*
-		 * ModelAndView mav = new ModelAndView(); Date date=new Date(); perSet per=new
-		 * perSet("username",userEmail,date,userage,regSex);
-		 * service.updateByPerSet(per); mav.setViewName("/WEB-INF/menu.jsp"); return
-		 * mav;
-		 */
 		
 		
 		ModelAndView mav = new ModelAndView();
 		//Date date=new Date();
-		audioSet audio =new audioSet("Billy Kim",auSetVoiPer,speed,tone,volume);
+		audioSet audio =new audioSet(username,auSetVoiPer,speed,tone,volume);
 		service.updateByAudioSet(audio);
 		mav.setViewName("/WEB-INF/menu.jsp");
 		return mav;

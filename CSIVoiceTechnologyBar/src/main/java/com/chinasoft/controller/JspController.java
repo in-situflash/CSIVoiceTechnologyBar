@@ -35,11 +35,11 @@ public class JspController{
 	
 	//个人设置表单数据的提交
 	@RequestMapping(value = "/perSetPost",method = RequestMethod.POST)
-	public ModelAndView method02 (HttpServletRequest request, MultipartFile file/*String username*/,String regSex,int userage,String userEmail, Model model) throws Exception {
+	public ModelAndView method02 (HttpSession session,HttpServletRequest request, MultipartFile file/*String username*/,String regSex,int userage,String userEmail, Model model) throws Exception {
 		//ModelAndView
 		//httpsession得到登陆用户名
-		HttpSession session=request.getSession();
-		String username= (String) session.getAttribute("username");
+		Object usernameobj = session.getAttribute("username");
+		String username = usernameobj.toString();
 		System.out.println("文件提交的内容进来了");
 		//return "jsp";
 		System.out.println("打印表单数据：\n");
@@ -68,7 +68,7 @@ public class JspController{
 		 */
 		ModelAndView mav = new ModelAndView();
 		Date date=new Date();
-		perSet per=new perSet("张三",userEmail,date,userage,regSex);
+		perSet per=new perSet(username,userEmail,date,userage,regSex);
 		service.updateByPerSet(per);
 		mav.setViewName("/WEB-INF/menu.jsp");
 		return mav;
