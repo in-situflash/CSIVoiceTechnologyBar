@@ -20,7 +20,7 @@ public class UserManageMapperController {
 	@Autowired
 	private UserManageMapperServiceImpl service = new UserManageMapperServiceImpl();
 
-	//²éÑ¯ËùÓÐÓÃ»§£¬²¢·µ»ØËùÓÐÓÃ»§µ½ÏÔÊ¾Ò³Ãæ
+	//æŸ¥è¯¢æ‰€æœ‰ç”¨æˆ·é¡µé¢
 	@RequestMapping("/usermanage/selectAllUser")
 	public String selectAllUser(HttpSession session,Model model, String username) {
 		System.out.println("Entering userManage");
@@ -37,7 +37,7 @@ public class UserManageMapperController {
 		else
 			return "../index.jsp";
 	}
-	//Ìø×ªµ½Ìí¼ÓÓÃ»§
+	//è·³è½¬åˆ°æ·»åŠ ç”¨æˆ·é¡µé¢
 	@RequestMapping("/usermanage/toAddUser")
 	public String toAddUser(HttpSession session, String username) {
 		username = (String)session.getAttribute("username");	
@@ -45,7 +45,7 @@ public class UserManageMapperController {
 		{
 			User user1 =service.queryOneUser(username);
 			String privilege = user1.getPrivilege();
-			if(privilege.equals("¹ÜÀíÔ±")) {
+			if(privilege.equals("ç®¡ç†å‘˜")) {
 		return "/WEB-INF/addUser.jsp";
 		}
 		else
@@ -54,7 +54,7 @@ public class UserManageMapperController {
 		else
 			return "../index.jsp";
 	}
-	//Ìí¼ÓÓÃ»§
+	//æ·»åŠ ç”¨æˆ·é¡µé¢
 	@RequestMapping("/usermanage/addUser")
 	public String addUser(User user) {
 		System.out.println("addUser"+user);
@@ -63,7 +63,7 @@ public class UserManageMapperController {
 		mav.setViewName("/usermanage/selectAllUser");
 		return "/usermanage/selectAllUser";
 	}
-	//Ìø×ªµ½¸üÐÂÓÃ»§
+	//è·³è½¬åˆ°æ›´æ–°ç”¨æˆ·é¡µé¢
 	@RequestMapping("/usermanage/toUpdateUser")
 	public String toUpdateUserManage(int userid,Model model,HttpSession session, String username) {
 		username = (String)session.getAttribute("username");	
@@ -71,7 +71,7 @@ public class UserManageMapperController {
 		{
 		User user1 =service.queryOneUser(username);
 		String privilege = user1.getPrivilege();
-		if(privilege.equals("¹ÜÀíÔ±")) {
+		if(privilege.equals("ç®¡ç†å‘˜")) {
 		User user = service.selectUserById(userid);
 		model.addAttribute("Quser", user);
 		return "/WEB-INF/updateUserManage.jsp";
@@ -84,14 +84,14 @@ public class UserManageMapperController {
 		else
 			return "../index.jsp";
 	}
-	//¸üÐÂÓÃ»§
+	//æ›´æ–°ç”¨æˆ·é¡µé¢
 	@RequestMapping("/usermanage/updateUser")
 	public String updateUserManage(User user) {
 		System.out.println("updateUser=>"+user);
 		service.updateUserByUser(user);
 		return "/usermanage/selectAllUser";
 	}
-	//É¾³ýÓÃ»§
+	//åˆ é™¤ç”¨æˆ·é¡µé¢
 	@RequestMapping("/usermanage/deleteUser/{userid}")
 	public String deleteUser(@PathVariable("userid") int userid,HttpSession session, String username) {
 		username = (String)session.getAttribute("username");	
@@ -99,7 +99,7 @@ public class UserManageMapperController {
 		{
 		User user1 =service.queryOneUser(username);
 		String privilege = user1.getPrivilege();
-		if(privilege.equals("¹ÜÀíÔ±")) {
+		if(privilege.equals("ç®¡ç†å‘˜")) {
 		User user = service.selectUserById(userid);
 		System.out.println("deleteUser=>"+user);
 		service.deleteUserById(userid);
