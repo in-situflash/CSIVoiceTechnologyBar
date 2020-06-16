@@ -3,6 +3,8 @@ package com.chinasoft.controller;
 import java.util.List;
 
 import com.chinasoft.pojo.TitledComment;
+import com.chinasoft.pojo.audioSet;
+import com.chinasoft.service.impl.audioSetMapperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,9 @@ public class MyCommentController {
 	
 	@Autowired
 	CommentMapperServiceImpl service;
+
+	@Autowired
+	audioSetMapperServiceImpl audioServ;
 
 	@RequestMapping("/mycomment/test")
 	@ResponseBody
@@ -61,6 +66,8 @@ public class MyCommentController {
 		model.addAttribute("islogin", isLogin);
 		System.out.println("username: "+username);
 
+		audioSet audioset = audioServ.selectAudiosetByUser(username);
+
 		// 只有在获得到有效用户名时才会进行数据检索
 		if (isLogin) {
 
@@ -69,6 +76,7 @@ public class MyCommentController {
 
 			model.addAttribute("mycomments", comments);
 			model.addAttribute("totalComment", comments.size());
+			model.addAttribute("audioset", audioset);
 		}
 
 		return "/WEB-INF/myComment.jsp";

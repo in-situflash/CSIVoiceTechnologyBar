@@ -7,4 +7,6 @@ public interface audioSetMapperService {
 	
 	//更新语音设置
 	void updateByAudioSet(audioSet audio);
+	// 根据用户名获取语音设置
+	audioSet selectAudiosetByUser(String username);
 }

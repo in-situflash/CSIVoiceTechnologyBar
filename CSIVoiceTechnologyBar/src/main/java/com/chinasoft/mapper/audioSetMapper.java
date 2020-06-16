@@ -9,5 +9,7 @@ public interface audioSetMapper {
 	
 	@Update("update voice set voicetype=#{voicetype},speed=#{speed},tone=#{tone},volume=#{volume} where username =#{username};")
 	void updateByAudioSet(audioSet audio);
+
+	audioSet selectAudiosetByUser(String username);
 }
 

@@ -12,9 +12,16 @@ public class audioSetMapperServiceImpl implements audioSetMapperService{
 
 	@Autowired
 	audioSetMapper mapper;
+
 	@Override
 	public void updateByAudioSet(audioSet audio) {
 		mapper.updateByAudioSet(audio);
 		
+	}
+
+	public audioSet selectAudiosetByUser(String username){
+		audioSet audioset = mapper.selectAudiosetByUser(username);
+
+		return audioset;
 	}
 }

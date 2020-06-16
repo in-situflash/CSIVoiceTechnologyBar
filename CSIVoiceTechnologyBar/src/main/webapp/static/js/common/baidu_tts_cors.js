@@ -232,3 +232,19 @@ function myCommentBtts(param, options, audio){
 
 }
 
+// 将数据库中的音色字符串转换为音色id
+function audioStrToId(voiceStr){
+    switch (voiceStr){
+        case "普通女声":
+            return 0;
+        case "普通男声":
+            return 1;
+        case "度逍遥（武侠）":
+            return 3;
+        case "度丫丫（软萌）":
+            return 4;
+        default:
+            return 0;
+    }
+}
+
