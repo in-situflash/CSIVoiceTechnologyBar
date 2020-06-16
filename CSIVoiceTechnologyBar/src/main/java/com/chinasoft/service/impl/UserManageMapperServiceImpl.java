@@ -44,5 +44,9 @@ public class UserManageMapperServiceImpl implements UserManageMapperService {
 		return list;
 	}
 	
+	public User queryOneUser(String username) {
+		User user=mapper.selectUsersByUsername(username);
+		return user;
+	}
 
 }

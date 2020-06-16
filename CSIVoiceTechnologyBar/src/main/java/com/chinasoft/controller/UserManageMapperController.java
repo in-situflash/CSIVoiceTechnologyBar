@@ -15,36 +15,44 @@ import com.chinasoft.pojo.User;
 import com.chinasoft.service.impl.UserManageMapperServiceImpl;
 
 @Controller
-//@RequestMapping("/usermanage")
 public class UserManageMapperController {
 
 	@Autowired
-	
 	private UserManageMapperServiceImpl service = new UserManageMapperServiceImpl();
-	
-	@RequestMapping("/usermanage/user")
-	public String test() {
 
-		return "/WEB-INF/userManage.jsp";
-	}
-	
 	//查询所有用户，并返回所有用户到显示页面
 	@RequestMapping("/usermanage/selectAllUser")
 	public String selectAllUser(HttpSession session,Model model, String username) {
 		System.out.println("Entering userManage");
 		username = (String)session.getAttribute("username");	
+		if(username != null && username != "") 
+		{
 			List<User> list = service.queryAllUser();
 			int column=list.size();
 			model.addAttribute("list", list);
 			model.addAttribute("column", column);
 			model.addAttribute("username", username);
 		return "/WEB-INF/userManage.jsp";
+		}
+		else
+			return "../index.jsp";
 	}
 	//跳转到添加用户
 	@RequestMapping("/usermanage/toAddUser")
-	public String toAddUser() {
-
+	public String toAddUser(HttpSession session, String username) {
+		username = (String)session.getAttribute("username");	
+		if(username != null && username != "") 
+		{
+			User user1 =service.queryOneUser(username);
+			String privilege = user1.getPrivilege();
+			if(privilege.equals("管理员")) {
 		return "/WEB-INF/addUser.jsp";
+		}
+		else
+			return "/WEB-INF/can'tAddUser.jsp";
+		}
+		else
+			return "../index.jsp";
 	}
 	//添加用户
 	@RequestMapping("/usermanage/addUser")
@@ -57,11 +65,24 @@ public class UserManageMapperController {
 	}
 	//跳转到更新用户
 	@RequestMapping("/usermanage/toUpdateUser")
-	public String toUpdateUserManage(int userid,Model model) {
-
+	public String toUpdateUserManage(int userid,Model model,HttpSession session, String username) {
+		username = (String)session.getAttribute("username");	
+		if(username != null && username != "") 
+		{
+		User user1 =service.queryOneUser(username);
+		String privilege = user1.getPrivilege();
+		if(privilege.equals("管理员")) {
 		User user = service.selectUserById(userid);
 		model.addAttribute("Quser", user);
 		return "/WEB-INF/updateUserManage.jsp";
+		}
+			
+		else
+			return "/WEB-INF/can'tUpdateUser.jsp";
+		}
+		
+		else
+			return "../index.jsp";
 	}
 	//更新用户
 	@RequestMapping("/usermanage/updateUser")
@@ -72,10 +93,21 @@ public class UserManageMapperController {
 	}
 	//删除用户
 	@RequestMapping("/usermanage/deleteUser/{userid}")
-	public String deleteUser(@PathVariable("userid") int userid) {
+	public String deleteUser(@PathVariable("userid") int userid,HttpSession session, String username) {
+		username = (String)session.getAttribute("username");	
+		if(username != null && username != "") 
+		{
+		User user1 =service.queryOneUser(username);
+		String privilege = user1.getPrivilege();
+		if(privilege.equals("管理员")) {
 		User user = service.selectUserById(userid);
 		System.out.println("deleteUser=>"+user);
 		service.deleteUserById(userid);
-		return "/usermanage/selectAllUser";
+		return "/usermanage/selectAllUser";}
+		else
+			return "/WEB-INF/can'tDeleteUser.jsp";
+		}
+		else
+			return "../index.jsp";
 	}
 }

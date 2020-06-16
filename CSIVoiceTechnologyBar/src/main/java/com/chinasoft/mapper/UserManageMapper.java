@@ -21,4 +21,10 @@ public interface UserManageMapper {
 	
 	@Select("select * from user")
 	List<User>  selectAllUser();
+	
+	@Select("select privilege from user where userid = #{userid}")
+	String usermanageSelectPrivilege(int userid);
+	
+	@Select("select * from user where username = #{username}")
+	User selectUsersByUsername(String username);
 }
