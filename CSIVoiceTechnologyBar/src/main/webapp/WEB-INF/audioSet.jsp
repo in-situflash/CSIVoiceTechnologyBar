@@ -21,7 +21,7 @@
 		
 		
 		
-		<!--<div id="ORG_ADD_DIV_ID" class="card card-info" style="display:none">  -->
+		<!-- <div id="ORG_ADD_DIV_ID" class="card card-info" style="display:none">
 		<div id="POST_ADD_DIV_ID" class="card card-info">
 	    	<div class="card-header">
 	             <h3 class="card-title">语音设置</h3>
@@ -103,14 +103,80 @@
 			             </div>
 	             </div>
 	             
-	             <!-- /.card-body -->
+	             /.card-body
 	             <div class="card-footer col-md-3 col-md-offset-4" style="width:100%"align="center">
 	               <button type="button" class="btn btn-info" onclick="updateAudioSetUp()">提交</button>
 	             </div>
-	             <!-- /.card-footer -->
+	             /.card-footer
 	        </div>
 	    </div>
-		
+		 -->
+		 
+	<div>
+		<h1>语音设置</h1>
+			<form action="audioSetPost" method="post" enctype="multipart/form-data">
+				<!-- 用户名：<input type="text" name="username" id="username" value="" placeholder ="更改用户名"/>
+				<br/> -->
+				
+				发声人：<select id="auSetVoiPer" name="auSetVoiPer" class="form-control highlight_green l35" >
+									  <option value ="0">普通女声</option>
+									  <option value ="1">普通男声</option>
+									  <option value ="2">度逍遥（武侠）</option>
+									  <option value ="3">度丫丫（软萌）</option>
+				       </select>
+				<!-- 性别：<input type="number" name="userag" id="userage" value="" placeholder ="更改用户年龄"/> -->
+				<br/>
+				语速：<select id="auSetSpd" name="auSetSpd" class="form-control highlight_green l35" >
+									  <option value ="0">0</option>
+									  <option value ="1">1</option>
+									  <option value ="2">2</option>
+									  <option value ="3">3</option>
+									  <option value ="4">4</option>
+									  <option value ="5">5</option>
+									  <option value ="6">6</option>
+									  <option value ="7">7</option>
+									  <option value ="8">8</option>
+									  <option value ="9">9</option>
+					</select>
+				<br/>
+				音调：<select id="auSetPit" name="auSetPit" class="form-control highlight_green l35" >
+									  <option value ="0">0</option>
+									  <option value ="1">1</option>
+									  <option value ="2">2</option>
+									  <option value ="3">3</option>
+									  <option value ="4">4</option>
+									  <option value ="5">5</option>
+									  <option value ="6">6</option>
+									  <option value ="7">7</option>
+									  <option value ="8">8</option>
+									  <option value ="9">9</option>
+								</select>
+				<br/>
+				音量：<select id="auSetVol" name="auSetVol" class="form-control highlight_green l35" >
+									  <option value ="0">0</option>
+									  <option value ="1">1</option>
+									  <option value ="2">2</option>
+									  <option value ="3">3</option>
+									  <option value ="4">4</option>
+									  <option value ="5">5</option>
+									  <option value ="6">6</option>
+									  <option value ="7">7</option>
+									  <option value ="8">8</option>
+									  <option value ="9">9</option>
+									  <option value ="10">10</option>
+									  <option value ="11">11</option>
+									  <option value ="12">12</option>
+									  <option value ="13">13</option>
+									  <option value ="14">14</option>
+									  <option value ="15">15</option>
+								</select>
+				<br/>
+				<input type="submit" value="提交"/>
+				
+					
+				
+			</form>
+	</div>
 		
 		
 		
