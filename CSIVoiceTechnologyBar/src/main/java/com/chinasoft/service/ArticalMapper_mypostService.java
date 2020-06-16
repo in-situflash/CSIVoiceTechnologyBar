@@ -11,7 +11,8 @@ public interface ArticalMapper_mypostService {
 	void addmyArticle(Article article);
 	List<Article> FindmyByPar(Map map);
 	List<Article> FindmyByParByLimit(Map map);
-	void deletemyArticle(int a_id);
+	void deletemyArticle(Map map);
 	List<Article> FindmyAll(String username);
 	int selectLastmyArticle();
+	String selectUsernameByA_id(int a_id);
 }

@@ -26,11 +26,15 @@
 		insert into article(a_id,essay,username,a_createtime,title) values(#{a_id},#{essay},#{username},#{a_createtime},#{title})
 	</insert>
 	
-	<delete id="deletemyArticle" parameterType="com.chinasoft.pojo.Article">
-		delete from article where a_id = #{a_id}
+	<delete id="deletemyArticle" parameterType="Map">
+		delete from article where a_id = #{a_id} and username = #{username}
 	</delete>
 	
 	<select id="selectLastmyArticle" resultType="int">
 		select a_id from article order by a_id desc limit 1
+	</select>
+	
+	<select id="selectUsernameByA_id" parameterType="int" resultType="String">
+		select username from article where a_id = #{a_id}
 	</select>
 </mapper>

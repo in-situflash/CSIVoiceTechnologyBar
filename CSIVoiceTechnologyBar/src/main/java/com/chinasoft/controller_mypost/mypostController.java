@@ -33,7 +33,7 @@ public class mypostController {
 
 	@RequestMapping("/tomypost")
 	public ModelAndView tomypost(HttpSession session, int page) {
-		String username = (String)session.getAttribute("username");
+		String username = (String) session.getAttribute("username");
 		int SELECT_TYPE = 0;
 		username = (String) session.getAttribute("username");
 		if (username != null && username != "") {
@@ -79,8 +79,8 @@ public class mypostController {
 	}
 
 	@RequestMapping("/selectmypost")
-	public ModelAndView selectmypost(HttpSession session,String title, int selectpage) {
-		String username = (String)session.getAttribute("username");
+	public ModelAndView selectmypost(HttpSession session, String title, int selectpage) {
+		String username = (String) session.getAttribute("username");
 		int SELECT_TYPE = 1;
 		if (username != null && username != "") {
 			Map<String, Object> maptitle = new HashMap<>();
@@ -125,7 +125,7 @@ public class mypostController {
 	}
 
 	@RequestMapping("/addmypost")
-	public ModelAndView addmypost(HttpSession session,int lastid, String title, String essay) {
+	public ModelAndView addmypost(HttpSession session, int lastid, String title, String essay) {
 		String username = (String) session.getAttribute("username");
 		Article addarticle = new Article();
 		if (username != null && username != "") {
@@ -148,11 +148,21 @@ public class mypostController {
 	}
 
 	@RequestMapping("/deletemypost")
-	public ModelAndView deletemypost(HttpSession session,int a_id[]) {
+	public ModelAndView deletemypost(HttpSession session, int a_id[]) {
 		String username = (String) session.getAttribute("username");
 		if (username != null && username != "") {
 			for (int i = 0; i < a_id.length; i++) {
-				service.deletemyArticle(a_id[i]);
+				if (service.selectUsernameByA_id(a_id[i]).equals(username) == true) {
+					Map<String, Object> map = new HashMap<>();
+					map.put("a_id", a_id[i]);
+					map.put("username", username);
+					service.deletemyArticle(map);
+					map.clear();
+				} else {
+					ModelAndView mav = new ModelAndView();
+					mav.setViewName("../index.jsp");
+					return mav;
+				}
 			}
 			ModelAndView mav = new ModelAndView();
 			String url = "/mypostController/tomypost?page=1";

@@ -35,8 +35,8 @@ public class ArticleMapper_mypostServiceImpl  implements ArticalMapper_mypostSer
 	}
 
 	@Override
-	public void deletemyArticle(int a_id) {
-		mapper.deletemyArticle(a_id);
+	public void deletemyArticle(Map map) {
+		mapper.deletemyArticle(map);
 	}
 
 	@Override
@@ -56,5 +56,12 @@ public class ArticleMapper_mypostServiceImpl  implements ArticalMapper_mypostSer
 	public int selectLastmyArticle() {
 		int a_id = mapper.selectLastmyArticle();
 		return a_id;
+	}
+
+
+	@Override
+	public String selectUsernameByA_id(int a_id) {
+		String username = mapper.selectUsernameByA_id(a_id);
+		return username;
 	}
 }
