@@ -187,10 +187,10 @@
 				audio = myCommentBtts({
 					tex: text,
 					tok: '25.d134c5f4a951a8bed186317f3b36e1a6.315360000.1907381403.282335-20381539',
-					spd: 5,
-					pit: 5,
-					vol: 15,
-					per: 4			// 朗读的音色
+					spd: ${audioset.speed},
+					pit: ${audioset.tone},
+					vol: ${audioset.volume},
+					per: audioStrToId("${audioset.voicetype}")			// 朗读的音色
 				}, {
 					volume: 0.3,
 					autoDestory: false,
