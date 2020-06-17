@@ -16,18 +16,6 @@
 		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/adminlte/css/adminlte.css">
 		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/mask.css" >
 		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/chinasofti/myComment/css/mycomment.css" />
-		<script type="text/javascript">
-			function _checkLogin(){
-				const islogin = "${islogin}";
-				console.log("login state:"+islogin);
-				if (islogin == "false"){
-					$.MsgBox.AlertWithCb("消息", "请先登录!",
-							()=>{
-								window.location.replace("/CSIVoiceTechnologyBar/");
-							});
-				}
-			}
-		</script>
 	</head>
 
 	<body style="height: auto;" onload="_checkLogin()">
@@ -176,16 +164,16 @@
 		<script src="/CSIVoiceTechnologyBar/static/js/common/baidu_tts_cors.js"></script>
 
 		<script type="text/javascript">
-            <%--function _checkLogin(){--%>
-            <%--    const islogin = "${islogin}";--%>
-            <%--    console.log("login state:"+islogin);--%>
-            <%--    if (islogin == "false"){--%>
-            <%--        $.MsgBox.AlertWithCb("消息", "请先登录!",--%>
-            <%--            ()=>{--%>
-            <%--                window.location.replace("/CSIVoiceTechnologyBar/");--%>
-            <%--            });--%>
-            <%--    }--%>
-            <%--}--%>
+            function _checkLogin(){
+                const islogin = "${islogin}";
+                console.log("login state:"+islogin);
+                if (islogin == "false"){
+                    $.MsgBox.AlertWithCb("消息", "请先登录!",
+                        ()=>{
+                            window.location.replace("/CSIVoiceTechnologyBar/");
+                        });
+                }
+            }
 
 			function tts(idx) {
 
