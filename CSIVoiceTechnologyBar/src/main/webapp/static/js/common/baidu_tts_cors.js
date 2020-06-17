@@ -239,9 +239,9 @@ function audioStrToId(voiceStr){
             return 0;
         case "普通男声":
             return 1;
-        case "度逍遥（武侠）":
+        case "度逍遥":
             return 3;
-        case "度丫丫（软萌）":
+        case "度丫丫":
             return 4;
         default:
             return 0;
