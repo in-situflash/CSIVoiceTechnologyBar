@@ -38,9 +38,10 @@ public class audioController{
 		//ModelAndView
 		
 		//httpsession得到登陆用户名
-		Object usernameobj = session.getAttribute("username");
+	
+		Object usernameobj=session.getAttribute("username"); 
 		String username = usernameobj.toString();
-		
+		 
 		System.out.println("语音设置文件提交的内容进来了");
 		//return "jsp";
 		System.out.println("打印表单数据：\n");
@@ -62,10 +63,10 @@ public class audioController{
 			auSetVoiPer = "普通男声";
 			break;
 		case ""+'2':
-			auSetVoiPer = "度逍遥（武侠）";
+			auSetVoiPer = "度逍遥";
 			break;
 		case ""+'3':
-			auSetVoiPer = "度丫丫（软萌）";
+			auSetVoiPer = "度丫丫";
 			break;
 		default:
 			break;
