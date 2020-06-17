@@ -78,21 +78,21 @@
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">用户名</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">年龄</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">性别</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">邮箱</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">注册时间</th>
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">最后登录时间</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">权限</th>
 												</tr>
 											</thead>
 											<tbody id="POST_LIST_TBODY_ID">
 												<c:forEach var="user" items="${list}">
 													<tr bgcolor="#FFFFFF">		
-														<td align="center" width="20">			<div class="col-md-2 col-md-offset-0" ><a class="btn  btn-danger btn-sm"  href="${pageContext.request.contextPath}/usermanage/deleteUser/${user.userid}">删除</a></div>	</td>			
-														<td  align="center" width="30">			<a href="${pageContext.request.contextPath}/usermanage//toUpdateUser?userid=${user.userid}">${user.username}</a> 		</td>		
-														<td align="center" width="30">${user.age}		</td>		
-														<td  align="center" width="110">${user.gender}		</td>		
-														<td align="center" width="110"><fmt:formatDate value="${user.create_time}" pattern="yyyy-MM-dd HH:mm:ss" />		</td>		
-														<td  align="center" width="100">2020-06-12 23:08:18		</td>		
-														<td  align="center" width="100">${user.privilege}		</td>
+														<td align="center" width="8%"><a class="btn  btn-danger btn-sm"  href="${pageContext.request.contextPath}/usermanage/deleteUser/${user.userid}">删除</a></td>			
+														<td  align="center" width="14.5%">			<a href="${pageContext.request.contextPath}/usermanage//toUpdateUser?userid=${user.userid}">${user.username}</a> 		</td>		
+														<td align="center" width="10.1%">${user.age}</td>		
+														<td  align="center" width="10.1%">${user.gender}		</td>		
+														<td  align="center" width="20.4%">${user.email}		</td>	
+														<td align="center" width="20.9%"><fmt:formatDate value="${user.create_time}" pattern="yyyy-MM-dd HH:mm:ss" />		</td>	
+														<td  align="center" width="16%">${user.privilege}		</td>
 													</tr>
 												</c:forEach>
 											</tbody>
