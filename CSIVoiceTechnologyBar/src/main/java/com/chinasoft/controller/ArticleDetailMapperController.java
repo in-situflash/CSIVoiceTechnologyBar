@@ -192,23 +192,15 @@ public class ArticleDetailMapperController {
 	public ModelAndView insertComment(HttpSession session, Comment comment) {
 		ModelAndView mav = new ModelAndView();
 		String username = comment.getUsername();
-		String content = comment.getContent();
 		int a_id = comment.getA_id();
-		System.out.println(username);
-		System.out.println(content);
-		System.out.println(a_id);
-		service.insertComment(comment);
-		
-		
-		
-		
 		/* 获取登录用户名obj */
 		Object usernameobj = session.getAttribute("username");
 		/* 如果未登录（非法访问） */
 		if(usernameobj == null) {
 			mav.setViewName("/WEB-INF/login.jsp");
 			return mav;
-		}else {
+		}else {	
+			service.insertComment(comment);	
 			/* 查询用户的语音设置 */
 			audioSet audioSet = service.selectAudioSetByUsername(username);
 			/* 查询文章详细内容 */
