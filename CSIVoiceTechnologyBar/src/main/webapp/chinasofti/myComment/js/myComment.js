@@ -26,7 +26,7 @@ $(function(){
 	             'table', 'hr', 'emoticons', ]
 	});
 
-	_checkLogin();
+	// _checkLogin();
 	_readInfo();
 	_initPageDisplay();
 });
