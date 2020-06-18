@@ -1,7 +1,9 @@
 package com.chinasoft.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.chinasoft.pojo.ArticleDetail;
@@ -235,6 +240,34 @@ public class ArticleDetailMapperController {
 		}
 		
 		 
+	}
+	
+	@RequestMapping("/toUploadHead")
+	public ModelAndView toUploadHead(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String username = session.getAttribute("username").toString();
+		String image = service.selectImageByUsername(username);
+		mav.addObject("image",image);
+		mav.setViewName("/WEB-INF/uploadHead.jsp");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/uploadImage", method = RequestMethod.POST) 
+	public ModelAndView uploadImage(HttpSession session, MultipartFile file) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		String username = session.getAttribute("username").toString();
+		String image = service.selectImageByUsername(username);
+		service.uploadImage(file.getOriginalFilename(),username);
+		
+		InputStream inputStream = file.getInputStream();
+		File saveFile = new File("D:/java/" + file.getOriginalFilename());
+		FileOutputStream fos = new FileOutputStream(saveFile);
+		IOUtils.copy(inputStream, fos);
+		inputStream.close();
+		fos.close();
+		mav.addObject("image",image);
+		mav.setViewName("/WEB-INF/uploadHead.jsp");
+		return mav;
 	}
 	
 }

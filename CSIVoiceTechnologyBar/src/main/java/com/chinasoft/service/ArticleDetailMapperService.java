@@ -31,5 +31,7 @@ public interface ArticleDetailMapperService {
 	String selectUsernameByC_id(int c_id);
 	
 	void insertComment(Comment comment);
+	
+	void uploadImage(String image_url, String username);
 }
  

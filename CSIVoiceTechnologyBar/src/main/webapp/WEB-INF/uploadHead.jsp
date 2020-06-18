@@ -7,13 +7,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>所有文章</title>
 
-		<link rel="stylesheet" href="static/css/default/bootstrap/bootstrap.css">
-		<link rel="stylesheet" href="static/comp/fontawesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="static/comp/ionicons/css/ionicons.min.css">
-		<link rel="stylesheet" href="static/comp/adminlte/css/adminlte.css">
-		<link rel="stylesheet" href="static/css/default/mask.css" />
-		<link rel="stylesheet" href="chinasofti/uploadHead/css/cropper.min.css">
-    	<link rel="stylesheet" href="chinasofti/uploadHead/css/ImgCropping.css">
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/bootstrap/bootstrap.css">
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/fontawesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/comp/adminlte/css/adminlte.css">
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/static/css/default/mask.css" />
+		<link rel="stylesheet" href="/CSIVoiceTechnologyBar/chinasofti/uploadHead/css/cropper.min.css">
+    	<link rel="stylesheet" href="/CSIVoiceTechnologyBar/chinasofti/uploadHead/css/ImgCropping.css">
 	</head>
 
 	<body style="height: auto;">
@@ -28,13 +28,15 @@
 	        <div class="form-horizontal">
 				<div class="card-body" style="text-align: center;">
 			       <!-- ------------ -->
-			       <button id="replaceImg" class="l-btn">更换头像</button>
-				   <button  class="l-btn" onclick="subphoto()">提交头像</button>
+			       <form method="post" action="http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/uploadImage" enctype="multipart/form-data">
+				   <button type="submit" class="l-btn" onclick="submitbtn()">提交头像</button>
 					<div style="height:10px"></div>
 					<div style="width: 150px;height: 150px;border: solid 1px #555;padding: 5px; margin: 0 auto;">
-					    <img id="finalImg" src="" width="100%">
+					    <input type="file"  name="file"/>
+					    <img src="http://localhost:8080/CSIVoiceTechnologyBar/articleDetail/downloadImage?filename=${image}"
+												style="whith: 80px; height: 80px"> 
 					</div>
-
+					</form>
 
 					<!--图片裁剪框 start-->
 					<div style="display: none" class="tailoring-container">
@@ -75,27 +77,38 @@
 		
 		
 		
-		<script src="static/comp/jquery/dist/jquery.js"></script>
-		<script src="static/comp/jQuery-Storage-API/jquery.storageapi.js"></script>
-		<script src="static/comp/jquery.form/jquery.form.min.js"></script>
-		<script src="static/comp/jquery/plugins/scrollbar/perfect-scrollbar.jquery.min.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jquery/dist/jquery.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jQuery-Storage-API/jquery.storageapi.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jquery.form/jquery.form.min.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/comp/jquery/plugins/scrollbar/perfect-scrollbar.jquery.min.js"></script>
 		
-		<script src="static/kindeditor/kindeditor-all.js" type="text/javascript"></script> 
-		<script src="static/kindeditor/kindeditor-all-min.js" type="text/javascript"></script>
-		<script src="static/kindeditor/lang/zh-CN.js" type="text/javascript"></script>
-		<script src="static/js/common/mask.js"></script>
-		<script src="chinasofti/uploadHead/js/cropper.min.js"></script>
-		<script src="chinasofti/uploadHead/js/uploadHead.js"></script>
-		<script type="text/javascript" src="static/js/alert.js"></script>
+		<script src="/CSIVoiceTechnologyBar/static/kindeditor/kindeditor-all.js" type="text/javascript"></script> 
+		<script src="/CSIVoiceTechnologyBar/static/kindeditor/kindeditor-all-min.js" type="text/javascript"></script>
+		<script src="/CSIVoiceTechnologyBar/static/kindeditor/lang/zh-CN.js" type="text/javascript"></script>
+		<script src="/CSIVoiceTechnologyBar/static/js/common/mask.js"></script>
+		<script src="/CSIVoiceTechnologyBar/chinasofti/uploadHead/js/cropper.min.js"></script>
+		<script src="/CSIVoiceTechnologyBar/chinasofti/uploadHead/js/uploadHead.js"></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/alert.js"></script>
+		<script type="text/javascript" src="/CSIVoiceTechnologyBar/static/js/layer/layer.js"></script>
 		
 		<!--  
 		<script src="/stmadc/stma/dc/include/js/jcommon.js"></script>
 		
 		<script language="JavaScript" src="/stmadc/jquery/jquery-ui-1.8.20.min.js"></script>
-		<script src="/stmadc/static/comp/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="/stmadc/static/comp/adminlte/js/adminlte.min.js"></script>
+		<script src="/stmadc//CSIVoiceTechnologyBar/static/comp/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="/stmadc//CSIVoiceTechnologyBar/static/comp/adminlte/js/adminlte.min.js"></script>
 		<script language="JavaScript" src="/stmadc/stma/dc/include/js/jcommon.js"></script>
 	-->
-
+	<script type="text/javascript">
+	function submitbtn(){
+		layer.msg('上传成功!',{
+	        icon:1 ,
+	        time:10000,
+	        end:function () {
+	           
+	        }
+	    })
+	}
+	</script>
 
 </body></html>

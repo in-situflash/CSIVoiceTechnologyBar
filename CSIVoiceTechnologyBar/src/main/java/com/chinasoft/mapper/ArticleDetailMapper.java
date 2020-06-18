@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -47,5 +48,8 @@ public interface ArticleDetailMapper {
 
 	@Insert("insert into comment(username,content,a_id) values(#{username},#{content},#{a_id})")
 	void insertComment(Comment comment);
+
+	@Update("update address set image_url = #{image_url} where username = #{username}")
+	void uploadImage(@Param("image_url")String image_url, @Param("username")String username);
 
 }

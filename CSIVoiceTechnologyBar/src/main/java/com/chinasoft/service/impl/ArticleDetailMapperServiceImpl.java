@@ -77,4 +77,8 @@ public class ArticleDetailMapperServiceImpl implements ArticleDetailMapperServic
 		
 	}
 
+	public void uploadImage(String image_url, String username) {
+		mapper.uploadImage(image_url, username);
+	}
+
 }
