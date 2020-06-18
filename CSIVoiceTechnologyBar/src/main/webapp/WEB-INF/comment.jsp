@@ -290,6 +290,12 @@
 	     case "度丫丫（软萌）":
 		    voicetype = 4;
 			break;
+	     case "度逍遥":
+		    	voicetype = 3;
+			    break;
+		 case "度丫丫":
+			    voicetype = 4;
+				break;
 	     default:
 	    	voicetype = 4;
 		} 
