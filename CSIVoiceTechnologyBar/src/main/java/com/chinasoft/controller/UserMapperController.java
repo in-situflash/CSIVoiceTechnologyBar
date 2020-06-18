@@ -1,6 +1,6 @@
 package com.chinasoft.controller;
 
-import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -37,9 +37,39 @@ public class UserMapperController {
 		}
 		return mav;
 	}
-  
+ 
+	@RequestMapping("/register")
+	 public ModelAndView register(User user) {
+		    ModelAndView mav = new ModelAndView(); 
+	        String username = user.getUsername();
+	        int userid = user.getUserid();
+	        Random random = new Random();
+	        int romdomUserid = random.nextInt(1000);
+	        if(romdomUserid != userid) {
+	        	user.setUserid(romdomUserid);
+	        }
+	        // 如果数据库中没有该用户，可以注册，否则跳转页面
+	        if (service.selectByUsername(username) == null) {
+	        	    service.register(user);
+	        		service.voice_register(username);
+	        		service.address_register(username);
+		        	mav.addObject("user", user);
+		            mav.setViewName("/WEB-INF/login.jsp");
+	        
+	        }
+	        
+			return mav;       
+	}
 	
+	/*
+	@RequestMapping("/editPassword")
+	public ModelAndView editPassword(String password){
+		 ModelAndView mav = new ModelAndView();
+		 String old_password = user.get
+		return mav; 
+	}*/
 	
+	 /*
 	@RequestMapping("/test")
 	@ResponseBody
 	public String test() {
@@ -47,7 +77,17 @@ public class UserMapperController {
 		
 		return "Success!";
 	}
-
+	
+		@RequestMapping("/addUserByPar")
+	public ModelAndView addUserByPar() {
+		ModelAndView mav = new ModelAndView(); 
+		User user = new User(0,"username", "password", "gender", "age", "email","create_time","privilege");
+		String username=user.getUsername();
+		mav.addObject("info", "娣诲姞鎴愬姛");
+		mav.setViewName("/index.jsp");
+		return mav;
+	}
+   
 	@RequestMapping("/selectById")
 	@ResponseBody
 	public ModelAndView selectById() {
@@ -58,21 +98,11 @@ public class UserMapperController {
 		return mav;
 	}
 	
-	@RequestMapping("/insertByUser")
-	public ModelAndView InsertByUser() {
-		ModelAndView mav = new ModelAndView();
-		User user = new User("username","email", "password",new Date(), 2, "��", "��ͨ�û�", 4);
-		service.InsertByUser(user);
-		mav.addObject("info", "添加成功");
-		mav.setViewName("/index.jsp");
-		return mav;
-	}
-	
 	@RequestMapping("/deleteById")
 	public ModelAndView deleteById() {
 		ModelAndView mav = new ModelAndView();
 		service.deleteById(500);
-		mav.addObject("info", "删除成功");
+		mav.addObject("info", "鍒犻櫎鎴愬姛");
 		mav.setViewName("/index.jsp");
 		return mav;
 	}
@@ -80,10 +110,10 @@ public class UserMapperController {
 	@RequestMapping("/updateByUser")
 	public ModelAndView updateByUser() {
 		ModelAndView mav = new ModelAndView();
-		User user =  new User("username","email", "password",new Date(), 2, "��", "��ͨ�û�", 2);
+		User user = new User(500, "name", "pwd", "phone", "address", "email", 1);
 		service.updateByUser(user);
-		mav.addObject("info", "更改成功");
+		mav.addObject("info", "鏇存敼鎴愬姛");
 		mav.setViewName("/index.jsp");
 		return mav;
-	}
+	}*/
 }

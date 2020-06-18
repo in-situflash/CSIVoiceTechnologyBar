@@ -12,16 +12,33 @@ public class UserMapperServiceImpl implements UserMapperService {
 
 	@Autowired
 	UserMapper mapper;
-
+    
+	public User login(String username, String password) {
+		return mapper.selectLogin(username, password);
+	} 
+	
+	public void register(User user) {
+		mapper.register(user);
+	}
+	
+	public void voice_register(String username) {
+		mapper.voice_register(username);
+	}
+	
+	public void address_register(String username) {
+		mapper.address_register(username);
+	}
+	
+	public User selectByUsername(String username) {
+	    return mapper.selectByUsername(username);
+	}
+	
+	public void editPassword(String password) {
+		mapper.editPassword(password);
+	}
+	/*
 	@Override
-	public User selectById(int id) {
-		User user = mapper.selectOneByPar(id);
-		return user;
-	}
-
-	public void InsertByUser(User user) {
-		mapper.addUserByPar(user);
-	}
+	
 
 	public void deleteById(int id) {
 		mapper.deleteById(id);
@@ -31,11 +48,7 @@ public class UserMapperServiceImpl implements UserMapperService {
 		mapper.updateByUser(user);
 		
 	}
-
-	public User login(String username, String password) {
-		return mapper.selectLogin(username, password);
-	} 
-
+    */
 
 
 }

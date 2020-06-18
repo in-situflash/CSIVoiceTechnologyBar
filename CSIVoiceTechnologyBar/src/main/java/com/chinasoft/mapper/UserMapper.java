@@ -11,11 +11,19 @@ import com.chinasoft.pojo.User;
 
 public interface UserMapper {
 	
+	User selectLogin(@Param("username")String username,@Param("password")String password);
+	
+	void register(User user);
+	
+	void voice_register(String username);
+	
+	void address_register(String username);
+	
+	User selectByUsername(String username);
+	
+	void editPassword(String password);
+	/*
 	void addUserNoPar();
-	
-	void addUserByPar(User user);
-	
-	User selectOneByPar(int id);
 	
 	@Select("select * from user")
 	List<User>  selectAll();
@@ -33,6 +41,6 @@ public interface UserMapper {
 
 	@Update("update user set username=#{username}, password=#{password}, phone=#{phone}, address=#{address}, email=#{email}, c_id=#{c_id} where id =#{id};")
 	void updateByUser(User user);
-
-	User selectLogin(@Param("username")String username,@Param("password")String password);
+    */
+	
 }

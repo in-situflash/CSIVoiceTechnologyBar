@@ -124,6 +124,7 @@
 					<div id="message"style="position:absolute;color:red;margin-top:-20px;margin-left:100px;" > </div>
 				
 				  	<!--<form  action="login.d" method="post" onsubmit="return validateLogin()"> -->
+				  	<form  action="/CSIVoiceTechnologyBar/register" method="post"> 
 						<div class="content" >
 							<div class="navbar-header">
 					           	<div>
@@ -136,14 +137,14 @@
 					        <div class="formitem">
 					        	<span class="icon" style="width:100px">用户名</span>
 					        	<span class="input" >
-					        		<input id="regusername" name="regusername" value="" class="form-control l35" fv_type="NOTCN" type="text" maxlength="20" placeholder="请输入您的用户名" value=""  data-toggle="tooltip" data-placement="right">
+					        		<input id="username" name="username" value="" class="form-control l35" fv_type="NOTCN" type="text" maxlength="20" placeholder="请输入您的用户名" value=""  data-toggle="tooltip" data-placement="right">
 					        	</span>
 					        </div>
 					            
 					        <div class="formitem">
 					        	<span class="icon" style="width:100px">密码</span>
 					        	<span class="input">
-					        		<input id="regpassword" name="regpassword" value="" class="form-control highlight_green l35" fv_type="NOTCN" type="password" maxlength="6" placeholder="请输入您的密码"  data-toggle="tooltip" data-placement="right">
+					        		<input id="password" name="password" value="" class="form-control highlight_green l35" fv_type="NOTCN" type="password" maxlength="6" placeholder="请输入您的密码"  data-toggle="tooltip" data-placement="right">
 					        	</span>
 					        </div>
 					        
@@ -174,17 +175,18 @@
 					         <div class="formitem">
 					        	<span class="icon" style="width:100px">邮箱</span>
 					        	<span class="input">
-					        		<input id="regEmial" name="regEmial" value="" class="form-control highlight_green l35" fv_type="NOTCN" type="text" placeholder="请输入您的邮箱地址"  data-toggle="tooltip" data-placement="right">
+					        		<input id="email" name="email" value="" class="form-control highlight_green l35" fv_type="NOTCN" type="text" placeholder="请输入您的邮箱地址"  data-toggle="tooltip" data-placement="right">
 					        	</span>
 					        </div>
 					        <div >
-					        	<button type="button" onclick="subReg()" class="layui-btn  btn-login"  style="width:150px">&nbsp;&nbsp;注      册&nbsp;&nbsp;</button>
+					        	<button type="submit" onclick="subReg()" class="layui-btn  btn-login"  style="width:150px">&nbsp;&nbsp;注      册&nbsp;&nbsp;</button>
 					       		<button type="button" onclick="gotoLogin()" class="layui-btn  btn-login"  style="width:150px">&nbsp;&nbsp;返      回&nbsp;&nbsp;</button>
 						    </div>  
 						    <div class="formitem" id="zucetishi" style="text-align: center;color: red;padding-top: 15px">
 					        
 					        </div>
 						</div>
+				</form>
 				</div>
 			</div>
 		</div>

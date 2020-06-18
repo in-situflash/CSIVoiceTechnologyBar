@@ -4,37 +4,62 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chinasoft.mapper.UserMapper">
 
+    <!--登录功能 -->
+	<select resultType="User" id="selectLogin" parameterType="user">
+		select
+		* from user where username= #{username} and
+		password=#{password}
+	</select>
+	 
+	 <!-- 注册 -->
+	 <insert id="register"
+		parameterType="com.chinasoft.pojo.User">
+		insert into user
+		(userid,username,password,gender,age,email)
+		values(#{userid},#{username},#{password},#{gender},#{age},#{email});
+	</insert>
 	
-
+	<insert id="voice_register" parameterType="String">
+	     insert into voice
+	     (username,voicetype,speed,tone,volume)
+	      values(#{username},'度丫丫（软萌）','5','5','5')
+    </insert>
+    
+    <insert id="address_register" parameterType="String">
+         insert into address
+         (username,image_url)
+         values(#{username},'0.jpg')
+      
+    </insert>
+	
+		<!--查询一个用户 -->
+	<select resultType="User" id="selectByUsername"
+		parameterType="String">
+		select * from user where username = #{username}
+	</select>
+	
+	<!-- 修改密码 -->
+	<update  id="editPassword" parameterType="String">
+	        update user set password = #{password} where username = #{username} 
+	</update>
+	
+	
+	
+	
 	<insert id="addUserNoPar">
 		insert into user (username,password)
 		values('郭富城','88888888')
 	</insert>
-	<insert id="addUserByPar"
-		parameterType="com.chinasoft.pojo.User">
-		insert into user
-		(id,username,password,phone,address,email)
-		values(#{id},#{username},#{password},#{phone},#{address},#{email})
-	</insert>
-
+	
 	<!--更具想要的字段排序 -->
 	<select id="selectOrderBy" parameterType="string"
 		resultType="user">
 		select * from user order by ${column}
 	</select>
 
-	<!--查询一个用户 -->
-	<select resultType="User" id="selectOneByPar"
-		parameterType="int">
-		select * from user where id = #{aaa}
-	</select>
 
-	<!--登录功能 -->
-	<select resultType="User" id="selectLogin" parameterType="user">
-		select
-		* from user where username= #{username} and
-		password=#{password}
-	</select>
+
+	
 
 	<!--动态sql ————if -->
 	<select id="findUserWith_if" resultType="user"
@@ -45,7 +70,6 @@
 			AND password = #{password}
 		</if>
 	</select>
-
 
 	<!--动态sql ————foreach -->
 
@@ -58,6 +82,6 @@
 			separator="," close=")">
 			#{item}
 		</foreach>
-
 	</select>
+	
 </mapper>
