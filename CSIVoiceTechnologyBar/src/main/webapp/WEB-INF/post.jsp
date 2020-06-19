@@ -60,7 +60,12 @@
 						<div class="card-header" style="width:100%">
 							<h3  class="card-title col-md-3" >当前：<span id="LABLE_FATHER_ORG_NAME">所有文章</span></h3>
 							<div class="col-md-2 col-md-offset-7" id="postAddAndDeleteDiv"><button class="btn  btn-success btn-sm" type="button" onclick="ADD_POST()">新增</button>&nbsp;&nbsp;
+							<% 
+								String privilege = (String)request.getAttribute("privilege");
+								if(privilege.equals("管理员")){
+							%>
 							<button class="btn  btn-danger btn-sm" type="button" onclick="DELETE_POST('${title}','${privilege}')">删除</button></div>
+							<% } %>
 						</div>
 						<div class="card-body">
 							<div id="example2_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
@@ -73,9 +78,18 @@
 									<div class="col-sm-12">
 								<table id="example2" class="table table-bordered table-hover dataTable" role="grid">
 											<thead>
-												<tr role="row">
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1"></th>	
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">阅读人数</th>
+												<tr role="row">	
+													<% 
+														if(privilege.equals("管理员")){
+													%>							
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1" align="center"><input id="c" name="SELECT_ALL" type="checkbox" value="" onclick="selectall()"></th>	
+													<% } %>
+													<% 
+														if(privilege.equals("普通用户")){
+													%>		
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1" align="center"></th>
+													<% } %>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">点赞人数</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">评论人数</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">文章标题</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">文章作者</th>
@@ -86,7 +100,16 @@
 											<tbody id="POST_LIST_TBODY_ID">
 											<tr bgcolor="#FFFFFF">
 											<c:forEach var="article" items="${allarticle}">
+											<% 
+												if(privilege.equals("管理员")){
+											%>
 											<td align="center" width="%6"><input name="DELETE_CHECK_NAME" type="checkbox" value="${article.a_id}"></td>
+											<% } %>
+											<% 
+												if(privilege.equals("普通用户")){
+											%>
+											<td align="center" width="%6"></td>
+											<% } %>
 											<td valign="center" align="center" width="%7">${article.a_likes}</td>
 											<td valign="center" align="center" width="%7">${article.a_comments}</td>
 											<td valign="center" align="center" width="%20"><a href="" onclick="post_detailed('0c5bad26938041459423277878dbafbe'); return false;">${article.title}</a></td>

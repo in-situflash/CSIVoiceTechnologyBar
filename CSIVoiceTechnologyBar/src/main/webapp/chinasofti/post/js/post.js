@@ -32,13 +32,13 @@ function returnPostList(){
 	$("#POST_ADD_TITLE").val("");
 	editor.html("");
 	$("#tishi").html("");
-	$("#POST_LIST_DIV_ID").attr("style","display:block;");//隐藏div
-	$("#POST_ADD_DIV_ID").attr("style","display:none;");//隐藏div
+	$("#POST_LIST_DIV_ID").attr("style","display:block;");// 隐藏div
+	$("#POST_ADD_DIV_ID").attr("style","display:none;");// 隐藏div
 }
 
 function ADD_POST(){
-	 $("#POST_LIST_DIV_ID").attr("style","display:none;");//隐藏div
-	 $("#POST_ADD_DIV_ID").attr("style","display:block;");//隐藏div
+	 $("#POST_LIST_DIV_ID").attr("style","display:none;");// 隐藏div
+	 $("#POST_ADD_DIV_ID").attr("style","display:block;");// 隐藏div
 }
 
 
@@ -231,6 +231,22 @@ function DELETE_POST(title,privilege){
     		});
 
     }
+}
+
+function selectall(){
+	var selectall = document.getElementById("c");
+	var checkboxs = document.getElementsByName("DELETE_CHECK_NAME");
+	var flag = selectall.checked;
+	if(flag){
+		for(var i=0; i<checkboxs.length; i++){
+			checkboxs[i].checked = true;
+		}
+	}
+	else{
+		for(var i=0; i<checkboxs.length; i++){
+			checkboxs[i].checked = false;
+		}
+	}
 }
 
 

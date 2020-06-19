@@ -74,8 +74,8 @@
 										<table id="example2" class="table table-bordered table-hover dataTable" role="grid">
 											<thead>
 												<tr role="row">
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1"></th>	
-													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">阅读人数</th>
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1"><input id="mc" name="SELECT_ALL" type="checkbox" value="" onclick="selectall()"></th>	
+													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">点赞人数</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">评论人数</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">文章标题</th>
 													<th style="text-align:center;" class="sorting" rowspan="1" colspan="1">文章作者</th>

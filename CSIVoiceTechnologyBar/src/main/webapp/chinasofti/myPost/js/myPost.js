@@ -229,5 +229,21 @@ function DELETE_POST(){
    
 }
 
+function selectall(){
+	var selectall = document.getElementById("mc");
+	var checkboxs = document.getElementsByName("DELETE_CHECK_NAME");
+	var flag = selectall.checked;
+	if(flag){
+		for(var i=0; i<checkboxs.length; i++){
+			checkboxs[i].checked = true;
+		}
+	}
+	else{
+		for(var i=0; i<checkboxs.length; i++){
+			checkboxs[i].checked = false;
+		}
+	}
+}
+
 
 
