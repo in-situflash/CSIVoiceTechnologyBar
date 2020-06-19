@@ -62,10 +62,8 @@
 							<div class="col-md-2 col-md-offset-7" id="postAddAndDeleteDiv"><button class="btn  btn-success btn-sm" type="button" onclick="ADD_POST()">新增</button>&nbsp;&nbsp;
 							<% 
 								String privilege = (String)request.getAttribute("privilege");
-								if(privilege.equals("管理员")){
 							%>
 							<button class="btn  btn-danger btn-sm" type="button" onclick="DELETE_POST('${title}','${privilege}')">删除</button></div>
-							<% } %>
 						</div>
 						<div class="card-body">
 							<div id="example2_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
